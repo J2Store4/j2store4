@@ -1,4 +1,4 @@
-J2Store V3
+J2Store V4
 ============
 
 J2Store V3 is a completely built from Scratch, Robust, Flexible and Modular Cart system.
