@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension version="3.0" type="plugin" group="j2store" method="upgrade">
+    <name>Flexible Variable</name>
+    <author>Alagesan</author>
+    <creationDate>JAN 2018</creationDate>
+    <copyright>(C) 2018 Cartrabbit International Pte Ltd</copyright>
+    <license>http://www.gnu.org/copyleft/lgpl.html GNU/LGPL</license>
+    <authorEmail>support@j2store.org</authorEmail>
+    <authorUrl>www.j2store.org</authorUrl>
+    <version>1.0.0</version>
+    <description>This app used to setup flexible variable product for J2Store</description>
+    <files>
+        <filename plugin="app_flexivariable">app_flexivariable.php</filename>
+        <folder>app_flexivariable</folder>
+        <filename>index.html</filename>
+    </files>
+    <languages folder="languages">
+        <language tag="en-GB">en-GB.plg_j2store_app_flexivariable.ini</language>
+    </languages>
+    <!--<config>
+        <fields name="params">
+            <fieldset name="basic">
+                <field type="customnotice" label="J2STORE_APP_FLEXIVARIABLE_NOTES" addfieldpath="/administrator/components/com_j2store/models/fields"/>
+                <field type="radio" name="option_required" default="0" label="J2STORE_APP_FLEXIVARIABLE_OPTION_REQUIRED" description="J2STORE_APP_FLEXIVARIABLE_OPTION_REQUIRED_DESC" >
+                    <option value="0">J2STORE_NO</option>
+                    <option value="1">J2STORE_YES</option>
+                </field>
+            </fieldset>
+        </fields>
+    </config>-->
+</extension>

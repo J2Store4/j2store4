@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<fof>
+
+<!-- Common settings -->
+    <common>
+        <!-- Table options for a specific table -->
+        <table name="product">
+            <relation type="children" name="variants" localKey="j2store_product_id" remoteKey="product_id"/>            
+        </table>
+        
+        <table name="variant">
+            <relation type="child" name="productquantities" localKey="j2store_variant_id" remoteKey="variant_id"/>
+            <relation type="multiple" name="productoptionvalues" localKey="j2store_variant_id"
+                      ourPivotKey="variant_id" theirPivotKey="product_optionvalue_id"
+                      remoteKey="j2store_product_optionvalue_id"
+                      pivotTable="#__j2store_product_variant_optionvalues" default="true" />
+            
+        </table>
+        
+        
+        
+    </common>
+
+	<backend>
+		<dispatcher>
+			<option name="default_view">cpanel</option>
+		</dispatcher>
+	</backend>
+	
+	<frontend>
+		<dispatcher>
+			<option name="default_view">products</option>
+		</dispatcher>
+		<view name="*">
+			<config>
+                <option name="use_table_cache">0</option>
+            </config>
+			<!-- Per-task ACL settings. The star task sets the default ACL privileges for all tasks. -->
+			<acl>								
+				<task name="*">false</task>								
+			</acl>
+		</view>
+		<view name="vendor">        
+            <acl>
+				<task name="browse">core.admin</task>
+				<task name="*">core.create</task>									
+			</acl>           
+		</view>
+		<view name="product">
+            <acl>
+                <task name="browse">true</task>              
+                <task name="read">true</task>                                                   
+                <task name="update">true</task>
+                <task name="view">true</task>
+                <task name="edit">core.create</task>                                
+                <task name="setproductprice">core.create</task>                
+                <task name="setproductoptionvalues">core.create</task>
+                <task name="createproductoptionvalue">core.create</task>
+                <task name="saveproductoptionvalue">core.create</task>
+                <task name="setparentoptionvalues">core.create</task>
+                <task name="saveparentproductoptionvalue">core.create</task>
+                
+                <task name="setpaimport">core.create</task>
+                <task name="getRelatedProducts">core.create</task>
+                <task name="changeProductType">core.create</task>
+                <task name="deleteProductOptionvalues">core.create</task>
+                <task name="removeProductOption">core.create</task>
+                <task name="setDefault">core.create</task>
+                <task name="createproductprice">core.create</task>
+                <task name="saveproductprices">core.create</task>
+                 <task name="getFiles">core.create</task>
+                 <task name="setvariant">core.create</task>
+                 <task name="savevariant">core.create</task>
+                 <task name="generateVariants">core.create</task>
+                 <task name="regenerateVariants">core.create</task>
+                 <task name="deleteAllVariants">core.create</task>
+                 <task name="removeproductprice">core.create</task>
+                 <task name="setDefaultVariant">core.create</task>
+                 <task name="setproductfiles">core.create</task>
+                 <task name="createproductfile">core.create</task>
+                 <task name="saveproductfiles">core.create</task>
+                 <task name="setfiles">core.create</task>
+                 <task name="importattributes">core.create</task>
+                 <task name="searchproductfilters">core.create</task>
+                 <task name="deleteproductfilter">core.create</task>
+                 <task name="wishlist">true</task>
+                <task name="compare">true</task>
+                <task name="displayAdminProduct">true</task>
+            </acl>  
+        </view>
+        
+        <view name="products">
+            <acl>
+                <task name="browse">true</task>                
+                <task name="view">true</task>
+                <task name="wishlist">true</task>
+                <task name="compare">true</task>
+            </acl> 
+            <config>
+                <option name="behaviors">filter,access</option>
+            </config> 
+        </view>
+        <view name="producttag">
+            <acl>
+                <task name="browse">true</task>
+                <task name="read">true</task>
+                <task name="update">true</task>
+                <task name="view">true</task>
+                <task name="edit">core.create</task>
+            </acl>
+        </view>
+        <view name="producttags">
+            <acl>
+                <task name="browse">true</task>
+                <task name="view">true</task>
+                <task name="wishlist">true</task>
+                <task name="compare">true</task>
+            </acl>
+            <config>
+                <option name="behaviors">filter,access</option>
+            </config>
+        </view>
+  
+        <view name="option">
+        	<acl>
+        		 <task name="getOptions">core.create</task> 
+        	</acl>
+        </view>
+        
+        <view name="cart">
+            <acl>
+                <task name="*">true</task>                         
+            </acl>  
+        </view>
+        <view name="carts">
+            <acl>
+                <task name="*">true</task>                         
+            </acl>  
+        </view>
+        <view name="checkout">
+            <acl>
+                <task name="*">true</task>                         
+            </acl>  
+        </view>
+		<view name="myprofile">
+		 	<acl>								
+				<task name="browse">true</task>									
+				<task name="vieworder">true</task>
+				<task name="printOrder">true</task>
+				<task name="editAddress">true</task>
+				<task name="saveAddress">true</task>
+				<task name="deleteAddress">true</task>
+				<task name="getCountry">true</task>
+				<task name="download">true</task>
+				<task name="createOrderPdf">true</task>
+				<task name="guestentry">true</task>
+				<task name="updateHitCount">true</task>
+                <task name="reOrder">true</task>
+			</acl>
+		</view>		
+		  <view name="apps">
+            <acl>
+                <task name="view">true</task>                         
+            </acl>  
+        </view>
+        <view name="appstores">
+            <acl>
+                <task name="view">true</task>
+            </acl>
+        </view>
+        <view name="queue">
+            <acl>
+                <task name="processQueue">true</task>
+            </acl>
+        </view>
+        <view name="cron">
+            <acl>
+                <task name="cron">true</task>
+            </acl>
+        </view>
+		
+	</frontend>
+</fof>

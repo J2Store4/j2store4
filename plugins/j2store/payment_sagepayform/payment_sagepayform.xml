@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension version="2.5" type="plugin" group="j2store" method="upgrade">
+    <name>SagePay Form</name>
+    <version>3.13</version>
+    <creationDate>MARCH 2022</creationDate>
+    <author>J2Store</author>
+    <authorEmail>support@j2store.org</authorEmail>
+    <authorUrl>https://www.j2store.org</authorUrl>
+    <copyright>2022 Weblogicx India Private Limited</copyright>
+    <license>GNU General Public License v3 or later versions</license>
+    <description>J2STORE_SAGEPAYFORM_PLUGINDESC</description>
+    <files>
+        <filename plugin="payment_sagepayform">payment_sagepayform.php</filename>
+        <filename>index.html</filename>
+        <folder>payment_sagepayform</folder>     
+    </files>
+    <languages>
+        <language tag="en-GB">languages/en-GB.plg_j2store_payment_sagepayform.ini</language>
+        <language tag="en-GB">languages/en-GB.plg_j2store_payment_sagepayform.sys.ini</language>
+    </languages>
+    <config>
+    <fields name="params">
+      <fieldset name="basic">
+      <field name="display_name" type="text" size="30" default="" label="j2store_plugin_display_name" description="j2store_plugin_display_name_desc"/>
+      <field name="display_image" type="media"
+					label="j2store_plugin_display_image" description="j2store_plugin_display_image_desc" />
+        <field name="vendor_name" type="text" size="50" default="" label="j2store_sagepayform_vendor_name" description="j2store_sagepayform_vendor_name_desc"/>
+        <field name="encryption_key" type="text" size="50" default="" label="j2store_sagepayform_encryption_key" description="j2store_sagepayform_encryption_key_desc"/>
+        <field name="vendor_email" type="text" size="50" default="" label="j2store_sagepayform_vendor_email" description="j2store_sagepayform_vendor_email_desc"/>
+        <field type="spacer" />
+        <field name="sandbox" type="radio" default="0" label="j2store_sagepayform_use_sandbox" description="j2store_sagepayform_use_sandbox_desc">
+          <option value="0">No</option>
+          <option value="1">Yes</option>
+        </field>
+        <field type="spacer" />
+       <field name="articleid" type="text" size="10" default="" label="j2store_sagepayform_thanks_msg" description="j2store_sagepayform_thanks_msg_desc"/>
+       <field type="spacer" />
+        <field name="onselection" type="textarea" cols="10" rows="5" default="" label="j2store_on_selection_label" description="j2store_on_selection_desc"/>
+        <field name="onbeforepayment" type="textarea" cols="10" rows="5" default="" label="j2store_on_before_payment_label" description="j2store_on_before_payment_desc"/>
+        <field name="onafterpayment" type="textarea" cols="10" rows="5" default="" label="j2store_on_after_payment_label" description="j2store_on_after_payment_desc"/>
+        <field name="onerrorpayment" type="textarea" cols="10" rows="5" default="" label="j2store_on_error_payment_label" description="j2store_on_error_payment_desc"/>
+        <field name="oncancelpayment" type="textarea" cols="10" rows="5" default="" label="j2store_on_cancel_payment_label" description="j2store_on_cancel_payment_desc"/>
+        
+        <field type="spacer" />
+        
+        <field name="button_text" type="text" size="50" default="J2STORE_PLACE_ORDER" label="j2store_button_text_label" description="j2store_button_text_desc" />
+        
+        <field name="debug" type="radio" default="0" label="j2store_sagepayform_use_debug" description="j2store_sagepayform_use_debug_desc">
+          <option value="0">No</option>
+          <option value="1">Yes</option>
+        </field>            
+                
+        </fieldset>
+    </fields>
+</config>               
+</extension>

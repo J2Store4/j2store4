@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension version="3.0" type="plugin" group="j2store" method="upgrade">
+	<name>Diagnostics Tool</name>
+	<version>1.0</version>
+	<creationDate>February 2015</creationDate>
+	<author>Gokila Priya</author>
+	<authorEmail>supports@j2store.org</authorEmail>
+	<authorUrl>http://www.j2store.org</authorUrl>
+	<copyright>2015 Weblogicx India</copyright>
+	<license>GNU General Public License v2</license>
+	<description>J2STORE_DIAGNOSTICS_HELP_TEXT</description>
+	<files>
+		<filename plugin="app_diagnostics">app_diagnostics.php</filename>
+		<folder>app_diagnostics</folder>
+		<filename>index.html</filename>
+	</files>	
+</extension>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension version="3.1" type="plugin" method="upgrade" group="search">
+	<name>Search - J2Store </name>
+	<creationDate>September 2015</creationDate>
+	<author>Gokila Priya</author>
+	<copyright>Copyright (c) 2011 - 2016 Weblogicx India Private Ltd. All rights reserved.</copyright>
+	<authorEmail>support@j2store.org</authorEmail>
+	<authorUrl>http://j2store.org</authorUrl>
+	<license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL</license>
+	<version>1.0</version>
+	<description>PLG_SEARCH_J2STORE_DESCRIPTION</description>
+	<files>
+		<filename plugin="j2store">j2store.php</filename>
+		<filename>index.html</filename>
+		<folder>elements</folder>
+	</files>	
+	<config>
+		<fields name="params">
+
+			<fieldset name="basic" addfieldpath="plugins/search/j2store/elements/">
+				<field name="redirect_to" type="radio" class="btn-group"
+				    default="j2store"
+					label="PLG_SEARCH_J2STORE_REDIRECT_TO_LABEL" description="PLG_SEARCH_J2STORE_REDIRECT_TO_LABEL_DESC" required="true" >					
+					<option value="j2store">PLG_SEARCH_J2STORE_VIEW</option>
+					<option value="article">PLG_SEARCH_J2STORE_ARTICLE_VIEW</option>
+				</field>	
+				<field name="menuitem_id" type="j2storemenuitem" 
+					 label="PLG_SEARCH_J2STORE_SELECT_MENU_ITEM_LABEL" 
+					 description="PLG_SEARCH_J2STORE_SELECT_MENU_ITEM_LABEL_DESC" 
+					 />
+				<field name="search_limit" type="text"
+					default="50"
+					description="PLG_SEARCH_CONTENT_FIELD_SEARCHLIMIT_DESC"
+					label="PLG_SEARCH_CONTENT_FIELD_SEARCHLIMIT_LABEL"
+					size="5"
+				/>
+			
+			</fieldset>
+
+		</fields>
+	</config>
+</extension>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+	<layout title="COM_J2STORE_VIEW_CHECKOUT_LABEL">
+		<message>
+				<![CDATA[COM_J2STORE_VIEW_CHECKOUT_DESC]]>
+		</message>
+	</layout>
+	<fields name="params">
+	</fields>
+</metadata>

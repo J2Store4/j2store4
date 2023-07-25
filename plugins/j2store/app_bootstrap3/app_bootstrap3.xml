@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension version="3.0" type="plugin" group="j2store" method="upgrade">
+    <name>Product View - Bootstrap 3</name>
+    <version>1.0.0</version>
+    <creationDate>DEC 2021</creationDate>
+    <author>Alagesan</author>
+    <authorEmail>supports@j2store.org</authorEmail>
+    <authorUrl>https://www.j2store.org</authorUrl>
+    <copyright>2021 J2Store</copyright>
+    <license>GNU General Public License v3 or later</license>
+    <description>Product view for Bootstrap 3</description>
+    <files>
+        <filename plugin="app_bootstrap3">app_bootstrap3.php</filename>
+        <folder>app_bootstrap3</folder>
+        <filename>index.html</filename>
+    </files>
+</extension>

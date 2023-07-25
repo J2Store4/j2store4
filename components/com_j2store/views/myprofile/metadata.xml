@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<metadata>
+	<view title="Myprofile">
+		<message><![CDATA[Link to customer profile that shows their order history, downloads, addresses.]]></message>
+	</view>
+</metadata>

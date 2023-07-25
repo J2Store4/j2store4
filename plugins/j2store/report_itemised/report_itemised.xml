@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension version="3.0" type="plugin" group="j2store" method="upgrade">
+	<name>J2STORE_REPORT_ITEMISED</name>
+	<version>1.0.0</version>
+	<creationDate>DEC 2021</creationDate>
+	<author>Alagesan</author>
+	<authorEmail>supports@j2store.org</authorEmail>
+	<authorUrl>https://www.j2store.org</authorUrl>
+	<copyright>2021 J2Store</copyright>
+	<license>GNU General Public License v3 or later</license>
+	<description>PLG_J2STORE_PLUGIN_REPORT_ITEMISED_DESC</description>
+	<files>
+		<filename plugin="report_itemised">report_itemised.php</filename>
+		<folder>report_itemised</folder>
+		<filename>index.html</filename>
+	</files>
+	<languages folder="languages">
+		<language tag="en-GB">en-GB.plg_j2store_report_itemised.ini</language>
+		<language tag="en-GB">en-GB.plg_j2store_report_itemised.sys.ini</language>
+	</languages>
+</extension>

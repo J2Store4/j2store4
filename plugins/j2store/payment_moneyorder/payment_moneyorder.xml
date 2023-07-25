@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension version="2.5" type="plugin" method="upgrade" group="j2store">
+	<name>Money Order</name>
+	<version>1.0</version>
+	<creationDate>November 2013</creationDate>
+	<author>Weblogicx India</author>
+	<authorEmail>support@j2store.org</authorEmail>
+	<authorUrl>http://j2store.org</authorUrl>
+	<copyright>2013 Weblogicx India Private Limited</copyright>
+	<license>GNU General Public License v2</license>
+	<description>J2STORE_MONEYORDER_PLUGINDESC</description>
+	
+	<files>
+		<filename plugin="payment_moneyorder">payment_moneyorder.php</filename>
+		<filename>index.html</filename>
+		<folder>payment_moneyorder</folder>	
+	</files>	
+    
+<config>
+	<fields name="params">
+  	  <fieldset name="basic">
+  	  <field name="display_name" type="text" size="30" default="" label="j2store_plugin_display_name" description="j2store_plugin_display_name_desc"/>
+  	   <field name="display_image" type="media" label="j2store_plugin_display_image" description="j2store_plugin_display_image_desc"/>
+  	   <field name="moneyorder_information" type="editor" width="500" height="200" filter="safehtml" default="" label="j2store_moneyorder_information" description="j2store_moneyorder_information_desc"/>
+		  <field name="enable_strip_tags" class="btn-group" type="radio" default="0"
+				 label="J2STORE_PAYMENT_ENABLE_STRIP_TAGS_LABEL" description="J2STORE_PAYMENT_ENABLE_STRIP_TAGS_DESC">
+			  <option value="0">JNO</option>
+			  <option value="1">JYES</option>
+		  </field>
+		  <field name="payment_status" type="paymentstatus" default="4"
+				 addfieldpath="plugins/j2store/payment_moneyorder/payment_moneyorder/fields"
+				 label="j2store_default_payment_status" description="j2store_default_payment_status_desc"/>
+        
+      <field name="surcharge_percent" type="text" size="30" default="" label="j2store_plugin_surcharge_percent" description="j2store_plugin_surcharge_percent_desc"/>
+        <field name="surcharge_fixed" type="text" size="30" default="" label="j2store_plugin_surcharge_fixed" description="j2store_plugin_surcharge_fixed_desc"/>
+        <field name="surcharge_name" type="text" size="30" default="" label="j2store_plugin_surcharge_name" description="j2store_plugin_surcharge_name_desc"/>        
+        <field name="surcharge_tax_class_id" type="taxselect" default=""
+				label="j2store_plugin_surcharge_tax_class" description="j2store_plugin_surcharge_tax_class_desc" 
+				addfieldpath="plugins/content/j2store/j2store/fields"
+			/>
+        
+        
+        <field type="spacer" />
+        
+        <field name="geozone_id" type="geozonelist" default=""
+                label="J2STORE_GEOZONE_RESTRICTION" description="J2STORE_GEOZONE_RESTRICTION_DESC" 
+                addfieldpath="/administrator/components/com_j2store/models/fields" 
+			/>
+        
+        <field name="onselection" type="textarea" cols="10" rows="5" default="" label="j2store_on_selection_label" description="j2store_on_selection_desc"/>
+        <field name="onbeforepayment" type="textarea" cols="10" rows="5" default="" label="j2store_on_before_payment_label" description="j2store_on_before_payment_desc"/>
+        <field name="onafterpayment" type="textarea" cols="10" rows="5" default="" label="j2store_on_after_payment_label" description="j2store_on_after_payment_desc"/>
+        
+       <field type="spacer" />        
+       <field name="button_text" type="text" size="50" default="J2STORE_PLACE_ORDER" label="j2store_button_text_label" description="j2store_button_text_desc" />
+       
+        <field type="spacer" />
+		<field name="articleid" type="text" size="10" default="" label="J2STORE_THANKS_MSG" description="J2STORE_THANKS_MSG_DESC"/>
+	</fieldset>
+  </fields>	
+</config>			
+</extension>

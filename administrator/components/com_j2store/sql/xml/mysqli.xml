@@ -1,0 +1,1258 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema>
+    <!-- Metadata -->
+    <meta>
+        <!-- Supported driver types -->
+        <drivers>
+            <driver>mysql</driver>
+            <driver>mysqli</driver>
+        </drivers>
+    </meta>
+    
+    <!-- SQL commands to run on installation and update -->
+    <sql>
+        <!-- Create tables if they are missing -->
+        <action table="#__j2store_filtergroups" canfail="1">
+            <condition type="missing" value="" />
+            <query><![CDATA[
+			CREATE TABLE IF NOT EXISTS `#__j2store_filtergroups` (
+			  `j2store_filtergroup_id` int(11) NOT NULL AUTO_INCREMENT,
+			  `group_name` varchar(255) NOT NULL,
+			  `ordering` int(11) NOT NULL,
+			  `enabled` int(11) NOT NULL,
+			  PRIMARY KEY (`j2store_filtergroup_id`)
+			) ENGINE=InnoDB DEFAULT CHARSET=utf8 ;
+            ]]></query>
+        </action>
+
+        <action table="#__j2store_filters" canfail="1">
+            <condition type="missing" value="" />
+            <query><![CDATA[
+			CREATE TABLE IF NOT EXISTS `#__j2store_filters` (
+			  `j2store_filter_id` int(11) NOT NULL AUTO_INCREMENT,
+			  `group_id` int(11) NOT NULL,
+			  `filter_name` varchar(255) DEFAULT NULL,
+			  `ordering` int(11) NOT NULL,
+			  PRIMARY KEY (`j2store_filter_id`),
+			  KEY `group_id` (`group_id`)
+			) ENGINE=InnoDB DEFAULT CHARSET=utf8 ;
+            ]]></query>
+        </action>
+
+        <action table="#__j2store_product_filters" canfail="1">
+            <condition type="missing" value="" />
+            <query><![CDATA[
+			CREATE TABLE IF NOT EXISTS `#__j2store_product_filters` (
+			  `product_id` int(11) NOT NULL,
+			  `filter_id` int(11) NOT NULL,
+			  PRIMARY KEY (`product_id`,`filter_id`)
+			) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+            ]]></query>
+        </action>
+
+        <action table="#__j2store_variants" canfail="1">
+            <condition type="missing" value="" />
+            <query><![CDATA[
+         CREATE TABLE IF NOT EXISTS `#__j2store_variants` (
+                     `j2store_variant_id` int(11) NOT NULL AUTO_INCREMENT,
+                     `product_id` int(11) DEFAULT NULL,
+                     `is_master` int(11) DEFAULT NULL,
+                     `sku` varchar(255) DEFAULT NULL,
+                     `upc` varchar(255) DEFAULT NULL,
+                     `price` decimal(15,5) DEFAULT NULL COMMENT 'Regular price of the product',
+                     `pricing_calculator` varchar(255) NOT NULL,
+                     `shipping` int(11) NOT NULL,
+                     `length` decimal(15,5) DEFAULT NULL,
+                     `width` decimal(15,5) DEFAULT NULL,
+                     `height` decimal(15,5) DEFAULT NULL,
+                     `length_class_id` int(11) DEFAULT NULL,
+                     `weight` decimal(15,5) DEFAULT NULL,
+                     `weight_class_id` int(11) DEFAULT NULL,
+                     `created_on` varchar(255) DEFAULT NULL,
+                     `created_by` int(11) DEFAULT NULL,
+                     `modified_on` varchar(45) DEFAULT NULL,
+                     `modified_by` int(11) DEFAULT NULL,
+                     `manage_stock` int(11) DEFAULT NULL,
+                     `quantity_restriction` int(11) NOT NULL,
+                     `min_out_qty` decimal(15,5) DEFAULT NULL,
+                     `use_store_config_min_out_qty` int(11) DEFAULT NULL,
+                     `min_sale_qty` decimal(15,5) DEFAULT NULL,
+                     `use_store_config_min_sale_qty` int(11) DEFAULT NULL,
+                     `max_sale_qty` decimal(15,5) DEFAULT NULL,
+                     `use_store_config_max_sale_qty` int(11) DEFAULT NULL,
+                     `notify_qty` decimal(15,5) DEFAULT NULL,
+                     `use_store_config_notify_qty` int(11) DEFAULT NULL,
+                     `availability` int(11) DEFAULT NULL,
+                     `allow_backorder` int(11) NOT NULL,
+                     `isdefault_variant` int(11) NOT NULL,
+                     PRIMARY KEY (`j2store_variant_id`),
+                     KEY `variant_product_id` (`product_id`)
+                   ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
+           ]]></query>
+        </action>
+
+        <action table="#__j2store_variants" canfail="0">
+            <condition type="missing" value="sold" />
+            <query><![CDATA[
+				ALTER TABLE `#__j2store_variants` ADD `sold` decimal(12,4) AFTER `availability`;
+            ]]></query>
+        </action>
+
+        <action table="#__j2store_coupons" canfail="0">
+            <condition type="missing" value="users" />
+            <query><![CDATA[
+            	ALTER TABLE `#__j2store_coupons` ADD `users` text AFTER `min_subtotal`;
+            ]]></query>
+        </action>
+
+        <action table="#__j2store_coupons" canfail="0">
+            <condition type="missing" value="mycategory" />
+            <query><![CDATA[
+            	ALTER TABLE `#__j2store_coupons` ADD `mycategory` text AFTER `users`;
+            ]]></query>
+        </action>
+
+        <action table="#__j2store_emailtemplates" canfail="0">
+            <condition type="missing" value="body_source" />
+            <query><![CDATA[
+            	ALTER TABLE `#__j2store_emailtemplates` ADD `body_source` varchar(255) AFTER `body`;
+            ]]></query>
+        </action>
+
+        <action table="#__j2store_emailtemplates" canfail="0">
+            <condition type="missing" value="body_source_file" />
+            <query><![CDATA[
+            	ALTER TABLE `#__j2store_emailtemplates` ADD `body_source_file` varchar(255) AFTER `body_source`;
+            ]]></query>
+        </action>
+
+        <action table="#__j2store_carts" canfail="0">
+            <condition type="missing" value="cart_type" />
+            <query><![CDATA[
+            	ALTER TABLE `#__j2store_carts` ADD `cart_type` varchar(255) AFTER `session_id`;
+            ]]></query>
+        </action>
+
+        <action table="#__j2store_carts" canfail="0">
+            <condition type="missing" value="cart_browser" />
+            <query><![CDATA[
+            	ALTER TABLE `#__j2store_carts` ADD `cart_browser` varchar(255) AFTER `cart_type`;
+            ]]></query>
+        </action>
+
+        <action table="#__j2store_carts" canfail="0">
+            <condition type="missing" value="cart_analytics" />
+            <query><![CDATA[
+            	ALTER TABLE `#__j2store_carts` ADD `cart_analytics` text AFTER `cart_browser`;
+            ]]></query>
+        </action>
+
+        <action table="#__j2store_carts" canfail="0">
+            <condition type="missing" value="cart_params" />
+            <query><![CDATA[
+            	ALTER TABLE `#__j2store_carts` ADD `cart_params` text AFTER `cart_analytics`;
+            ]]></query>
+        </action>
+
+        <action table="#__j2store_carts" canfail="0">
+            <condition type="missing" value="created_on" />
+            <query><![CDATA[
+            	ALTER TABLE `#__j2store_carts` ADD `created_on` datetime AFTER `cart_analytics`;
+            ]]></query>
+        </action>
+
+        <action table="#__j2store_carts" canfail="0">
+            <condition type="missing" value="modified_on" />
+            <query><![CDATA[
+            	ALTER TABLE `#__j2store_carts` ADD `modified_on` datetime AFTER `created_on`;
+            ]]></query>
+        </action>
+
+
+        <action table="#__j2store_cartitems" canfail="0">
+            <condition type="missing" value="" />
+            <query><![CDATA[
+			CREATE TABLE IF NOT EXISTS `#__j2store_cartitems` (
+			  `j2store_cartitem_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+			  `cart_id` int(11) unsigned NOT NULL,
+			  `product_id` int(11) unsigned NOT NULL,
+			  `variant_id` int(11) unsigned NOT NULL,
+			  `vendor_id` int(11) unsigned NOT NULL,
+			  `product_type` varchar(255) NOT NULL,
+			  `cartitem_params` text NOT NULL,
+			  `product_qty` decimal(12,4) NOT NULL,
+			  `product_options` text NOT NULL,
+			  PRIMARY KEY (`j2store_cartitem_id`),
+			  KEY `cart_id` (`cart_id`),
+			  KEY `product_id` (`product_id`),
+			  KEY `variant_id` (`variant_id`)
+			) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
+            ]]></query>
+        </action>
+
+
+        <action table="#__j2store_orders" canfail="0">
+            <condition type="missing" value="cart_id" />
+            <query><![CDATA[
+            	ALTER TABLE `#__j2store_orders` ADD `cart_id` int(11) unsigned AFTER `order_id`;
+            ]]></query>
+        </action>
+
+        <action table="#__j2store_orders" canfail="0">
+            <condition type="missing" value="order_refund" />
+            <query><![CDATA[
+            	ALTER TABLE `#__j2store_orders` ADD `order_refund` int(11) unsigned AFTER `order_credit`;
+            ]]></query>
+        </action>
+
+        <action table="#__j2store_orderitems" canfail="0">
+            <condition type="missing" value="cartitem_id" />
+            <query><![CDATA[
+            	ALTER TABLE `#__j2store_orderitems` ADD `cartitem_id` int(11) unsigned AFTER `cart_id`;
+            ]]></query>
+        </action>
+
+        <action table="#__j2store_coupons" canfail="0">
+            <condition type="missing" value="brand_ids" />
+            <query><![CDATA[
+            	ALTER TABLE `#__j2store_coupons` ADD `brand_ids` text AFTER `mycategory`;
+            ]]></query>
+        </action>
+
+        <action table="#__j2store_orderinfos" canfail="0">
+            <condition type="true"/>
+            <query><![CDATA[
+            	ALTER TABLE `#__j2store_orderinfos` MODIFY `order_id` VARCHAR(255) NOT NULL;
+            ]]></query>
+        </action>
+
+        <action table="#__j2store_options" canfail="0">
+            <condition type="missing" value="option_params"/>
+            <query><![CDATA[
+            	ALTER TABLE `#__j2store_options` ADD `option_params` text AFTER `enabled`;
+            ]]></query>
+        </action>
+
+        <action table="#__j2store_product_options" canfail="0">
+            <condition type="missing" value="is_variant"/>
+            <query><![CDATA[
+            	ALTER TABLE `#__j2store_product_options` ADD `is_variant` int(11) AFTER `required`;
+            ]]></query>
+        </action>
+
+        <action table="#__j2store_orderfees" canfail="0">
+            <condition type="missing" value="" />
+            <query><![CDATA[
+				CREATE TABLE IF NOT EXISTS `#__j2store_orderfees` (
+				  `j2store_orderfee_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+				  `order_id` varchar(255) NOT NULL,
+				  `name` varchar(255) NOT NULL,
+				  `amount` decimal(12,4) NOT NULL,
+				  `tax_class_id` int(11) unsigned NOT NULL,
+				  `taxable` int(11) NOT NULL,
+				  `tax` decimal(12,4) NOT NULL,
+				  `tax_data` text NOT NULL,
+				  PRIMARY KEY (`j2store_orderfee_id`)
+				) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
+            ]]></query>
+        </action>
+
+        <action table="#__j2store_orders" canfail="0">
+            <condition type="missing" value="order_fees"/>
+            <query><![CDATA[
+            	ALTER TABLE `#__j2store_orders` ADD `order_fees` decimal(12,4) AFTER `order_surcharge`;
+            ]]></query>
+        </action>
+
+        <action table="#__j2store_orderdiscounts" canfail="0">
+            <condition type="missing" value="" />
+            <query><![CDATA[
+				CREATE TABLE IF NOT EXISTS `#__j2store_orderdiscounts` (
+				  `j2store_orderdiscount_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+				  `order_id` varchar(255) NOT NULL,
+				  `discount_type` varchar(255) NOT NULL,
+				  `discount_entity_id` int(11) unsigned NOT NULL,
+				  `discount_title` varchar(255) NOT NULL,
+				  `discount_code` varchar(255) NOT NULL,
+				  `discount_value` varchar(255) NOT NULL,
+				  `discount_value_type` varchar(255) NOT NULL,
+				  `discount_customer_email` varchar(255) NOT NULL,
+				  `user_id` int(11) unsigned NOT NULL,
+				  `discount_amount` decimal(12,4) NOT NULL,
+				  `discount_tax` decimal(12,4) NOT NULL,
+				  `discount_params` text NOT NULL,
+				  PRIMARY KEY (`j2store_orderdiscount_id`),
+				  KEY `order_id` (`order_id`)
+				) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
+            ]]></query>
+        </action>
+
+        <action table="#__j2store_product_optionvalues" canfail="0">
+            <condition type="missing" value="product_optionvalue_attribs"/>
+            <query><![CDATA[
+            	ALTER TABLE `#__j2store_product_optionvalues` ADD `product_optionvalue_attribs` text AFTER `product_optionvalue_default`;
+            ]]></query>
+        </action>
+
+        <action table="#__j2store_product_optionvalues" canfail="0">
+            <condition type="missing" value="ordering"/>
+            <query><![CDATA[
+            	ALTER TABLE `#__j2store_product_optionvalues` ADD `ordering` int(11) NOT NULL DEFAULT '0' AFTER `product_optionvalue_default`;
+            ]]></query>
+        </action>
+
+        <action table="#__j2store_orders" canfail="0">
+            <condition type="missing" value="order_subtotal_ex_tax"/>
+            <query><![CDATA[
+            	ALTER TABLE `#__j2store_orders` ADD `order_subtotal_ex_tax` decimal(12,4) AFTER `order_subtotal`;
+            ]]></query>
+        </action>
+
+        <action table="#__j2store_orders" canfail="0">
+            <condition type="missing" value="order_discount_tax"/>
+            <query><![CDATA[
+            	ALTER TABLE `#__j2store_orders` ADD `order_discount_tax` decimal(12,4) AFTER `order_discount`;
+            ]]></query>
+        </action>
+
+        <action table="#__j2store_orderdiscounts" canfail="0">
+            <condition type="missing" value="discount_tax"/>
+            <query><![CDATA[
+            	ALTER TABLE `#__j2store_orderdiscounts` ADD `discount_tax` decimal(12,4) AFTER `discount_amount`;
+            ]]></query>
+        </action>
+
+        <action table="#__j2store_coupons" canfail="0">
+            <condition type="missing" value="max_quantity"/>
+            <query><![CDATA[
+            	ALTER TABLE `#__j2store_coupons` ADD `max_quantity` int(11) AFTER `max_uses`;
+            ]]></query>
+        </action>
+
+        <action table="#__j2store_coupons" canfail="0">
+            <condition type="true"/>
+            <query><![CDATA[
+            	ALTER TABLE `#__j2store_coupons` MODIFY `value_type` VARCHAR( 255 );
+            ]]></query>
+        </action>
+
+        <action table="#__j2store_coupons" canfail="0">
+            <condition type="missing" value="user_group"/>
+            <query><![CDATA[
+                ALTER TABLE `#__j2store_coupons` ADD `user_group` varchar(255) AFTER `max_quantity`;
+            ]]></query>
+        </action>
+
+        <action table="#__j2store_orders" canfail="0">
+            <condition type="missing" value="order_params"/>
+            <query><![CDATA[
+                ALTER TABLE `#__j2store_orders` ADD `order_params` text AFTER `order_state`;
+            ]]></query>
+        </action>
+        <action table="#__j2store_addresses" canfail="1">
+            <condition type="true"/>
+            <query><![CDATA[
+                ALTER TABLE `#__j2store_addresses` DROP INDEX email;
+            ]]></query>
+        </action>
+
+        <action table="#__j2store_addresses" canfail="1">
+            <condition type="true"/>
+            <query><![CDATA[
+                ALTER TABLE `#__j2store_addresses` ADD INDEX idx_address_email( `email` );
+            ]]></query>
+        </action>
+
+        <action table="#__j2store_variants" canfail="0">
+            <condition type="missing" value="upc"/>
+            <query><![CDATA[
+                ALTER TABLE `#__j2store_variants` ADD `upc` varchar(255) AFTER `sku`;
+            ]]></query>
+        </action>
+        <action table="#__j2store_variants" canfail="0">
+            <condition type="missing" value="params"/>
+            <query><![CDATA[
+                ALTER TABLE `#__j2store_variants` ADD `params` text AFTER `shipping`;
+            ]]></query>
+        </action>
+        <action table="#__j2store_manufacturers" canfail="0">
+            <condition type="missing" value="brand_desc_id"/>
+            <query><![CDATA[
+                ALTER TABLE `#__j2store_manufacturers`
+                ADD `brand_desc_id` int(11) AFTER `address_id`;
+            ]]></query>
+        </action>
+
+        <action table="#__j2store_orders" canfail="0">
+            <condition type="true" value="order_refund" />
+            <query><![CDATA[
+                ALTER TABLE `#__j2store_orders` MODIFY COLUMN `order_refund` decimal(12,4);
+            ]]></query>
+        </action>
+
+        <action table="#__j2store_emailtemplates" canfail="0">
+            <condition type="missing" value="receiver_type" />
+            <query><![CDATA[
+                ALTER TABLE `#__j2store_emailtemplates` ADD `receiver_type` varchar(255) NOT NULL DEFAULT '*' AFTER `email_type`;
+            ]]></query>
+        </action>
+
+        <action table="#__j2store_coupons" canfail="0">
+            <condition type="true" value="product_category" />
+            <query><![CDATA[
+                ALTER TABLE `#__j2store_coupons` MODIFY COLUMN `product_category` text;
+            ]]></query>
+        </action>
+
+        <action table="#__j2store_coupons" canfail="0">
+            <condition type="true" value="products" />
+            <query><![CDATA[
+                ALTER TABLE `#__j2store_coupons` MODIFY COLUMN `products` text;
+            ]]></query>
+        </action>
+
+        <action table="#__j2store_carts" canfail="0">
+            <condition type="missing" value="cart_coupon" />
+            <query><![CDATA[
+            	ALTER TABLE `#__j2store_carts` ADD `cart_coupon` varchar(255) AFTER `session_id`;
+            ]]></query>
+        </action>
+
+        <action table="#__j2store_carts" canfail="0">
+            <condition type="missing" value="cart_voucher" />
+            <query><![CDATA[
+            	ALTER TABLE `#__j2store_carts` ADD `cart_voucher` varchar(255) AFTER `session_id`;
+            ]]></query>
+        </action>
+
+        <action table="#__j2store_currencies" canfail="1">
+            <condition type="true" value="currency_value" />
+            <query><![CDATA[
+                ALTER TABLE `#__j2store_currencies` MODIFY COLUMN `currency_value` decimal(15,8);
+            ]]></query>
+        </action>
+
+        <!-- Queue table -->
+        <action table="#__j2store_queues" canfail="1">
+            <condition type="missing" value="" />
+            <query><![CDATA[
+                CREATE TABLE IF NOT EXISTS `#__j2store_queues` (
+                  `j2store_queue_id` int(11) NOT NULL AUTO_INCREMENT,
+                  `relation_id` varchar(255) NOT NULL,
+                  `queue_type` varchar(255) NOT NULL,
+                  `queue_data` longtext NOT NULL,
+                  `params` longtext NOT NULL,
+                  `priority` int(11) NOT NULL,
+                  `status` varchar(255) NOT NULL,
+                  `expired` datetime NOT NULL,
+                  `created_on` varchar(255) DEFAULT NULL,
+                  `modified_on` varchar(255) DEFAULT NULL,
+                  PRIMARY KEY (`j2store_queue_id`)
+                ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 ;
+            ]]></query>
+        </action>
+
+        <action table="#__j2store_queues" canfail="1">
+            <condition type="missing" value="repeat_count" />
+            <query><![CDATA[
+                ALTER TABLE `#__j2store_queues` ADD `repeat_count` varchar(255) NOT NULL DEFAULT '0' AFTER `status`;
+            ]]></query>
+        </action>
+
+        <action table="#__j2store_orders" canfail="1">
+            <condition type="missing" value="parent_id" />
+            <query><![CDATA[
+                ALTER TABLE `#__j2store_orders` ADD `parent_id` int(11) AFTER `order_id`;
+            ]]></query>
+        </action>
+
+        <action table="#__j2store_orderitems" canfail="1">
+            <condition type="missing" value="orderitem_type" />
+            <query><![CDATA[
+                ALTER TABLE `#__j2store_orderitems` ADD `orderitem_type` varchar(255) NOT NULL DEFAULT 'normal' AFTER `order_id`;
+            ]]></query>
+        </action>
+
+        <action table="#__j2store_metafields" canfail="1">
+            <condition type="missing" value="" />
+            <query><![CDATA[
+               CREATE TABLE IF NOT EXISTS `#__j2store_metafields` (
+                `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+                `metakey` varchar(255) NOT NULL,
+                `namespace` varchar(255) NOT NULL,
+                `scope` varchar(255) NOT NULL,
+                `metavalue` text NOT NULL,
+                `valuetype` varchar(255) NOT NULL,
+                `description` text NOT NULL,
+                `owner_id` int(10) unsigned NOT NULL,
+                `owner_resource` varchar(255) NOT NULL,
+                `created_at` timestamp NULL DEFAULT NULL,
+                `updated_at` timestamp NULL DEFAULT NULL,
+                PRIMARY KEY (`id`),
+                KEY `metafields_owner_id_index` (`owner_id`)
+                ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 ;
+            ]]></query>
+        </action>
+
+        <action table="#__j2store_shippingmethods" canfail="1">
+            <condition type="missing" value="params" />
+            <query><![CDATA[
+                ALTER TABLE `#__j2store_shippingmethods` ADD `params` longtext NOT NULL AFTER `shipping_method_type`;
+            ]]></query>
+        </action>
+
+        <action table="#__j2store_orders" canfail="1">
+            <condition type="true" value="currency_value" />
+            <query><![CDATA[
+                ALTER TABLE `#__j2store_orders` MODIFY COLUMN `currency_value` decimal(15,8);
+                ]]></query>
+        </action>
+
+        <action table="#__j2store_orders" canfail="1">
+            <condition type="missing" value="order_type" />
+            <query><![CDATA[
+                ALTER TABLE `#__j2store_orders` ADD `order_type` varchar(255) NOT NULL DEFAULT 'normal' AFTER `order_id`;
+            ]]></query>
+        </action>
+
+        <action table="#__j2store_orders" canfail="1">
+            <condition type="missing" value="subscription_id" />
+            <query><![CDATA[
+                ALTER TABLE `#__j2store_orders` ADD `subscription_id` int(10) NOT NULL AFTER `parent_id`;
+            ]]></query>
+        </action>
+
+        <action table="#__j2store_orderfees" canfail="1">
+            <condition type="missing" value="fee_type" />
+            <query><![CDATA[
+                ALTER TABLE `#__j2store_orderfees` ADD `fee_type` varchar(255) NOT NULL AFTER `tax_data`;
+            ]]></query>
+        </action>
+
+        <action table="#__j2store_queues" canfail="0">
+            <condition type="true"/>
+            <query><![CDATA[
+            	ALTER TABLE `#__j2store_queues` MODIFY `repeat_count` int( 11 ) NOT NULL DEFAULT '0';
+            ]]></query>
+        </action>
+
+        <action table="#__j2store_products" canfail="1">
+            <condition type="missing" value="main_tag"/>
+            <query><![CDATA[
+            	ALTER TABLE `#__j2store_products` ADD `main_tag` varchar(255) NOT NULL AFTER `product_type`;
+            ]]></query>
+        </action>
+
+        <action table="#__j2store_vouchers" canfail="0">
+            <condition type="missing" value="valid_to" />
+            <query><![CDATA[
+            	ALTER TABLE `#__j2store_vouchers` ADD `valid_to` datetime AFTER `email_body`;
+            ]]></query>
+        </action>
+
+        <action table="#__j2store_vouchers" canfail="0">
+            <condition type="missing" value="valid_from" />
+            <query><![CDATA[
+            	ALTER TABLE `#__j2store_vouchers` ADD `valid_from` datetime AFTER `email_body`;
+            ]]></query>
+        </action>
+
+        <action table="#__j2store_addresses" canfail="1">
+            <condition type="missing" value="campaign_addr_id" />
+            <query><![CDATA[
+            	ALTER TABLE #__j2store_addresses ADD `campaign_addr_id` varchar(255) NOT NULL AFTER `tax_number`;
+            ]]></query>
+        </action>
+
+        <action table="#__j2store_orders" canfail="1">
+            <condition type="missing" value="campaign_order_id" />
+            <query><![CDATA[
+            	ALTER TABLE #__j2store_orders ADD `campaign_order_id` varchar(255) NOT NULL AFTER `modified_by`;
+            ]]></query>
+        </action>
+
+        <action table="#__j2store_orders" canfail="1">
+            <condition type="missing" value="campaign_double_opt_in" />
+            <query><![CDATA[
+            	ALTER TABLE #__j2store_orders ADD `campaign_double_opt_in` INT(10) NOT NULL AFTER `modified_by`;
+            ]]></query>
+        </action>
+
+        <action table="#__j2store_productimages" canfail="1">
+            <condition type="missing" value="main_image_alt" />
+            <query><![CDATA[
+                ALTER TABLE `#__j2store_productimages` ADD `main_image_alt` VARCHAR(255) NOT NULL AFTER `additional_images`;
+            ]]></query>
+        </action>
+
+        <action table="#__j2store_productimages" canfail="1">
+            <condition type="missing" value="thumb_image_alt" />
+            <query><![CDATA[
+                ALTER TABLE `#__j2store_productimages` ADD `thumb_image_alt` VARCHAR(255) NOT NULL AFTER `main_image_alt`;
+            ]]></query>
+        </action>
+
+        <action table="#__j2store_productimages" canfail="1">
+            <condition type="missing" value="additional_images_alt" />
+            <query><![CDATA[
+                ALTER TABLE `#__j2store_productimages` ADD `additional_images_alt` LONGTEXT NOT NULL AFTER `thumb_image_alt`;
+            ]]></query>
+        </action>
+
+        <action table="#__j2store_orders" canfail="1">
+            <condition type="true"/>
+            <query><![CDATA[
+                ALTER TABLE `#__j2store_orders` ADD INDEX idx_token_email( `user_email`, `token` );
+            ]]></query>
+        </action>
+        <action table="#__j2store_orderitems" canfail="1">
+            <condition type="true"/>
+            <query><![CDATA[
+                ALTER TABLE `#__j2store_orderitems` ADD INDEX idx_order_item_combine( `order_id`, `product_id` , `variant_id`, `orderitem_attributes`(400) );
+            ]]></query>
+        </action>
+
+        <action table="#__j2store_orderfees" canfail="1">
+            <condition type="true"/>
+            <query><![CDATA[
+                ALTER TABLE `#__j2store_orderfees` ADD INDEX idx_order_fee_order_id( `order_id` );
+            ]]></query>
+        </action>
+
+        <action table="#__j2store_orderdownloads" canfail="1">
+            <condition type="true"/>
+            <query><![CDATA[
+                ALTER TABLE `#__j2store_orderdownloads` ADD INDEX idx_order_down_token_pro( `token`, `product_id` );
+            ]]></query>
+        </action>
+        <action table="#__j2store_orderdownloads" canfail="1">
+            <condition type="true"/>
+            <query><![CDATA[
+                ALTER TABLE `#__j2store_orderdownloads` ADD INDEX idx_order_down_order_email( `order_id`, `user_email` );
+            ]]></query>
+        </action>
+
+        <action table="#__j2store_orderdownloads" canfail="1">
+            <condition type="true"/>
+            <query><![CDATA[
+                ALTER TABLE `#__j2store_orderdownloads` ADD INDEX idx_order_down_order_email_pro( `order_id`, `user_email`, `product_id` );
+            ]]></query>
+        </action>
+
+        <action table="#__j2store_orderdiscounts" canfail="1">
+            <condition type="true"/>
+            <query><![CDATA[
+                ALTER TABLE `#__j2store_orderdiscounts` ADD INDEX idx_order_disc_order_disc_type( `order_id`, `discount_type` );
+            ]]></query>
+        </action>
+
+        <action table="#__j2store_orderdiscounts" canfail="1">
+            <condition type="true"/>
+            <query><![CDATA[
+                ALTER TABLE `#__j2store_orderdiscounts` ADD INDEX idx_order_disc_id_disc_type( `discount_entity_id`, `discount_type` );
+            ]]></query>
+        </action>
+
+        <action table="#__j2store_product_optionvalues" canfail="1">
+            <condition type="true"/>
+            <query><![CDATA[
+                ALTER TABLE `#__j2store_product_optionvalues` ADD INDEX idx_productoption_id( `productoption_id` );
+            ]]></query>
+        </action>
+
+        <action table="#__j2store_product_optionvalues" canfail="1">
+            <condition type="true"/>
+            <query><![CDATA[
+                ALTER TABLE `#__j2store_product_optionvalues` ADD INDEX idx_optionvalue_id( `optionvalue_id` );
+            ]]></query>
+        </action>
+
+        <action table="#__j2store_carts" canfail="1">
+            <condition type="true"/>
+            <query><![CDATA[
+                ALTER TABLE `#__j2store_carts` ADD INDEX session_cart_type( `session_id`,`cart_type` );
+            ]]></query>
+        </action>
+
+        <action table="#__j2store_carts" canfail="1">
+            <condition type="true"/>
+            <query><![CDATA[
+                ALTER TABLE `#__j2store_carts` ADD INDEX `user_session_type` (`user_id`,`session_id`,`cart_type`);
+            ]]></query>
+        </action>
+
+        <action table="#__j2store_configurations" canfail="0">
+            <condition type="true"/>
+            <query><![CDATA[
+            	ALTER TABLE `#__j2store_configurations` MODIFY `config_meta_default` TEXT NULL DEFAULT NULL;
+            ]]></query>
+        </action>
+        <action table="#__j2store_products" canfail="0">
+            <condition type="true"/>
+            <query><![CDATA[
+            	ALTER TABLE `#__j2store_products`
+            	MODIFY `addtocart_text` VARCHAR(255) NULL DEFAULT NULL,
+            	MODIFY `productfilter_ids` VARCHAR(255) NULL DEFAULT NULL,
+            	MODIFY `main_tag` VARCHAR(255) NULL DEFAULT NULL;
+            ]]></query>
+        </action>
+        <action table="#__j2store_variants" canfail="0">
+            <condition type="true"/>
+            <query><![CDATA[
+            	ALTER TABLE `#__j2store_variants`
+            	MODIFY `pricing_calculator` VARCHAR(255) NULL DEFAULT 'standard',
+            	MODIFY `shipping` INT(11) NULL DEFAULT 0,
+            	MODIFY `quantity_restriction` INT(11) NULL DEFAULT 0,
+            	MODIFY `allow_backorder` INT(11) NULL DEFAULT 0,
+            	MODIFY `isdefault_variant` INT(11) NULL DEFAULT 0;
+            ]]></query>
+        </action>
+        <action table="#__j2store_productquantities" canfail="0">
+            <condition type="true"/>
+            <query><![CDATA[
+            	ALTER TABLE `#__j2store_productquantities`
+            	MODIFY `product_attributes` TEXT NULL DEFAULT NULL,
+            	MODIFY `quantity` INT(11) NULL DEFAULT 0,
+            	MODIFY `on_hold` INT(11) NULL DEFAULT 0,
+            	MODIFY `sold` INT(11) NULL DEFAULT 0;
+            ]]></query>
+        </action>
+        <action table="#__j2store_productimages" canfail="0">
+            <condition type="true"/>
+            <query><![CDATA[
+            	ALTER TABLE `#__j2store_productimages`
+            	MODIFY `main_image_alt` VARCHAR(255) NULL DEFAULT NULL,
+            	MODIFY `thumb_image_alt` VARCHAR(255) NULL DEFAULT NULL;
+            ]]></query>
+        </action>
+        <action table="#__j2store_options" canfail="0">
+            <condition type="true"/>
+            <query><![CDATA[
+            	ALTER TABLE `#__j2store_options` MODIFY `ordering` INT(11) NULL DEFAULT 1;
+            ]]></query>
+        </action>
+        <action table="#__j2store_product_options" canfail="0">
+            <condition type="true"/>
+            <query><![CDATA[
+            	ALTER TABLE `#__j2store_product_options`
+            	MODIFY `parent_id` INT(11) NULL DEFAULT 0,
+            	MODIFY `ordering` INT(11) NULL DEFAULT 1,
+            	MODIFY `required` INT(11) NULL DEFAULT 0,
+            	MODIFY `is_variant` INT(11) NULL DEFAULT 0;
+            ]]></query>
+        </action>
+        <action table="#__j2store_product_optionvalues" canfail="0">
+            <condition type="true"/>
+            <query><![CDATA[
+            	ALTER TABLE `#__j2store_product_optionvalues`
+                    MODIFY `parent_optionvalue` TEXT NULL DEFAULT NULL,
+                    MODIFY `product_optionvalue_price` decimal(15,8)	NULL DEFAULT 0.0,
+                    MODIFY `product_optionvalue_prefix` varchar(255)	NULL DEFAULT '+',
+                    MODIFY `product_optionvalue_weight` decimal(15,8)	NULL DEFAULT 0.0,
+                    MODIFY `product_optionvalue_weight_prefix` varchar(255)	NULL DEFAULT '+',
+            	    MODIFY `product_optionvalue_sku` varchar(255)	NULL DEFAULT NULL,
+            	    MODIFY `product_optionvalue_default` INT(11) NULL DEFAULT 0,
+            	    MODIFY `ordering` tinyint NULL DEFAULT 0,
+            	    MODIFY `product_optionvalue_attribs` TEXT NULL DEFAULT NULL;
+            ]]></query>
+        </action>
+        <action table="#__j2store_vendors" canfail="0">
+            <condition type="true"/>
+            <query><![CDATA[
+            	ALTER TABLE `#__j2store_vendors`
+            	    MODIFY `address_id` INT(11) NULL DEFAULT 0,
+            	    MODIFY `enabled` INT(11) NULL DEFAULT 1,
+            	    MODIFY `ordering` INT(11) NULL DEFAULT 0;
+            ]]></query>
+        </action>
+        <action table="#__j2store_addresses" canfail="0">
+            <condition type="true"/>
+            <query><![CDATA[
+            	ALTER TABLE `#__j2store_addresses`
+            	  MODIFY `user_id` int(11) NULL DEFAULT 0,
+                  MODIFY `first_name` varchar(255) NULL DEFAULT NULL,
+                  MODIFY `last_name` varchar(255) NULL DEFAULT NULL,
+                  MODIFY `email` varchar(255) NULL DEFAULT NULL,
+                  MODIFY `address_1` varchar(255) NULL DEFAULT NULL,
+                  MODIFY `address_2` varchar(255) NULL DEFAULT NULL,
+                  MODIFY `city` varchar(255) NULL DEFAULT NULL,
+                  MODIFY `zip` varchar(255) NULL DEFAULT NULL,
+                  MODIFY `zone_id` varchar(255) NULL DEFAULT NULL,
+                  MODIFY `country_id` varchar(255) NULL DEFAULT NULL,
+                  MODIFY `phone_1` varchar(255) NULL DEFAULT NULL,
+                  MODIFY `phone_2` varchar(255) NULL DEFAULT NULL,
+                  MODIFY `fax` varchar(255) NULL DEFAULT NULL,
+                  MODIFY `type` varchar(255) NULL DEFAULT NULL,
+                  MODIFY `company` varchar(255) NULL DEFAULT NULL,
+                  MODIFY `campaign_addr_id` varchar(255) NULL DEFAULT NULL,
+                  MODIFY `tax_number` varchar(255) NULL DEFAULT NULL;
+            ]]></query>
+        </action>
+        <action table="#__j2store_countries" canfail="0">
+            <condition type="true"/>
+            <query><![CDATA[
+            	ALTER TABLE `#__j2store_countries`
+            	    MODIFY `country_name` varchar(255) NULL DEFAULT NULL,
+            	    MODIFY `country_isocode_2` varchar(5) NULL DEFAULT NULL,
+            	    MODIFY `country_isocode_3` varchar(5) NULL DEFAULT NULL,
+            	    MODIFY `enabled` INT(11) NULL DEFAULT 1,
+            	    MODIFY `ordering` INT(11) NULL DEFAULT 0;
+            ]]></query>
+        </action>
+        <action table="#__j2store_filters" canfail="0">
+            <condition type="true"/>
+            <query><![CDATA[
+            	ALTER TABLE `#__j2store_filters`
+            	    MODIFY `ordering` INT(11) NULL DEFAULT 0;
+            ]]></query>
+        </action>
+        <action table="#__j2store_manufacturers" canfail="0">
+            <condition type="true"/>
+            <query><![CDATA[
+                ALTER TABLE `#__j2store_manufacturers`
+                MODIFY `enabled` INT(11) NULL DEFAULT 1,
+                MODIFY `brand_desc_id` INT(11) NULL DEFAULT 0,
+                MODIFY `ordering` INT(11) NULL DEFAULT 0;
+            ]]></query>
+        </action>
+        <action table="#__j2store_zones" canfail="0">
+            <condition type="true"/>
+            <query><![CDATA[
+                ALTER TABLE `#__j2store_zones`
+                MODIFY `enabled` INT(11) NULL DEFAULT 1,
+                MODIFY `ordering` INT(11) NULL DEFAULT 0;
+            ]]></query>
+        </action>
+        <action table="#__j2store_taxrates" canfail="0">
+            <condition type="true"/>
+            <query><![CDATA[
+                ALTER TABLE `#__j2store_taxrates`
+                MODIFY `geozone_id` INT(11) NULL DEFAULT 0,
+                MODIFY `taxrate_name` varchar(255) NULL DEFAULT NULL,
+                MODIFY `enabled` INT(11) NULL DEFAULT 1,
+                MODIFY `ordering` INT(11) NULL DEFAULT 0;
+            ]]></query>
+        </action>
+        <action table="#__j2store_taxprofiles" canfail="0">
+            <condition type="true"/>
+            <query><![CDATA[
+                ALTER TABLE `#__j2store_taxprofiles`
+                MODIFY `enabled` INT(11) NULL DEFAULT 1,
+                MODIFY `ordering` INT(11) NULL DEFAULT 0;
+            ]]></query>
+        </action>
+        <action table="#__j2store_taxrules" canfail="0">
+            <condition type="true"/>
+            <query><![CDATA[
+                ALTER TABLE `#__j2store_taxrules`
+                MODIFY `ordering` INT(11) NULL DEFAULT 0;
+            ]]></query>
+        </action>
+        <action table="#__j2store_orderstatuses" canfail="0">
+            <condition type="true"/>
+            <query><![CDATA[
+                ALTER TABLE `#__j2store_orderstatuses`
+                MODIFY `enabled` INT(11) NULL DEFAULT 1,
+                MODIFY `ordering` INT(11) NULL DEFAULT 0;
+            ]]></query>
+        </action>
+        <action table="#__j2store_currencies" canfail="0">
+            <condition type="true"/>
+            <query><![CDATA[
+                ALTER TABLE `#__j2store_currencies`
+                MODIFY `currency_position` varchar(12) DEFAULT 'pre',
+                MODIFY `currency_symbol` varchar(255) NULL DEFAULT NULL,
+                MODIFY `currency_decimal` varchar(12) NULL DEFAULT '.' ,
+                MODIFY `currency_thousands` char(1) NULL DEFAULT ',' ,
+                MODIFY `currency_num_decimals` INT(11) NULL DEFAULT 0,
+                MODIFY `currency_value` decimal(15,8) NULL DEFAULT 1.00000,
+                MODIFY `created_on` datetime NULL DEFAULT NULL,
+                MODIFY `modified_on` datetime NULL DEFAULT NULL,
+                MODIFY `locked_on` datetime NULL DEFAULT NULL,
+                MODIFY `enabled` INT(11) NULL DEFAULT 1,
+                MODIFY `ordering` INT(11) NULL DEFAULT 0;
+            ]]></query>
+        </action>
+        <action table="#__j2store_orders" canfail="0">
+            <condition type="true"/>
+            <query><![CDATA[
+                ALTER TABLE `#__j2store_orders`
+                MODIFY `order_id` varchar(255) NULL DEFAULT NULL,
+                MODIFY `subscription_id` INT(10) NULL DEFAULT NULL,
+                MODIFY `cart_id` INT(11) NULL DEFAULT NULL,
+                MODIFY `invoice_prefix` varchar(255) NULL DEFAULT NULL,
+                MODIFY `invoice_number` INT(11) NULL DEFAULT NULL,
+                MODIFY `token` varchar(255) NULL DEFAULT NULL,
+                MODIFY `user_id` INT(11) NULL DEFAULT NULL,
+                MODIFY `user_email` varchar(255) NULL DEFAULT NULL,
+                MODIFY `order_total` decimal(12,4) NULL DEFAULT NULL,
+                MODIFY `order_subtotal` decimal(12,4) NULL DEFAULT NULL,
+                MODIFY `order_tax` decimal(12,4) NULL DEFAULT NULL,
+                MODIFY `order_shipping` decimal(12,4) NULL DEFAULT NULL,
+                MODIFY `order_shipping_tax` decimal(12,4) NULL DEFAULT NULL,
+                MODIFY `order_discount` decimal(12,4) NULL DEFAULT NULL,
+                MODIFY `order_credit` decimal(12,4) NULL DEFAULT NULL,
+                MODIFY `order_refund` decimal(12,4) NULL DEFAULT NULL,
+                MODIFY `order_surcharge` decimal(12,4) NULL DEFAULT NULL,
+                MODIFY `orderpayment_type` varchar(255) NULL DEFAULT NULL,
+                MODIFY `transaction_id` varchar(255) NULL DEFAULT NULL,
+                MODIFY `transaction_status` varchar(255) NULL DEFAULT NULL,
+                MODIFY `transaction_details` text NULL DEFAULT NULL,
+                MODIFY `customer_note` text NULL DEFAULT NULL,
+                MODIFY `currency_id` INT(11) NULL DEFAULT NULL,
+                MODIFY `currency_code` varchar(255) NULL DEFAULT NULL,
+                MODIFY `ip_address` varchar(255) NULL DEFAULT NULL,
+                MODIFY `is_shippable` INT(11) NULL DEFAULT NULL,
+                MODIFY `is_including_tax` INT(11) NULL DEFAULT NULL,
+                MODIFY `customer_language` varchar(255) NULL DEFAULT NULL,
+                MODIFY `customer_group` varchar(255) NULL DEFAULT NULL,
+                MODIFY `order_state_id` INT(11) NULL DEFAULT NULL,
+                MODIFY `order_state` varchar(255) NULL DEFAULT NULL,
+                MODIFY `created_on` datetime NULL DEFAULT NULL,
+                MODIFY `created_by` INT(11) NULL DEFAULT NULL,
+                MODIFY `modified_on` datetime NULL DEFAULT NULL,
+                MODIFY `modified_by` INT(11) NULL DEFAULT NULL,
+                MODIFY `campaign_double_opt_in` INT(11) NULL DEFAULT NULL,
+                MODIFY `campaign_order_id` varchar(255) NULL DEFAULT NULL;
+            ]]></query>
+        </action>
+        <action table="#__j2store_orderinfos" canfail="0">
+            <condition type="true"/>
+            <query><![CDATA[
+                ALTER TABLE `#__j2store_orderinfos`
+                MODIFY `order_id` varchar(255) NULL DEFAULT NULL,
+                MODIFY `billing_address_1` varchar(255) NULL DEFAULT NULL,
+                MODIFY `billing_city` varchar(255) NULL DEFAULT NULL,
+                MODIFY `billing_zone_name` varchar(255) NULL DEFAULT NULL,
+                MODIFY `billing_country_name` varchar(255) NULL DEFAULT NULL,
+                MODIFY `billing_zone_id` INT(11) NULL DEFAULT NULL,
+                MODIFY `billing_country_id` INT(11) NULL DEFAULT NULL,
+                MODIFY `billing_zip` varchar(255) NULL DEFAULT NULL,
+                MODIFY `shipping_address_1` varchar(255) NULL DEFAULT NULL,
+                MODIFY `shipping_city` varchar(255) NULL DEFAULT NULL,
+                MODIFY `shipping_zip` varchar(255) NULL DEFAULT NULL,
+                MODIFY `shipping_zone_name` varchar(255) NULL DEFAULT NULL,
+                MODIFY `shipping_country_name` varchar(255) NULL DEFAULT NULL,
+                MODIFY `shipping_zone_id` INT(11) NULL DEFAULT NULL,
+                MODIFY `shipping_country_id` INT(11) NULL DEFAULT NULL,
+                MODIFY `shipping_id` varchar(255) NULL DEFAULT NULL,
+                MODIFY `all_billing` longtext NULL DEFAULT NULL,
+                MODIFY `all_shipping` longtext NULL DEFAULT NULL,
+                MODIFY `all_payment` longtext NULL DEFAULT NULL;
+            ]]></query>
+        </action>
+        <action table="#__j2store_orderitems" canfail="0">
+            <condition type="true"/>
+            <query><![CDATA[
+                ALTER TABLE `#__j2store_orderitems`
+                MODIFY `order_id` varchar(255) NULL DEFAULT NULL,
+                MODIFY `cart_id` INT(11) NULL DEFAULT NULL,
+                MODIFY `cartitem_id` INT(11) NULL DEFAULT NULL,
+                MODIFY `product_id` INT(11) NULL DEFAULT NULL,
+                MODIFY `product_type` varchar(255) NULL DEFAULT NULL,
+                MODIFY `variant_id` INT(11) NULL DEFAULT NULL,
+                MODIFY `vendor_id` INT(11) NULL DEFAULT NULL,
+                MODIFY `orderitem_sku` varchar(255) NULL DEFAULT NULL,
+                MODIFY `orderitem_name` varchar(255) NULL DEFAULT NULL,
+                MODIFY `orderitem_attributes` TEXT NULL DEFAULT NULL,
+                MODIFY `orderitem_quantity` varchar(255) NULL DEFAULT NULL,
+                MODIFY `orderitem_taxprofile_id` INT(11) NULL DEFAULT NULL,
+                MODIFY `orderitem_per_item_tax` decimal(12,4) NULL DEFAULT NULL,
+                MODIFY `orderitem_tax` decimal(12,4) NULL DEFAULT NULL,
+                MODIFY `orderitem_discount` decimal(12,4) NULL DEFAULT NULL,
+                MODIFY `orderitem_discount_tax` decimal(12,4) NULL DEFAULT NULL,
+                MODIFY `orderitem_price` decimal(12,5) NULL DEFAULT NULL,
+                MODIFY `orderitem_option_price` decimal(12,4) NULL DEFAULT NULL,
+                MODIFY `orderitem_finalprice` decimal(12,4) NULL DEFAULT NULL,
+                MODIFY `orderitem_finalprice_with_tax` decimal(12,4) NULL DEFAULT NULL,
+                MODIFY `orderitem_finalprice_without_tax` decimal(12,4) NULL DEFAULT NULL,
+                MODIFY `orderitem_params` TEXT NULL DEFAULT NULL,
+                MODIFY `created_on` datetime NULL DEFAULT NULL,
+                MODIFY `created_by` INT(11) NULL DEFAULT NULL,
+                MODIFY `orderitem_weight` varchar(255) NULL DEFAULT NULL,
+                MODIFY `orderitem_weight_total` varchar(255) NULL DEFAULT NULL;
+            ]]></query>
+        </action>
+        <action table="#__j2store_cartitems" canfail="0">
+            <condition type="true"/>
+            <query><![CDATA[
+                ALTER TABLE `#__j2store_cartitems`
+                MODIFY `cart_id` INT(11) NULL DEFAULT NULL,
+                MODIFY `product_id` INT(11) NULL DEFAULT NULL,
+                MODIFY `variant_id` INT(11) NULL DEFAULT NULL,
+                MODIFY `vendor_id` INT(11) NULL DEFAULT NULL,
+                MODIFY `product_type` varchar(255) NULL DEFAULT NULL,
+                MODIFY `cartitem_params` TEXT NULL DEFAULT NULL,
+                MODIFY `product_qty` decimal(12,4) NULL DEFAULT NULL,
+                 MODIFY `product_options` TEXT NULL DEFAULT NULL;
+            ]]></query>
+        </action>
+        <action table="#__j2store_orderfees" canfail="0">
+            <condition type="true"/>
+            <query><![CDATA[
+                ALTER TABLE `#__j2store_orderfees`
+                MODIFY `order_id` varchar(255) NULL DEFAULT NULL,
+                MODIFY `name` varchar(255) NULL DEFAULT NULL,
+                MODIFY `amount` decimal(12,4) NULL DEFAULT NULL,
+                MODIFY `tax_class_id` INT(11) NULL DEFAULT NULL,
+                MODIFY `taxable` INT(11) NULL DEFAULT NULL,
+                MODIFY `tax` decimal(12,4) NULL DEFAULT NULL,
+                MODIFY `tax_data` TEXT NULL DEFAULT NULL,
+                MODIFY `fee_type` varchar(255) NULL DEFAULT NULL;
+            ]]></query>
+        </action>
+        <action table="#__j2store_orderhistories" canfail="0">
+            <condition type="true"/>
+            <query><![CDATA[
+                ALTER TABLE `#__j2store_orderhistories`
+                MODIFY `order_id` varchar(255) NULL DEFAULT NULL,
+                MODIFY `order_state_id` INT(11) NULL DEFAULT NULL,
+                MODIFY `notify_customer` INT(11) NULL DEFAULT NULL,
+                MODIFY `comment` TEXT NULL DEFAULT NULL,
+                MODIFY `created_on` datetime NULL DEFAULT NULL,
+                MODIFY `created_by` int(11) NULL DEFAULT NULL,
+                MODIFY `params` TEXT NULL DEFAULT NULL;
+            ]]></query>
+        </action>
+        <action table="#__j2store_vouchers" canfail="0">
+            <condition type="true"/>
+            <query><![CDATA[
+                ALTER TABLE `#__j2store_vouchers`
+                MODIFY `order_id` varchar(255) NULL DEFAULT NULL,
+                MODIFY `email_to` varchar(255) NULL DEFAULT NULL,
+                MODIFY `voucher_type` varchar(255) NULL DEFAULT NULL,
+                MODIFY `subject` varchar(255) NULL DEFAULT NULL,
+                MODIFY `voucher_value` decimal(15,8) NULL DEFAULT NULL,
+                MODIFY `ordering` INT(11) NULL DEFAULT 0,
+                MODIFY `enabled` INT(11) NULL DEFAULT 1,
+                MODIFY `created_on` datetime NULL DEFAULT NULL,
+                MODIFY `created_by` int(11) NULL DEFAULT NULL;
+            ]]></query>
+        </action>
+        <action table="#__j2store_coupons" canfail="0">
+            <condition type="true"/>
+            <query><![CDATA[
+                ALTER TABLE `#__j2store_coupons`
+                MODIFY `coupon_name` varchar(255) NULL DEFAULT NULL,
+                MODIFY `ordering` INT(11) NULL DEFAULT 0,
+                MODIFY `enabled` INT(11) NULL DEFAULT 1,
+                MODIFY `value` decimal(12,4) NULL DEFAULT NULL,
+                MODIFY `max_value` varchar(255) NULL DEFAULT NULL,
+                MODIFY `free_shipping` INT(11) NULL DEFAULT NULL,
+                MODIFY `max_uses` INT(11) NULL DEFAULT 0,
+                MODIFY `max_quantity` INT(11) NULL DEFAULT 0,
+                MODIFY `logged` INT(11) NULL DEFAULT NULL,
+                MODIFY `max_customer_uses` INT(11) NULL DEFAULT 0,
+                MODIFY `valid_from` datetime NULL DEFAULT NULL,
+                MODIFY `valid_to` datetime NULL DEFAULT NULL,
+                MODIFY `min_subtotal` varchar(255) NULL DEFAULT NULL,
+                MODIFY `users` TEXT NULL DEFAULT NULL,
+                MODIFY `mycategory` TEXT NULL DEFAULT NULL,
+                MODIFY `brand_ids` TEXT NULL DEFAULT NULL;
+            ]]></query>
+        </action>
+        <action table="#__j2store_emailtemplates" canfail="0">
+            <condition type="true"/>
+            <query><![CDATA[
+                ALTER TABLE `#__j2store_emailtemplates`
+                MODIFY `email_type` varchar(255) NULL DEFAULT NULL,
+                MODIFY `orderstatus_id` varchar(255) NULL DEFAULT NULL,
+                MODIFY `group_id` varchar(255) NULL DEFAULT NULL,
+                MODIFY `paymentmethod` varchar(255) NULL DEFAULT NULL,
+                MODIFY `subject` varchar(255) NULL DEFAULT NULL,
+                MODIFY `body` TEXT NULL DEFAULT NULL,
+                MODIFY `body_source` varchar(255) NULL DEFAULT NULL,
+                MODIFY `body_source_file` varchar(255) NULL DEFAULT NULL,
+                MODIFY `enabled` INT(11) NULL DEFAULT 1,
+                MODIFY `ordering` INT(11) NULL DEFAULT 0;
+            ]]></query>
+        </action>
+        <action table="#__j2store_invoicetemplates" canfail="0">
+            <condition type="true"/>
+            <query><![CDATA[
+                ALTER TABLE `#__j2store_invoicetemplates`
+                MODIFY `title` varchar(255) NULL DEFAULT NULL,
+                MODIFY `invoice_type` varchar(255) NULL DEFAULT NULL,
+                MODIFY `orderstatus_id` varchar(255) NULL DEFAULT NULL,
+                MODIFY `group_id` varchar(255) NULL DEFAULT NULL,
+                MODIFY `paymentmethod` varchar(255) NULL DEFAULT NULL,
+                MODIFY `body` TEXT NULL DEFAULT NULL,
+                MODIFY `language` varchar(255) NULL DEFAULT NULL,
+                MODIFY `enabled` INT(11) NULL DEFAULT 1,
+                MODIFY `ordering` INT(11) NULL DEFAULT 0;
+            ]]></query>
+        </action>
+        <action table="#__j2store_carts" canfail="0">
+            <condition type="true"/>
+            <query><![CDATA[
+                ALTER TABLE `#__j2store_carts`
+                MODIFY `customer_ip` varchar(255) NULL DEFAULT NULL,
+                MODIFY `cart_params` TEXT NULL DEFAULT NULL,
+                MODIFY `cart_browser` TEXT NULL DEFAULT NULL,
+                MODIFY `cart_analytics` TEXT NULL DEFAULT NULL,
+                MODIFY `created_on` datetime NULL DEFAULT NULL,
+                MODIFY `modified_on` datetime NULL DEFAULT NULL;
+            ]]></query>
+        </action>
+        <action table="#__j2store_productfiles" canfail="0">
+            <condition type="true"/>
+            <query><![CDATA[
+                ALTER TABLE `#__j2store_productfiles`
+                MODIFY `product_file_display_name` varchar(255) NULL DEFAULT NULL,
+                MODIFY `product_file_save_name` TEXT NULL DEFAULT NULL,
+                MODIFY `download_total` INT(11) NULL DEFAULT 0;
+            ]]></query>
+        </action>
+        <action table="#__j2store_shippingmethods" canfail="0">
+            <condition type="true"/>
+            <query><![CDATA[
+                ALTER TABLE `#__j2store_shippingmethods`
+                MODIFY `tax_class_id` int(11) NULL DEFAULT 0,
+                MODIFY `params` longtext NULL DEFAULT NULL,
+                MODIFY `subtotal_minimum` decimal(15,3) NULL DEFAULT 0.0,
+                MODIFY `subtotal_maximum` decimal(15,3) NULL DEFAULT 0.0;
+            ]]></query>
+        </action>
+        <action table="#__j2store_shippingrates" canfail="0">
+            <condition type="true"/>
+            <query><![CDATA[
+                ALTER TABLE `#__j2store_shippingrates`
+                MODIFY `shipping_rate_price` decimal(12,5) NULL DEFAULT 0.0,
+                MODIFY `shipping_rate_weight_end` decimal(11,3) NULL DEFAULT 0.0,
+                MODIFY `shipping_rate_handling` decimal(11,3) NULL DEFAULT 0.0,
+                MODIFY `shipping_rate_weight_start` decimal(11,3) NULL DEFAULT 0.0,
+                MODIFY `created_date` datetime NULL DEFAULT NULL,
+                MODIFY `modified_date` datetime NULL DEFAULT NULL;
+            ]]></query>
+        </action>
+        <action table="#__j2store_customfields" canfail="0">
+            <condition type="true"/>
+            <query><![CDATA[
+                ALTER TABLE `#__j2store_customfields`
+                MODIFY `field_value` longtext NULL DEFAULT NULL,
+                MODIFY `field_display` text NULL DEFAULT NULL;
+            ]]></query>
+        </action>
+        <action table="#__j2store_metafields" canfail="0">
+            <condition type="true"/>
+            <query><![CDATA[
+                ALTER TABLE `#__j2store_metafields`
+                MODIFY `namespace` varchar(255) NULL DEFAULT NULL,
+                MODIFY `scope` varchar(255) NULL DEFAULT NULL,
+                MODIFY `metavalue` text NULL DEFAULT NULL,
+                MODIFY `valuetype` varchar(255) NULL DEFAULT NULL,
+                MODIFY `description` text NULL DEFAULT NULL,
+                MODIFY `owner_id` INT(10) NULL DEFAULT 0,
+                MODIFY `owner_resource` varchar(255) NULL DEFAULT NULL;
+            ]]></query>
+        </action>
+        <action table="#__j2store_orderdiscounts" canfail="0">
+            <condition type="true"/>
+            <query><![CDATA[
+                ALTER TABLE `#__j2store_orderdiscounts`
+                MODIFY `discount_type` varchar(255) NULL DEFAULT NULL,
+                MODIFY `discount_entity_id` INT(11) NULL DEFAULT 0,
+                MODIFY `discount_title` varchar(255) NULL DEFAULT NULL,
+                MODIFY `discount_code` varchar(255) NULL DEFAULT NULL,
+                MODIFY `discount_value` varchar(255) NULL DEFAULT NULL,
+                MODIFY `discount_value_type` varchar(255) NULL DEFAULT NULL,
+                MODIFY `user_id` INT(11) NULL DEFAULT 0,
+                MODIFY `discount_amount` decimal(12,4) NULL DEFAULT 0.0,
+                MODIFY `discount_tax` decimal(12,4) NULL DEFAULT 0.0,
+                MODIFY `discount_params` text NULL DEFAULT NULL,
+                MODIFY `discount_customer_email` varchar(255) NULL DEFAULT NULL;
+            ]]></query>
+        </action>
+        <action table="#__j2store_orderdownloads" canfail="0">
+            <condition type="true"/>
+            <query><![CDATA[
+                ALTER TABLE `#__j2store_orderdownloads`
+                MODIFY `user_email` varchar(255) NULL DEFAULT NULL,
+                MODIFY `user_id` INT(11) NULL DEFAULT 0,
+                MODIFY `limit_count` bigint(20) NULL DEFAULT 0,
+                MODIFY `access_granted` datetime NULL DEFAULT NULL,
+                MODIFY `access_expires` datetime NULL DEFAULT NULL;
+            ]]></query>
+        </action>
+        <action table="#__j2store_orderitemattributes" canfail="0">
+            <condition type="true"/>
+            <query><![CDATA[
+                ALTER TABLE `#__j2store_orderitemattributes`
+                MODIFY `productattributeoption_id` INT(11) NULL DEFAULT 0,
+                MODIFY `productattributeoptionvalue_id` INT(11) NULL DEFAULT 0,
+                MODIFY `orderitemattribute_name` varchar(255) NULL DEFAULT NULL,
+                MODIFY `orderitemattribute_value` text NULL DEFAULT NULL,
+                MODIFY `orderitemattribute_prefix` varchar(4) NULL DEFAULT NULL,
+                MODIFY `orderitemattribute_price` decimal(12,5) NULL DEFAULT 0.0,
+                MODIFY `orderitemattribute_code` varchar(255) NULL DEFAULT NULL,
+                MODIFY `orderitemattribute_type` varchar(255) NULL DEFAULT NULL;
+            ]]></query>
+        </action>
+        <action table="#__j2store_optionvalues" canfail="0">
+            <condition type="true"/>
+            <query><![CDATA[
+                ALTER TABLE `#__j2store_optionvalues`
+                MODIFY `optionvalue_name` varchar(255) NULL DEFAULT NULL,
+                MODIFY `optionvalue_image` longtext NULL DEFAULT NULL,
+                MODIFY `ordering` INT(11) NULL DEFAULT 0;
+            ]]></query>
+        </action>
+        <action table="#__j2store_ordershippings" canfail="0">
+            <condition type="true"/>
+            <query><![CDATA[
+                ALTER TABLE `#__j2store_ordershippings`
+                MODIFY `ordershipping_type` varchar(255) NULL DEFAULT NULL,
+                MODIFY `ordershipping_name` varchar(255) NULL DEFAULT NULL,
+                MODIFY `ordershipping_code` varchar(255) NULL DEFAULT NULL,
+                MODIFY `ordershipping_tracking_id` mediumtext NULL DEFAULT NULL;
+            ]]></query>
+        </action>
+        <action table="#__j2store_ordertaxes" canfail="0">
+            <condition type="true"/>
+            <query><![CDATA[
+                ALTER TABLE `#__j2store_ordertaxes`
+                MODIFY `ordertax_title` varchar(255) NULL DEFAULT NULL,
+                MODIFY `ordertax_percent` decimal(12,4) NULL DEFAULT 0.0,
+                MODIFY `ordertax_amount` decimal(12,4) NULL DEFAULT 0.0;
+            ]]></query>
+        </action>
+        <action table="#__j2store_queues" canfail="0">
+            <condition type="true"/>
+            <query><![CDATA[
+                ALTER TABLE `#__j2store_queues`
+                MODIFY `relation_id` varchar(255) NULL DEFAULT NULL,
+                MODIFY `queue_type` varchar(255) NULL DEFAULT NULL,
+                MODIFY `queue_data` longtext NULL DEFAULT NULL,
+                MODIFY `params` longtext NULL DEFAULT NULL,
+                MODIFY `priority` INT(11) NULL DEFAULT 0,
+                MODIFY `status` varchar(255) NULL DEFAULT NULL,
+                MODIFY `repeat_count` INT(11) NULL DEFAULT 0,
+                MODIFY `expired` datetime NULL DEFAULT NULL;
+            ]]></query>
+        </action>
+        <action table="#__j2store_uploads" canfail="0">
+            <condition type="true"/>
+            <query><![CDATA[
+                ALTER TABLE `#__j2store_uploads`
+                MODIFY `original_name` varchar(255) NULL DEFAULT NULL,
+                MODIFY `mangled_name` varchar(255) NULL DEFAULT NULL,
+                MODIFY `saved_name` varchar(255) NULL DEFAULT NULL,
+                MODIFY `mime_type` varchar(255) NULL DEFAULT NULL,
+                MODIFY `created_by` INT(11) NULL DEFAULT 0,
+                MODIFY `created_on` datetime NULL DEFAULT NULL;
+            ]]></query>
+        </action>
+        <action table="#__j2store_orderfees" canfail="0">
+            <condition type="true"/>
+            <query><![CDATA[
+                ALTER TABLE `#__j2store_orderfees`
+                MODIFY `name` varchar(255) NULL DEFAULT NULL,
+                MODIFY `amount` decimal(12,4) NULL DEFAULT NULL,
+                MODIFY `tax_class_id` int(11) NULL DEFAULT NULL,
+                MODIFY `taxable` int(11)  NULL DEFAULT NULL,
+                MODIFY `tax` decimal(12,4) NULL DEFAULT NULL,
+                MODIFY `tax_data` text NULL DEFAULT NULL;
+            ]]></query>
+        </action>
+    </sql>
+</schema>

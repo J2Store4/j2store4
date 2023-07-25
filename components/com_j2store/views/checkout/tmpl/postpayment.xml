@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+	<view title="checkout">
+		<message><![CDATA[COM_J2STORE_VIEW_CHECKOUT_POSTPAYMENT_DESC]]></message>
+	</view>
+	<layout title="COM_J2STORE_VIEW_CHECKOUT_POSTPAYMENT_LABEL">
+		<message>
+				<![CDATA[COM_J2STORE_VIEW_CHECKOUT_POSTPAYMENT_DESC]]>
+		</message>
+	</layout>
+	<fields name="request">
+    <fieldset name="request">    
+        <field name="task" type="hidden"
+            label=""
+            required=""
+            description=""
+            default="confirmPayment"
+        />
+    </fieldset>
+</fields>
+</metadata>

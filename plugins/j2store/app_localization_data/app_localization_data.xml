@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension version="3.0" type="plugin" group="j2store" method="upgrade">
+	<name>Localization Data for J2Store</name>
+	<version>1.0</version>
+	<creationDate>Jan 2015</creationDate>
+	<author>Gokila Priya</author>
+	<authorEmail>supports@j2store.org</authorEmail>
+	<authorUrl>http://www.j2store.org</authorUrl>
+	<copyright>2014-19 WeblogicxIndia</copyright>
+	<license>GNU General Public License v2</license>
+	<description>J2STORE_APP_LOCALIZATION_DATA_HELP_TEXT</description>
+	<files>
+		<filename plugin="app_localization_data">app_localization_data.php</filename>
+		<folder>app_localization_data</folder>
+		<filename>index.html</filename>
+	</files>	
+</extension>

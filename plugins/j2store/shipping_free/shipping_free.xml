@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension version="3.0" type="plugin" group="j2store" method="upgrade">
+	<name>Free Shipping</name>
+	<version>1.1</version>
+	<creationDate>September 2015</creationDate>
+	<author>Gokila Priya</author>
+	<authorEmail>supports@j2store.org</authorEmail>
+	<authorUrl>http://www.j2store.org</authorUrl>
+	<copyright>2015 WeblogicxIndia</copyright>
+	<license>GNU General Public License v2</license>
+	<description>PLG_J2STORE_SHIPPING_FREE_DESCRIPTION</description>	
+	<files>
+		<filename plugin="shipping_free">shipping_free.php</filename>
+		<folder>shipping_free</folder>
+		<filename>index.html</filename>
+	</files>	
+	<config>
+		<fields name="params">
+			<fieldset name="basic" label="J2STORE_BASIC_SETTINGS"
+				addfieldpath="/plugins/j2store/shipping_free/shipping_free/models/fields">
+				<field name="geozones" type="geozones" multiple="multiple" label="J2STORE_GEOZONES" description="J2STORE_GEOZONE_LABEL_DESCRIPTION"  layout="joomla.form.field.list-fancy-select" />
+				<field name="display_name" type="text" default="Free shipping" label="J2STORE_FREE_SHIPPING_NAME" description="J2STORE_FREE_SHIPPING_NAME_DESC" />
+				<field name="min_subtotal" type="text" default="0" label="J2STORE_FREE_SHIPPING_MINIMUM_SUBTOTAL" description="J2STORE_FREE_SHIPPING_MINIMUM_SUBTOTAL_DESC" />
+				<field name="max_subtotal" type="text" default="-1" label="J2STORE_FREE_SHIPPING_MAXIMUM_SUBTOTAL" description="J2STORE_FREE_SHIPPING_MAXIMUM_SUBTOTAL_DESC" />
+				<field name="requires_coupon" type="list" default="0" label="J2STORE_FREE_SHIPPING_COUPON" description="J2STORE_FREE_SHIPPING_COUPON_DESC" >
+					<option value="0">JNO</option>
+					<option value="1">JYES</option>
+				</field>
+				<field name="shipping_method" type="shipping" multiple="multiple" label="J2STORE_FREESHIPPING_EXCLUDE_SHIPPING_METHOD" layout="joomla.form.field.list-fancy-select" description="J2STORE_FREESHIPPING_EXCLUDE_SHIPPING_METHOD_DESC" addfieldpath="/plugins/j2store/shipping_free/shipping_free/models/fields"/>
+				<field name="check_shipping_product" type="radio" default="0"  label="J2STORE_FREESHIPPING_CHECK_SHIPPING_PRODUCT" description="J2STORE_FREESHIPPING_CHECK_SHIPPING_PRODUCT_DESC">
+					<option value="0">JNO</option>
+					<option value="1">JYES</option>
+				</field>
+
+				<field name="usergroup" type="usergroup" multiple="multiple" label="J2STORE_FREESHIPPING_EXCLUDE_USER_GROUP" description="J2STORE_FREESHIPPING_EXCLUDE_USER_GROUP_DESC"  addfieldpath="/plugins/j2store/shipping_free/shipping_free/models/fields" />
+			</fieldset>
+		</fields>
+	</config>
+
+</extension>

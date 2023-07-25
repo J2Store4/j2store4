@@ -1,0 +1,83 @@
+
+
+/* tab content */
+.com_j2store .tab-content{
+    margin-top:20px;
+}
+
+/*input filed */
+
+.com_j2store .control-group .controls .field-calendar .input-group .form-control{
+    width: auto !important;
+    flex: none;
+}
+
+.com_j2store  .control-group .controls .input-group .form-control {
+    width:150px;
+    flex:none;
+}
+
+.com_j2store  select{
+    width: 203px;
+    padding: 4px 4px;
+}
+
+.com_j2store .input-xxlarge{
+    width:auto;
+}
+.com_j2store .input-mini {
+    width: 60px;
+}
+ /*label*/
+.com_j2store .view-orders  label {
+    display: block;
+    margin-bottom: 5px;
+}
+.com_j2store .view-option tbody tr td,.com_j2store .view-option .table thead tr td {
+    color: #132f53;
+}
+.com_j2store .view-filtergroup tbody tr td,.com_j2store .view-filtergroup .table thead tr td {
+    color: #132f53;
+}
+
+.com_j2store legend{
+    color: #142842;
+}
+.com_j2store .btn-toolbar .btn-wrapper {
+    display: inline-block;
+    margin: 0 0 8px 5px;
+}
+.com_j2store #payment_shipping_methods #shippingcost-pane textarea {
+    width: 203px;
+    padding: 4px 4px;
+}
+.com_j2store .hero-unit{
+    text-align: center;
+    padding: 60px;
+    margin-bottom: 30px;
+    font-size: 18px;
+    line-height: 27px;
+    color: inherit;
+    background-color: #eee;
+    border-radius: 6px;
+}
+.com_j2store .center {
+    text-align: center;
+}
+.com_j2store .j2store_configuration_edit input[value="0"].btn-check:checked  + .btn-outline-success{
+    background-color: #802420;
+    border-color: #802420;
+    color: #fff;
+}
+.com_j2store .j2store_configuration_edit .btn-outline-success:hover {
+    color: #000;
+    background-color: #fff;
+    border-color: #000;
+}
+.com_j2store .control-group .controls  .field-user-wrapper .input-group .form-control{
+    width: 150px !important;
+    flex: none;
+}
+.com_j2store #adminForm,.com_j2store.task-add .form-horizontal,.com_j2store .view-taxprofile,.com_j2store.task-createOrder .form-horizontal {
+    padding: 10px 36px;
+}

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension version="2.5" type="plugin" method="upgrade" group="j2store">
+	<name>Standard Shipping methods</name>
+	<version>1.0</version>
+	<creationDate>December 2014</creationDate>
+	<author>J2Store</author>
+	<authorEmail>support@j2store.org</authorEmail>
+	<authorUrl>https://www.j2store.org</authorUrl>
+	<copyright>2010 Weblogicx India Private Limited</copyright>
+	<license>GNU General Public License v2</license>
+	<description>J2STORE_PLUGINDESC</description>	
+	<files>
+		<filename plugin="shipping_standard">shipping_standard.php</filename>
+		<filename>index.html</filename>
+		<folder>shipping_standard</folder>	
+	</files>
+	<config>
+	</config>
+</extension>

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension version="2.5" type="component" method="upgrade">
+	<name>J2Store</name>
+	<author>Ramesh Elamathi</author>
+	<creationDate>MAY 2023</creationDate>
+	<copyright>Copyright (c) 2022 Cartrabbit. All rights reserved.</copyright>
+	<authorEmail>support@j2store.org</authorEmail>
+	<authorUrl>https://www.j2store.org</authorUrl>
+	<version>4.0.0-RC-3</version>
+	<license>https://www.gnu.org/licenses/gpl-2.0.html GNU/GPL</license>
+    <description><![CDATA[<h3>J2 Store V4 Professional</h3>
+      Flexible and native Joomla shopping cart solution. <br />
+      Use Joomla articles as products and get your shop online in less than 10 minutes. <br />
+      Start setting up your store now. <br />
+      Learn more from the <a target="_blank" href="https://www.j2store.org/support/user-guide/getting-started-with-j2store.html">Getting started guide</a>
+      If you have any questions, <a target="_blank" href="https://www.j2store.org/support/community-forum.html">get in touch with us</a>]]>
+	</description>
+
+	<!-- Public front end files -->
+	<files folder="components/com_j2store">
+		<filename>index.html</filename>
+		<filename>router.php</filename>
+		<filename>j2store.php</filename>
+		<folder>views</folder>
+		<folder>controllers</folder>
+		<folder>models</folder>
+	</files>
+
+	<!-- Frontend translation files -->
+		<languages folder="language/frontend">
+			<language tag="en-GB">en-GB/en-GB.com_j2store.ini</language>
+		</languages>
+
+	<!-- SQL query files to execute on installation -->
+	<install>
+		<sql>
+			<file driver="mysql" charset="utf8">sql/install/mysql/install.j2store.sql</file>
+			<file driver="mysql">sql/install/mysql/install.j2store.sql</file>
+			<file driver="mysqli" charset="utf8">sql/install/mysql/install.j2store.sql</file>
+			<file driver="mysqli">sql/install/mysql/install.j2store.sql</file>
+		</sql>
+	</install>
+
+	<!-- Media files -->
+	<media destination="j2store" folder="media/j2store">
+		<folder>fonts</folder>
+		<folder>css</folder>
+		<folder>images</folder>
+		<folder>js</folder>
+
+		<filename>index.html</filename>
+	</media>
+
+	<!-- Administrator back-end section -->
+	<administration>
+		<!-- Administration menu -->
+		<menu view="cpanel">J2Store</menu>
+
+		<!-- Back-end files -->
+		<files folder="administrator/components/com_j2store">
+			<folder>controllers</folder>
+			<folder>sql</folder>
+			<folder>views</folder>
+			<folder>library</folder>
+			<folder>helpers</folder>
+			<folder>models</folder>
+			<folder>tables</folder>
+            <folder>fof</folder>
+            <folder>layouts</folder>
+			<filename>access.xml</filename>
+			<filename>config.xml</filename>
+			<filename>fof.xml</filename>
+			<filename>index.html</filename>
+			<filename>j2store.php</filename>
+			<filename>toolbar.php</filename>
+			<filename>dispatcher.php</filename>
+			<filename>version.php</filename>
+		</files>
+
+		<!-- Back-end translation files -->
+		<languages folder="language/backend">
+			<language tag="en-GB">en-GB/en-GB.com_j2store.ini</language>
+			<language tag="en-GB">en-GB/en-GB.com_j2store.sys.ini</language>
+		</languages>
+	</administration>
+		<!-- Installation / uninstallation PHP scripts -->
+		<scriptfile>script.j2store.php</scriptfile>
+</extension>

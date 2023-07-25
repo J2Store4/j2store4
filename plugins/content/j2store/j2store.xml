@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension version="3.0" type="plugin" method="upgrade" group="content">
+	<name>Content - J2Store</name>
+	<author>J2Store Team</author>
+	<creationDate>October 2014</creationDate>
+	<copyright>Copyright (c) 2014 - 2019 J2Store.org All rights reserved.</copyright>
+	<license>https://www.gnu.org/licenses/gpl-2.0.html GNU/GPL</license>
+	<authorEmail>support@j2store.org</authorEmail>
+	<authorUrl>https://www.j2store.org</authorUrl>
+	<version>1.0</version>
+	<description>Content plugin for J2Store.</description>
+
+	<files>
+		<filename plugin="j2store">j2store.php</filename>
+		<filename>index.html</filename>
+		<folder>forms</folder>
+		<folder>fields</folder>
+	</files>
+
+	<config>
+		<fields name="params">
+			<fieldset name="basic" label="J2STORE_CONTENT_BASIC">
+				<field name="allow_frontend_product_edit" type="radio" class="btn-group" default="0"
+					   label="J2STORE_CONTENT_ALLOW_FRONTEND_EDIT" description="J2STORE_CONTENT_ALLOW_FRONTEND_EDIT_DESC">
+					<option value="1">JYES</option>
+					<option value="0">JNO</option>
+				</field>
+				<field name="check_publish_date" type="radio" class="btn-group" default="0"
+					   label="J2STORE_CONTENT_CHECK_PUBLISH_DATE" description="J2STORE_CONTENT_CHECK_PUBLISH_DATE_DESC">
+					<option value="1">JYES</option>
+					<option value="0">JNO</option>
+				</field>
+
+				<field name="cache_control" type="radio" class="btn-group" default="1"
+					   label="J2STORE_CONTENT_CACHE_CONTROL" description="J2STORE_CONTENT_CACHE_CONTROL_DESC">
+					<option value="1">JYES</option>
+					<option value="0">JNO</option>
+				</field>
+			</fieldset>
+
+			<fieldset name="categoryview" label="J2STORE_CONTENT_CATEGORY_LIST_VIEW">
+				<field name="category_product_options" type="list" default="1"
+					   label="J2STORE_CONTENT_ADD_TO_CART_DISPLAY"
+					   description="J2STORE_CONTENT_ADD_TO_CART_DISPLAY_DESC">
+					<option value="1">J2STORE_CONTENT_DISPLAY_PRODUCT_OPTIONS</option>
+					<option value="2">J2STORE_CONTENT_REDIRECT_IF_OPTIONS_AVAILABLE</option>
+					<option value="3">J2STORE_CONTENT_REDIRECT_TO_DETAIL_PAGE</option>
+				</field>
+
+				<field name="category_product_block_position" type="list" default="bottom"
+					   label="J2STORE_CONTENT_PRODUCT_BLOCK_POSITION"
+					   description="J2STORE_CONTENT_PRODUCT_BLOCK_POSITION_DESC">
+					<option value="top">J2STORE_CONTENT_PRODUCT_POSITION_TOP</option>
+					<option value="bottom">J2STORE_CONTENT_PRODUCT_POSITION_BOTTOM</option>
+					<option value="afterdisplaycontent">J2STORE_CONTENT_PRODUCT_POSITION_AFTERDISPLAY_CONTENT</option>
+				</field>
+
+				<field name="category_display_j2store_images" type="radio" class="btn-group" default="1"
+					   label="J2STORE_CONTENT_DISPLAY_J2STORE_IMAGES"
+					   description="J2STORE_CONTENT_DISPLAY_J2STORE_IMAGES_DESC">
+					<option value="1">JYES</option>
+					<option value="0">JNO</option>
+				</field>
+
+				<field name="category_image_type" type="list" default="bottom"
+					   label="J2STORE_CONTENT_IMAGE_TYPE"
+					   description="J2STORE_CONTENT_IMAGE_TYPE_DESC">
+					<option value="thumbnail">J2STORE_CONTENT_THUMBNAIL_IMAGE</option>
+					<option value="main">J2STORE_CONTENT_MAIN_IMAGE</option>
+					<option value="mainadditional">J2STORE_CONTENT_BOTH_MAIN_AND_ADDITIONAL_IMAGES</option>
+				</field>
+
+				<field name="category_link_image_to_product" type="radio" class="btn-group" default="1"
+					   label="J2STORE_PRODUCT_LINK_IMAGE_TO_PRODUCT"
+					   description="J2STORE_PRODUCT_LINK_IMAGE_TO_PRODUCT">
+					<option value="0">JNO</option>
+					<option value="1">JYES</option>
+				</field>
+
+
+
+				<field name="category_enable_image_zoom" type="radio" class="btn-group" default="1"
+					   label="J2STORE_PRODUCT_ENABLE_IMAGE_ZOOM_EFFECTS"
+					   description="J2STORE_PRODUCT_ENABLE_IMAGE_ZOOM_EFFECTS">
+					<option value="0">JNO</option>
+					<option value="1">JYES</option>
+				</field>
+
+				<field name="list_image_thumbnail_width" type="text" default="120"
+					   class="btn-group" label="J2STORE_PRODUCT_THUMBNAIL_IMAGE_WIDTH_LABEL"
+				/>
+
+				<field name="list_product_additional_image_width" type="text" default="80"
+					   label="J2STORE_PRODUCT_ADDITIONAL_IMAGE_WIDTH" />
+
+
+			</fieldset>
+
+			<fieldset name="itemview" label="J2STORE_CONTENT_ITEM_VIEW">
+				<field name="item_product_block_position" type="list" default="bottom"
+					   label="J2STORE_CONTENT_PRODUCT_BLOCK_POSITION"
+					   description="J2STORE_CONTENT_PRODUCT_BLOCK_POSITION_DESC">
+					<option value="top">J2STORE_CONTENT_PRODUCT_POSITION_TOP</option>
+					<option value="bottom">J2STORE_CONTENT_PRODUCT_POSITION_BOTTOM</option>
+					<option value="afterdisplaycontent">J2STORE_CONTENT_PRODUCT_POSITION_AFTERDISPLAY_CONTENT</option>
+				</field>
+
+				<field name="item_display_j2store_images" type="radio" class="btn-group" default="1"
+					   label="J2STORE_CONTENT_DISPLAY_J2STORE_IMAGES"
+					   description="J2STORE_CONTENT_DISPLAY_J2STORE_IMAGES_DESC">
+					<option value="1">JYES</option>
+					<option value="0">JNO</option>
+				</field>
+
+				<field name="item_image_placement" type="list" default="bottom"
+					   label="J2STORE_CONTENT_IMAGE_PLACEMENT"
+					   description="J2STORE_CONTENT_IMAGE_PLACEMENT_DESC">
+					<option value="default">J2STORE_IMAGE_POSITION_ON_PRODUCT_BLOCK</option>
+					<option value="beforecontent">J2STORE_IMAGE_POSITION_BEFORE_CONTENT</option>
+					<option value="aftercontent">J2STORE_IMAGE_POSITION_AFTER_CONTENT</option>
+				</field>
+
+				<field name="item_image_type" type="list" default="main"
+					   label="J2STORE_CONTENT_IMAGE_TYPE"
+					   description="J2STORE_CONTENT_IMAGE_TYPE_DESC">
+					<option value="main">J2STORE_CONTENT_MAIN_IMAGE</option>
+					<option value="mainadditional">J2STORE_CONTENT_BOTH_MAIN_AND_ADDITIONAL_IMAGES</option>
+				</field>
+
+				<field name="item_enable_image_zoom" type="radio" class="btn-group" default="1"
+					   label="J2STORE_PRODUCT_ENABLE_IMAGE_ZOOM_EFFECTS"
+					   description="J2STORE_PRODUCT_ENABLE_IMAGE_ZOOM_EFFECTS">
+					<option value="0">JNO</option>
+					<option value="1">JYES</option>
+				</field>
+
+				<field name="item_product_main_image_width" type="text" class="btn-group"
+					   label="J2STORE_PRODUCT_MAIN_IMAGE_WIDTH" />
+
+				<field name="item_product_additional_image_width" type="text"
+					   default="100" label="J2STORE_PRODUCT_ADDITIONAL_IMAGE_WIDTH" />
+
+
+			</fieldset>
+
+		</fields>
+	</config>
+
+</extension>

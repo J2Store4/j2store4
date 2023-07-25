@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension
+	type="module"
+	version="2.5"
+	method="upgrade"
+	client="site">
+	<name>J2 Store Cart</name>
+	<creationDate>Jan 2015</creationDate>
+	<author>Sasi varna kumar</author>
+	<copyright>Copyright (c) 2011 - 2016 Weblogicx India Private Ltd. All rights reserved.</copyright>
+	<authorEmail>support@j2store.org</authorEmail>
+	<authorUrl>http://j2store.org</authorUrl>
+	<license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL</license>
+	<version>1.0</version>
+	<description>
+	 <![CDATA[<p>J2 Store Cart
+	 <p> Please contact to us for more info <a href="mailto:support@j2store.org">support@j2store.org</a></p>	  
+    ]]>	
+	
+	</description>
+<files>
+	<filename module="mod_j2store_cart">mod_j2store_cart.php</filename>
+	<filename>index.html</filename>
+    <filename>helper.php</filename>	
+    <filename>mod_j2store_cart.xml</filename>
+    <folder>css</folder>
+	<folder>tmpl</folder>
+</files>
+
+<config>
+	<fields name="params">
+		<fieldset name="basic" >
+			<field name="moduleclass_sfx" type="text" default="" label="Module Class Suffix" description="A suffix to be applied to the css class of the module (table.moduletable), this allows individual module styling" />
+			<field name="cart_module_title" type="text" label="J2STORE_CART_MODULE_TITLE"/>
+			<field name="link_type" type="list" default="link" label="Link type" description="" >
+				<option value="link">Link</option>
+	      		<option value="button">Button</option>
+			</field>
+			
+			<field
+					name="layout"
+					type="modulelayout"
+					label="JFIELD_ALT_LAYOUT_LABEL"
+					description="JFIELD_ALT_MODULE_LAYOUT_DESC" />
+					
+			<field name="check_empty" type="radio" class="btn-group" default="0" label="J2STORE_CART_HIDE_CART_WHEN_EMPTY" description="J2STORE_CART_HIDE_CART_WHEN_EMPTY_DESC" >
+                <option value="0">JNO</option>
+                <option value="1">JYES</option>
+            </field>
+			<field name="quantity_count" type="radio"  class="btn-group"  default="0" label="J2STORE_CART_QUANTITY_COUNT" description="J2STORE_CART_QUANTITY_COUNT_DESC" >
+                <option value="1">JYES</option>
+                <option value="0">JNO</option>
+            </field>
+            
+            <field name="detailcartonly" type="customheading" label="J2STORE_CART_FOR_DETAIL_CART_LAYOUT_ONLY" addfieldpath="administrator/components/com_j2store/models/fields"/>
+             
+             <field name="show_thumbimage" type="radio"  class="btn-group" default="0" label="J2STORE_CONTENT_THUMBNAIL_IMAGE" description="J2STORE_CONTENT_THUMBNAIL_IMAGE_DESC" >
+                <option value="1">J2STORE_SHOW</option>
+                <option value="0">J2STORE_HIDE</option>
+            </field>
+           
+             <field name="show_product_qty" type="radio"  class="btn-group" default="0" label="J2STORE_CART_SHOW_PRODUCT_QUANTITY" description="J2STORE_CART_SHOW_PRODUCT_QUANTITY_DESC" >
+                <option value="1">J2STORE_SHOW</option>
+                <option value="0">J2STORE_HIDE</option>
+            </field>
+                       
+             <field name="show_cart_remove" type="radio"  class="btn-group" default="0" label="J2STORE_CART_SHOW_CART_REMOVE" description="J2STORE_CART_SHOW_CART_REMOVE_DESC" >
+               <option value="1">J2STORE_SHOW</option>
+                <option value="0">J2STORE_HIDE</option>
+            </field>
+                       
+            
+            <field name="enable_checkout" type="radio"  class="btn-group" default="0" label="J2STORE_CART_VIEW_CHECKOUT_BUTTON_LABEL" description="COM_J2STORE_VIEW_CHECKOUT_LABEL" >
+              <option value="1">J2STORE_SHOW</option>
+                <option value="0">J2STORE_HIDE</option>
+            </field> 
+          
+            <field name="enable_view_cart" type="radio"  class="btn-group" default="0" label="J2STORE_CART_VIEW_CART_BUTTON_LABEL" description="COM_J2STORE_VIEW_CART_BUTTON_DESC" >
+               <option value="1">J2STORE_SHOW</option>
+                <option value="0">J2STORE_HIDE</option>
+            </field>
+            
+            <field name="minicart" type="customheading" label="J2STORE_CART_FOR_MINICART" addfieldpath="administrator/components/com_j2store/models/fields"/>
+            
+            <field name="minicart_cart_icon_class" type="text" default="fa fa-shoppingcart" label="J2STORE_CART_MINICART_ICON_CLASS" description="J2STORE_CART_MINICART_ICON_CLASS_DESC" />
+            
+            
+            <field name="commonforall" type="customheading" label="J2STORE_COMMON_FOR_ALL" addfieldpath="administrator/components/com_j2store/models/fields"/>
+            
+               <field name="custom_css" type="textarea" 
+				rows="10" cols="10" label="J2STORE_PRODUCT_CUSTOM_CSS" description="J2STORE_PRODUCT_CUSTOM_CSS_DESC" filter="safehtml"  />
+
+	
+		</fieldset>
+		<fieldset name="advanced">
+
+	    <field name="cache" type="list" default="1" label="Caching" description="Select whether to cache the content of this module">
+	      <option value="1">Use global</option>
+	      <option value="0">No caching</option>
+	    </field>
+	    <field name="cache_time" type="text" default="900" label="Cache Time" description="The time before the module is recached" />
+	  
+	  </fieldset>
+	</fields>
+</config>
+</extension>

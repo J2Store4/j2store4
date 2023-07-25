@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension version="2.5" type="plugin" group="system" method="upgrade">
+    <name>System - J2Page Cache</name>
+    <author>Alagesan</author>
+    <creationDate>JUN 2016</creationDate>
+    <copyright>(C) 2016 Weblogicx India Private Limited</copyright>
+    <license>http://www.gnu.org/copyleft/lgpl.html GNU/LGPL</license>
+    <authorEmail>support@j2store.org</authorEmail>
+    <authorUrl>www.j2store.org</authorUrl>
+    <version>1.0</version>
+    <description>System plugin that used to clear page cache.</description>
+    <files>
+        <filename plugin="j2pagecache">j2pagecache.php</filename>
+        <filename>index.html</filename>
+    </files>
+    <config>
+        <fields name="params">
+            <fieldset name="basic">
+                <field name="conservative_cache" type="radio" default="0" class="btn-group" label="J2STORE_CLEAR_DYNAMIC_CONSERVATIVE_CACHE">
+                    <option value="1">J2STORE_YES</option>
+                    <option value="0">J2STORE_NO</option>
+                </field>
+            </fieldset>
+        </fields>
+    </config>
+</extension>

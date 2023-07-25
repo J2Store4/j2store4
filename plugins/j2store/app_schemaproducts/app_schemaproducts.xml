@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension version="3.0" type="plugin" group="j2store" method="upgrade">
+    <name>J2STORE_APP_SCHEMAPRODUCTS</name>
+    <version>1.0.0</version>
+    <creationDate>MAR 2021</creationDate>
+    <author>Alagesan</author>
+    <authorEmail>supports@j2store.org</authorEmail>
+    <authorUrl>http://www.j2store.org</authorUrl>
+    <copyright>2021 J2Store</copyright>
+    <license>GNU General Public License v3 or later</license>
+    <description>J2STORE_APP_SCHEMAPRODUCTS_DESC</description>
+    <files>
+        <filename plugin="app_schemaproducts">app_schemaproducts.php</filename>
+        <folder>app_schemaproducts</folder>
+        <folder>languages</folder>
+        <filename>index.html</filename>
+    </files>
+    <languages folder="languages">
+        <language tag="en-GB">en-GB.plg_j2store_app_schemaproducts.ini</language>
+    </languages>
+</extension>

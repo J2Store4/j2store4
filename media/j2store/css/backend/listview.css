@@ -1,0 +1,58 @@
+.com_j2store table thead a:hover {
+    text-decoration: underline;
+}
+.com_j2store .table tbody a {
+    text-decoration: none;
+}
+.com_j2store .table tbody tr td a:hover{
+    text-decoration: underline;
+}
+
+/*button */
+
+.j2store-order-filters .btn-dark{
+    color: #fff;
+    background-color: #444 ;
+    border-color: #212529;
+}
+.j2store-order-filters .btn-dark:hover{
+    color: #fff;
+    background-color: #1c1f23;
+    border-color: #1a1e21;
+}
+
+/* filter */
+
+.com_j2store  #limit,#filterlimit {
+     width: 80px;
+}
+.com_j2store .input-small{
+    width: 90px;
+}
+@media only screen and (max-width: 1364px) {
+    .com_j2store .view-orders .field-calendar .input-group .input-small{
+        width: 60px;
+    }
+}
+@media only screen and (max-width: 1962px) {
+    .j2store-order-filters .controls .input-append .controls .field-user-wrapper .input-group .button-select{
+        margin-left: -48px;
+    }
+}
+.com_j2store .searchable_field a.btn {
+    border: 1px solid;
+}
+.com_j2store .searchable_field {
+    margin-right:10px ;
+}
+
+/* advanced filter in products  view*/
+.com_j2store .input-prepend .add-on {
+    display: inline-block;
+    width: auto;
+    padding: 2px 3px;
+    font-weight: normal;
+    text-align: center;
+    border: 1px solid #8f8f9d;
+    background-color: #eee;
+}

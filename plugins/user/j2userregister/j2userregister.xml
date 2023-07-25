@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension version="2.5" type="plugin" group="user" method="upgrade">
+    <name>J2Store User Register</name>
+    <author>Alagesan</author>
+    <creationDate>MARCH 2017</creationDate>
+    <copyright>Copyright 2017 Flycart Technologies LLP</copyright>
+    <license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL</license>
+    <authorEmail>support@j2store.org</authorEmail>
+    <authorUrl>https://www.j2store.org</authorUrl>
+    <version>1.2</version>
+    <description>J2Store Profile on Joomla user registration</description>
+
+    <files>
+        <filename plugin="j2userregister">j2userregister.php</filename>
+        <filename>index.html</filename>
+        <folder>fields</folder>
+        <folder>js</folder>
+        <folder>tmpl</folder>
+    </files>
+    <config>
+        <fields name="params">
+            <fieldset name="basic">
+                <field name="show_address_fields" type="radio" default="1" class="btn-group" label="J2STORE_J2USERREGISTER_SHOW_ADDRESS_FIELDS"
+                       description="J2STORE_J2USERREGISTER_SHOW_ADDRESS_FIELDS_DESC"
+                >
+                    <option value="0">J2STORE_HIDE</option>
+                    <option value="1">J2STORE_SHOW</option>
+                </field>
+                <field name="field_html" type="textarea" filter="safehtml" label="J2STORE_J2USERREGISTER_FILEDS_HTML" />
+
+                <field name="show_myprofile" type="radio" default="0" class="btn-group" label="J2STORE_J2USERREGISTER_SHOW_MYPROFILE"
+                       description="J2STORE_J2USERREGISTER_SHOW_MYPROFILE_DESC"
+                >
+                    <option value="0">J2STORE_HIDE</option>
+                    <option value="1">J2STORE_SHOW</option>
+                </field>
+
+                <field name="disable_name" type="radio" default="0" class="btn-group" label="J2STORE_J2USERREGISTER_DISABLE_FIRST_AND_LAST_NAME" description="J2STORE_J2USERREGISTER_DISABLE_FIRST_AND_LAST_NAME_DESC">
+                    <option value="0">J2STORE_HIDE</option>
+                    <option value="1">J2STORE_SHOW</option>
+                </field>
+
+            </fieldset>
+        </fields>
+    </config>
+</extension>

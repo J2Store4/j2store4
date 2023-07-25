@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="module" version="3.1" client="administrator" method="upgrade" position ="menu">
+	<name>J2Store Administrator Menu</name>
+    <creationDate>June 2015</creationDate>
+ 	<author>Gokila Priya</author>
+	<copyright>Copyright (c) 2011 - 2016 Weblogicx India Private Ltd. All rights reserved.</copyright>
+	<authorEmail>support@j2store.org</authorEmail>
+	<authorUrl>http://j2store.org</authorUrl>
+	<license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL</license>
+	<version>1.0</version>
+	<description>MOD_J2STORE_MENU_XML_DESCRIPTION</description>
+	<files>
+		<filename module="mod_j2store_menu">mod_j2store_menu.php</filename>
+		<filename>index.html</filename>
+		<filename>helper.php</filename>
+		<folder>tmpl</folder>
+		<folder>css</folder>
+	</files>
+    <config> </config> 
+</extension>

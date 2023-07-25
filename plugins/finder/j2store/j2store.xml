@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension version="2.5" type="plugin" group="finder" method="upgrade">
+    <name>Finder - J2Store</name>
+    <version>1.0</version>
+	<creationDate>September 2015</creationDate>
+	<author>Gokila Priya</author>
+	<authorEmail>support@j2store.org</authorEmail>
+	<authorUrl>http://j2store.org</authorUrl>
+	<copyright>2010 Weblogicx India Private Limited</copyright>
+	<license>GNU General Public License v2</license>
+	<description>PLG_FINDER_J2STORE_DESCRIPTION</description>
+    <files>
+        <file plugin="j2store">j2store.php</file>
+       <filename>index.html</filename>
+		<folder>elements</folder>
+    </files>    
+	<config>
+		<fields name="params">
+
+			<fieldset name="basic" addfieldpath="plugins/finder/j2store/elements/">
+				<field name="redirect_to" type="radio" class="btn-group"
+				    default="j2store"
+					label="PLG_FINDER_J2STORE_REDIRECT_TO_LABEL" description="PLG_FINDER_J2STORE_REDIRECT_TO_LABEL_DESC" required="true" >					
+					<option value="j2store">PLG_FINDER_J2STORE_VIEW</option>
+					<option value="article">PLG_FINDER_J2STORE_ARTICLE_VIEW</option>
+				</field>	
+				<field name="menuitem_id" type="j2storemenuitem" 
+					 label="PLG_FINDER_J2STORE_SELECT_MENU_ITEM_LABEL" 
+					 description="PLG_FINDER_J2STORE_SELECT_MENU_ITEM_LABEL_DESC" 
+					 required="true">
+					<option value="0">J2STORE_SELECT_OPTION</option>
+				</field>
+
+			
+			</fieldset>
+
+		</fields>
+	</config>
+</extension>

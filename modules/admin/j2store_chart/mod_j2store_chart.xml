@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension
+	type="module"
+	version="2.5"
+	method="upgrade"
+	position ="j2store-module-position-3"
+	client="administrator">
+	<name>J2 Store Chart</name>
+	<creationDate>Jan 2015</creationDate>
+	<author>Gokila PriyaBose</author>
+	<copyright>Copyright (c) 2014 - 2019 Weblogicx India Private Ltd. All rights reserved.</copyright>
+	<authorEmail>support@j2store.org</authorEmail>
+	<authorUrl>http://j2store.org</authorUrl>
+	<license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL</license>
+	<version>1.0</version>
+	<description>
+	 <![CDATA[<p>J2 Store Chart
+	 <p> Please contact to us for more info <a href="mailto:support@j2store.org">support@j2store.org</a></p>	  
+    ]]>	
+	
+	</description>
+<files>
+	<filename module="mod_j2store_chart">mod_j2store_chart.php</filename>
+	<filename>index.html</filename>
+    <filename>helper.php</filename>	
+    <filename>mod_j2store_chart.xml</filename>    
+	<folder>tmpl</folder>
+	<folder>media</folder>
+</files>	
+<config>
+	<fields name="params">
+	<fieldset name="basic" addfieldpath="administrator/components/com_j2store/models/fields">
+		<field name="chart_type" type="list" default="1" label="MOD_J2STORE_CHART_TYPE" description="MOD_J2STORE_CHART_TYPE_DESC" >
+				 <option value="daily">MOD_J2STORE_CHART_DAILY</option>
+				 <option value="monthly">MOD_J2STORE_CHART_MONTHLY</option>
+				 <option value="yearly">MOD_J2STORE_CHART_YEARLY</option>
+				 </field>	
+		<field name="order_status"  type="orderstatuslist"  multiple="true"
+				 label="J2STORE_ORDER_STATUS">
+				 </field>
+		</fieldset>
+	</fields>	
+
+</config>
+</extension>

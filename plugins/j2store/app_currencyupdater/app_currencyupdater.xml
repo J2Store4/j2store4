@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension version="3.0" type="plugin" group="j2store" method="upgrade">
+    <name>Currency Exchange Rates - Google Finance API</name>
+    <version>1.0.1</version>
+    <creationDate>NOV 2017</creationDate>
+    <author>Alagesan</author>
+    <authorEmail>supports@j2store.org</authorEmail>
+    <authorUrl>http://www.j2store.org</authorUrl>
+    <copyright>2017 CartRabbit International Pte Ltd</copyright>
+    <license>GNU General Public License v3 or later</license>
+    <description>This app used to update currency value</description>
+    <files>
+        <filename plugin="app_currencyupdater">app_currencyupdater.php</filename>
+        <folder>app_currencyupdater</folder>
+        <filename>index.html</filename>
+    </files>
+
+    <config>
+        <fields name="params">
+            <fieldset name="basic" label="J2STORE_BASIC_SETTINGS"
+                      addfieldpath="/administrator/components/com_j2store/models/fields">
+                <field type="customnotice" name="custom_note" label="j2store_app_currency_updater_note"/>
+                <field type="list" name="currency_converter_api_type" default="exchangerate_host" label="j2store_app_currency_updater_source_type">
+                    <option value="exchangerate_host">J2STORE_EXCHANGERATE_HOST</option>
+                    <option value="exchangerate_api">J2STORE_EXCHANGERATE_API</option>
+                    <option value="currencyapi">J2STORE_CURRENCY_API</option>
+                </field>
+            </fieldset>
+        </fields>
+    </config>
+</extension>
