@@ -1,6 +1,14 @@
-J2Store V3
+J2Store V4
 ============
 
-J2Store V3 is a completely built from Scratch, Robust, Flexible and Modular Cart system.
+The brand new J2Store 4 with compatibility for Joomla 3 and Joomla 4. 
 
-It is build with FOF framework developed by Nicholas (akeeba guy)
+
+## License
+
+This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+
+This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+
+You should have received [a copy of the GNU General Public License](LICENSE.txt) along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
