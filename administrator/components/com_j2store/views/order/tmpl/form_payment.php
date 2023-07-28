@@ -35,7 +35,7 @@ if (version_compare(JVERSION, '3.99.99', 'lt')) {
 		<tr>
 			<td colspan="2">
 
-				<?php $pay_html =  trim(J2Store::getSelectableBase()->getFormatedCustomFields($this->orderinfo, 'customfields', 'payment'));?>
+				<?php $pay_html =  trim(J2Store::getSelectableBase()->getFormattedCustomFields($this->orderinfo, 'customfields', 'payment'));?>
 				<?php if($pay_html ):?>
 					<div class="center">
 						<strong><?php echo JText::_('J2STORE_PAYMENT_ADDRESS');?></strong>

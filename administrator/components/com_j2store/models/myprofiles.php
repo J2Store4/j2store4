@@ -10,7 +10,7 @@ class J2StoreModelMyProfiles extends F0FModel {
 
 	/**
 	 *  Method for building Query object
-	 *  @retun Query object joomla's default query Object
+	 *  @return Query object joomla's default query Object
 	 */
 	public function getAddress()
 	{

@@ -490,7 +490,7 @@ private function _installFOF($parent)
 		$alltables = $db->getTableList();
 		//get prefix
 		$prefix = $db->getPrefix();
-		// we have to seperate try catch , because may country install fail, zone table also get affect install
+		// we have to separate try catch , because may country install fail, zone table also get affect install
 		try{
 			$country_status = false;
 			if(!in_array($prefix.'j2store_countries', $alltables)){

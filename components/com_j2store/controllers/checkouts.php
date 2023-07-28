@@ -441,7 +441,7 @@ class J2StoreControllerCheckouts extends F0FController
 			$app->redirect($link);
 		}
 
-		//set guest varibale to session as the array, if it does not exist
+		//set guest variable to session as the array, if it does not exist
 		if(!$session->has('guest', 'j2store')) {
 			$session->set('guest', array(), 'j2store');
 		}
@@ -545,7 +545,7 @@ class J2StoreControllerCheckouts extends F0FController
 			$json['redirect'] = $redirect_url;
 		}
 
-		// Check if guest checkout is avaliable.
+		// Check if guest checkout is available.
 		//TODO prevent if products have downloads also
 		if (!$params->get('allow_guest_checkout')) {
 			$json['redirect'] = $redirect_url;
@@ -752,7 +752,7 @@ class J2StoreControllerCheckouts extends F0FController
 			$json['redirect'] = $redirect_url;
 		}
 
-		// Check if guest checkout is avaliable.
+		// Check if guest checkout is available.
 		//TODO prevent if products have downloads also
 		if (!$params->get('allow_guest_checkout')) {
 			$json['redirect'] = $redirect_url;
@@ -1965,7 +1965,7 @@ class J2StoreControllerCheckouts extends F0FController
 
 			// After confirm free product
 			J2Store::plugin()->event( "AfterConfirmFreeProduct", array ($order) );
-			
+
 			//free product. So clear cart.
 			if($clear_cart == 'order_confirmed') {
 				$order->empty_cart();

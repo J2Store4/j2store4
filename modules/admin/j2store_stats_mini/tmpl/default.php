@@ -24,14 +24,14 @@ if (version_compare(JVERSION, '3.99.99', 'lt')) {
                 <?php
                 $tz = JFactory::getConfig()->get('offset');
                 $today = JFactory::getDate('now', $tz)->format('Y-m-d');
-                $tommorow = JFactory::getDate('now +1 days', $tz)->format('Y-m-d');
+                $tomorrow = JFactory::getDate('now +1 days', $tz)->format('Y-m-d');
                 ?>
                 <span class="j2store-mini-price">
 			<?php
             echo $currency->format(
                 F0FModel::getTmpInstance('Orders', 'J2StoreModel')->clearState()
                     ->since($today)
-                    ->until($tommorow)
+                    ->until($tomorrow)
                     ->orderstatus($order_status)
                     ->nozero(1)
                     ->moneysum(1)

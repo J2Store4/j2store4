@@ -26,7 +26,7 @@
                     <option value="0">J2STORE_HIDE</option>
                     <option value="1">J2STORE_SHOW</option>
                 </field>
-                <field name="field_html" type="textarea" filter="safehtml" label="J2STORE_J2USERREGISTER_FILEDS_HTML" />
+                <field name="field_html" type="textarea" filter="safehtml" label="J2STORE_J2USERREGISTER_FIELDS_HTML" />
 
                 <field name="show_myprofile" type="radio" default="0" class="btn-group" label="J2STORE_J2USERREGISTER_SHOW_MYPROFILE"
                        description="J2STORE_J2USERREGISTER_SHOW_MYPROFILE_DESC"

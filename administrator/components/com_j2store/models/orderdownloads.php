@@ -341,7 +341,7 @@ class J2StoreModelOrderdownloads extends F0FModel {
 
 		header("Accept-Ranges: bytes");
 
-		$range = 0; // default to begining of file
+		$range = 0; // default to beginning of file
 		//TODO make the download speed configurable
 		$size=filesize($file);
 
@@ -364,7 +364,7 @@ class J2StoreModelOrderdownloads extends F0FModel {
 			header("Content-Length: ".$size);
 		}
 
-		//check to ensure it is not an empty file so the feof does not get stuck in an infinte loop.
+		//check to ensure it is not an empty file so the feof does not get stuck in an infinite loop.
 		if ($size == 0 ) {
             J2Store::platform()->raiseError(500,'ERROR.ZERO_BYTE_FILE');
 			exit;

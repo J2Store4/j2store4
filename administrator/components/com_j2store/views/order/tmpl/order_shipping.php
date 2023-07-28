@@ -68,7 +68,7 @@ if (version_compare(JVERSION, '3.99.99', 'lt')) {
 						if(property_exists($this->address, $fieldName)):
 							if(($fieldName !='email')){ ?>
 						<?php $oneExtraField->display_label = 'yes';?>
-						 <?php $html = str_replace('['.$fieldName.']',$this->fieldClass->getFormatedDisplay($oneExtraField,$this->address->$fieldName,$fieldName,false, $options = '', $test = false, $allFields, $allValues = null).'</br />',$html);
+						 <?php $html = str_replace('['.$fieldName.']',$this->fieldClass->getFormattedDisplay($oneExtraField,$this->address->$fieldName,$fieldName,false, $options = '', $test = false, $allFields, $allValues = null).'</br />',$html);
 						}
 					?>
 				<?php endif;?>
@@ -101,7 +101,7 @@ if (version_compare(JVERSION, '3.99.99', 'lt')) {
 									<?php
 									$oneExtraField->display_label = 'yes';
 										if(($fieldName !='email')){
-											$uhtml .= $this->fieldClass->getFormatedDisplay($oneExtraField,$this->address->$fieldName, $fieldName,false, $options = '', $test = false, $allFields, $allValues = null);
+											$uhtml .= $this->fieldClass->getFormattedDisplay($oneExtraField,$this->address->$fieldName, $fieldName,false, $options = '', $test = false, $allFields, $allValues = null);
 										}
 										 ?>
 								<?php endif;?>
@@ -141,7 +141,7 @@ if (version_compare(JVERSION, '3.99.99', 'lt')) {
 							echo $this->orderinfo->shipping_tax_number ? JText::_('J2STORE_ADDRESS_TAX_NUMBER').':&nbsp;'.$this->orderinfo->shipping_tax_number."</br>" : "";
 							?>
 						</address>
-							<?php echo J2Store::getSelectableBase()->getFormatedCustomFields($this->orderinfo, 'customfields', 'shipping'); ?>
+							<?php echo J2Store::getSelectableBase()->getFormattedCustomFields($this->orderinfo, 'customfields', 'shipping'); ?>
 					<button id="change_address" class="btn btn-warning"><?php echo JText::_("J2STORE_CHOOSE_ALTERNATE_ADDRESS");?></button>
 					<br/>
 					<br/>

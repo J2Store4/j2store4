@@ -83,7 +83,7 @@ if(empty($user->id)){
                     if($placeholder){
                         $field_options .= ' placeholder="'.$placeholder.'" ';
                     }
-			 		$html = str_replace('['.$fieldName.']',$this->fieldClass->getFormatedDisplay($oneExtraField,$this->address->$fieldName, $fieldName,false, $field_options, $test = false, $allFields, $allValues = null),$html);
+			 		$html = str_replace('['.$fieldName.']',$this->fieldClass->getFormattedDisplay($oneExtraField,$this->address->$fieldName, $fieldName,false, $field_options, $test = false, $allFields, $allValues = null),$html);
 				}
 
 			?>
@@ -121,7 +121,7 @@ if(empty($user->id)){
                                 if($placeholder){
                                     $field_options .= ' placeholder="'.$placeholder.'" ';
                                 }
-								$uhtml .= $this->fieldClass->getFormatedDisplay($oneExtraField,$this->address->$fieldName, $fieldName,false, $field_options, $test = false, $allFields, $allValues = null);
+								$uhtml .= $this->fieldClass->getFormattedDisplay($oneExtraField,$this->address->$fieldName, $fieldName,false, $field_options, $test = false, $allFields, $allValues = null);
 							}
 								 ?>
 						<?php endif;?>

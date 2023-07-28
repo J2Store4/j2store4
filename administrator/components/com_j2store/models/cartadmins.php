@@ -61,7 +61,7 @@ class J2StoreModelCartadmins extends F0FModel {
 		}
 		catch (Exception $e)
 		{
-			// Oops, an exception occured!
+			// Oops, an exception occurred!
 			$this->setError($e->getMessage());
 			echo $e->getMessage();
 		}
@@ -110,7 +110,7 @@ class J2StoreModelCartadmins extends F0FModel {
 							&$table
 					) );
 				} catch ( Exception $e ) {
-					// Oops, an exception occured!
+					// Oops, an exception occurred!
 					$this->setError ( $e->getMessage () );
 					return false;
 				}
@@ -191,7 +191,7 @@ class J2StoreModelCartadmins extends F0FModel {
 				}
 				catch (Exception $e)
 				{
-					// Oops, an exception occured!
+					// Oops, an exception occurred!
 					$this->setError($e->getMessage());
 					return false;
 				}
@@ -420,7 +420,7 @@ class J2StoreModelCartadmins extends F0FModel {
 				if($cartitem->cart_id != $orderitem['cart_id']) continue;
 				
 				if ($this->validate ($cartitem, $orderitem ) === false) {
-					// an error occured. Return it
+					// an error occurred. Return it
 					$json ['error'] = $this->getError();
 					continue; // exit from the loop
 				}
@@ -483,7 +483,7 @@ class J2StoreModelCartadmins extends F0FModel {
 		}
 		catch (Exception $e)
 		{
-			// Oops, an exception occured!
+			// Oops, an exception occurred!
 			$result = false;
 			$this->setError($e->getMessage());
 		}

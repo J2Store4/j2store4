@@ -192,7 +192,7 @@ class plgJ2StoreShipping_Standard extends J2StoreShippingPlugin
     		return $return;
     	}
 
-    	//initliase cart model
+    	//initialise cart model
     	switch($shippingmethod->shipping_method_type)
     	{
     		case "2":

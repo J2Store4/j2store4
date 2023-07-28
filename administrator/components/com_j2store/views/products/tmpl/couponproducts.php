@@ -119,7 +119,7 @@ var product_titles;
 
 Joomla.submitform =function(){
 	var pressbutton =  jQuery("#task").val();
-	// depricated in joomla 3.4.x
+	// deprecated in joomla 3.4.x
 	 //submitform(pressbutton);
 	 jQuery('#productadminForm').submit();
 }

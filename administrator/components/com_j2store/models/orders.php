@@ -90,7 +90,7 @@ class J2StoreModelOrders extends F0FModel {
 
 		//validate shipping
 
-		//set shiping address
+		//set shipping address
 		if($user->id && $session->has('shipping_address_id', 'j2store')) {
 			$shipping_address = $address_model->getItem($session->get('shipping_address_id', '', 'j2store'));
 		} elseif($session->has('guest', 'j2store')) {

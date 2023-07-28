@@ -342,9 +342,9 @@ class J2StoreModelProductsBehaviorDownloadable extends F0FModelBehavior {
 		$return ['pricing'] = array ();
 		$return ['pricing'] ['base_price'] = $product_helper->displayPrice ( $base_price, $product, $params );
 		$return ['pricing'] ['price'] = $product_helper->displayPrice ( $price, $product, $params );
-		$return ['pricing'] ['orginal'] = array();
-		$return ['pricing'] ['orginal']['base_price'] = $base_price;
-		$return ['pricing'] ['orginal']['price'] = $price;
+		$return ['pricing'] ['original'] = array();
+		$return ['pricing'] ['original']['base_price'] = $base_price;
+		$return ['pricing'] ['original']['price'] = $price;
         J2Store::plugin()->event('AfterUpdateProductReturn',array(&$return,$product,$params));
 		return $return;
 	}

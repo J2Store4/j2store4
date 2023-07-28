@@ -108,7 +108,7 @@ class J2StoreModelProducttags extends F0FModel {
 		}
 		catch (Exception $e)
 		{
-			// Oops, an exception occured!
+			// Oops, an exception occurred!
 			$this->setError($e->getMessage());
 		}
 
@@ -120,7 +120,7 @@ class J2StoreModelProducttags extends F0FModel {
 		}
 		catch (Exception $e)
 		{
-			// Oops, an exception occured!
+			// Oops, an exception occurred!
 			$this->setError($e->getMessage());
 		}
 		return $product;
@@ -160,7 +160,7 @@ class J2StoreModelProducttags extends F0FModel {
 		}
 		catch (Exception $e)
 		{
-			// Oops, an exception occured!
+			// Oops, an exception occurred!
 			$this->setError($e->getMessage());
 			return false;
 		}
@@ -273,7 +273,7 @@ class J2StoreModelProducttags extends F0FModel {
 
 	public function getSortFields()
 	{
-		//containes sorting fields
+		//contains sorting fields
 		//both in ascending and descending
 
 		return array(

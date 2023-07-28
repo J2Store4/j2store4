@@ -123,9 +123,9 @@ if (version_compare(JVERSION, '3.99.99', 'lt')) {
 	</div>
 		<div class="<?php echo $col_class;?>4">
 		    <div class="alert alert-block alert-info">
-		        <stong>
+		        <strong>
 		        <?php echo JText::_('J2STORE_SHIPPING_TYPE_HELP_TEXT'); ?>:
-		        </stong>
+		        </strong>
 		        <ul>
 		            <li><?php echo JText::_('J2STORE_FLAT_RATE_PER_ITEM_HELP_TEXT'); ?></li>
 		            <li><?php echo JText::_('J2STORE_WEIGHT_BASED_PER_ITEM_HELP_TEXT'); ?></li>

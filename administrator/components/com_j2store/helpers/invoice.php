@@ -121,7 +121,7 @@ class J2Invoice {
 		return $allTemplates;
 	}
 
-	public function	getFormatedInvoice($order){
+	public function	getFormattedInvoice($order){
 		$text = $this->loadInvoiceTemplate($order);
 		$template =  J2Store::email()->processTags($text, $order, $extras=array());
 		return $template;

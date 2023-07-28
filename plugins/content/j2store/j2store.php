@@ -285,7 +285,7 @@ class plgContentJ2Store extends JPlugin
         J2Store::plugin()->event( 'AfterContentPrepareForm', array( $form, $data ) );
         if ( ! $message_display )
         {
-            $app->enqueueMessage( JText::_( 'J2STORE_TAB_NOT_DISPLY_IN_CONTENT' ), 'waring' );
+            $app->enqueueMessage( JText::_( 'J2STORE_TAB_NOT_DISPLAY_IN_CONTENT' ), 'warning' );
         }
         return true;
     }

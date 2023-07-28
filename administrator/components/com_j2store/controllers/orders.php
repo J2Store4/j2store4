@@ -562,7 +562,7 @@ class J2StoreControllerOrders extends F0FController
 		if(empty( $orderinfo ) || empty( $orderinfo->billing_first_name )){
 			//redirect to billing
 			$url ='index.php?option=com_j2store&view=orders&task=createOrder&layout=billing&oid='.$order->j2store_order_id;
-			$app->redirect ( $url,JText::_ ( 'J2STORE_BILLING_ADDRESS_REQUIRED' ),'waring' );
+			$app->redirect ( $url,JText::_ ( 'J2STORE_BILLING_ADDRESS_REQUIRED' ),'warning' );
 		}
 	}
 	/**

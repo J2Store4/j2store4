@@ -193,13 +193,13 @@ $platform->addInlineScript('function validateDlid() {
 	            }
             }).done(function(json) {
                 if(json[\'valid\'] == 1){
-                    $(\'#download-warning\').html(\'<div class="alert alert-success">'.JText::_('J2STORE_VAILD_DOWNLOAD_ID').'</div>\');
+                    $(\'#download-warning\').html(\'<div class="alert alert-success">'.JText::_('J2STORE_VALID_DOWNLOAD_ID').'</div>\');
 	                location.reload();
                     //$(\'.subscription_message\').show();
                 }else{
 	                $(button).removeAttr(\'disabled\');
 	                $(button).val(\''.addslashes(JText::_('J2STORE_APPLY_DOWNLOAD_BUTTON')).'\');
-                    $(\'#download-warning\').html(\'<div class="alert alert-error">'.JText::_('J2STORE_INVAILD_DOWNLOAD_ID').'</div>\');
+                    $(\'#download-warning\').html(\'<div class="alert alert-error">'.JText::_('J2STORE_INVALID_DOWNLOAD_ID').'</div>\');
                 }
             });
 

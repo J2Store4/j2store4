@@ -55,7 +55,7 @@ $page_heading_text = $page_heading->get('page_heading','');
 		<h3><?php echo JText::_('J2STORE_MYPROFILE')?></h3>
         <?php if($messages_above_profile_html != ''){
             ?>
-            <div class="j2store-myprofile-addtional_messages">
+            <div class="j2store-myprofile-additional_messages">
                 <?php
                 echo $messages_above_profile_html;
                 ?>

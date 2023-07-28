@@ -40,7 +40,7 @@ class J2Email {
 		/**
 		 * 1. Get order emails by type
 		 * 2. filter by language and process each mail template ( process tags )
-		 * 3. prepare the mailer for each template (intialize the mailer object)
+		 * 3. prepare the mailer for each template (initialize the mailer object)
 		 * 4. set the receivers ( customer emails / admins )
 		 * 5. return the array
 		 * */
@@ -151,7 +151,7 @@ class J2Email {
 				$default_template_group[] =  (object) $standard_template;
 			}
 		}
-		// sort by language prefernce
+		// sort by language preference
 		krsort($filtered_templates);
 
 		$result = $default_template_group ;

@@ -329,9 +329,9 @@ class J2StoreStrapper {
         $params = J2Store::config();
         $language = JFactory::getLanguage()->getTag();
         if($params->get('jquery_ui_localisation', 0) && strpos($language, 'en') === false) {
-            $platfrom = J2Store::platform();
+            $platform = J2Store::platform();
             //$doc = JFactory::getDocument();
-            $platfrom->addScript('jquery-ui-i18n','/ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/i18n/jquery-ui-i18n.min.js');
+            $platform->addScript('jquery-ui-i18n','/ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/i18n/jquery-ui-i18n.min.js');
            // $doc->addScript('//ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/i18n/jquery-ui-i18n.min.js');
 
             //set the language default
@@ -339,7 +339,7 @@ class J2StoreStrapper {
             if(isset($tag[0]) && strlen($tag[0]) == 2) {
                 $script = "";
                 $script .= "(function($) { $.datepicker.setDefaults($.datepicker.regional['{$tag[0]}']); })(j2store.jQuery);";
-                $platfrom->addInlineScript($script);
+                $platform->addInlineScript($script);
                 //$doc->addScriptDeclaration($script);
             }
 

@@ -33,7 +33,7 @@ if (version_compare(JVERSION, '3.99.99', 'lt')) {
             <h2>
                 <?php echo JText::_("J2STORE_SHIPPING_METHOD_VALIDATE"); ?>
             </h2>
-            <?php if ($this->shipping_avaliable): ?>
+            <?php if ($this->shipping_available): ?>
                 <div class="<?php echo $col_class ?>12">
                     <div class="tabbable tabs-left <?php echo $row_class ?>" >
                         <ul class="nav nav-tabs flex-column <?php echo $col_class ?>3" id="nav-tab" role="tablist">

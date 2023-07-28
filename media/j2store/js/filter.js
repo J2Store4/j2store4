@@ -148,7 +148,7 @@ jQuery(function($) {
 		init : function(options) {		 
 			
 			/**  
-			 * let us assing default value for the var . 
+			 * let us assign default value for the var . 
 			 * incase  the option is empty
 			 */  
 			if(options.form_id ==''){				

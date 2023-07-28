@@ -41,8 +41,8 @@ class JFormFieldCouponExpireText extends F0FFormFieldText
 	{
 		$start=date("Y-m-d");
 		$today=date_create($start);
-		//assing the coupon offer start date
-		// Assing the coupon valid date
+		//assign the coupon offer start date
+		// Assign the coupon valid date
 		$date2=date_create($valid_to);
 		return date_diff($today,$date2);
 	}

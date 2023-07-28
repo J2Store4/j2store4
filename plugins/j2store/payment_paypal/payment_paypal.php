@@ -28,7 +28,7 @@ class plgJ2StorePayment_paypal extends J2StorePaymentPlugin
     /**
      * Constructor
      *
-     * For php4 compatability we must not use the __constructor as a constructor for plugins
+     * For php4 compatibility we must not use the __constructor as a constructor for plugins
      * because func_get_args ( void ) returns a copy of all passed arguments NOT references.
      * This causes problems with cross-referencing necessary for the observer design pattern.
      *
@@ -385,7 +385,7 @@ class plgJ2StorePayment_paypal extends J2StorePaymentPlugin
     /**
      * Get payment for renewal using billing ID
      * */
-    protected function byRefference($subscription, $order){
+    protected function byReference($subscription, $order){
         $expressCheckout = PaypalExpressCheckoutForJ2StoreSubscriptionProduct::getInstance($this->params);
         $hasAPI = $expressCheckout->checkSetAPI();
         if(!$hasAPI){
@@ -751,7 +751,7 @@ class plgJ2StorePayment_paypal extends J2StorePaymentPlugin
      * */
     function onJ2StoreProcessRenewalPayment($paymentType, $subscription, $order){
         if($paymentType == $this->_element){
-            $this->byRefference($subscription, $order);
+            $this->byReference($subscription, $order);
         }
     }
 

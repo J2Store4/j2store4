@@ -982,7 +982,7 @@ class J2StoreTableOrder extends F0FTable
 
 			$shipping_totals = array();
 
-			//get exisitng values
+			//get existing values
 			$shipping_values = $session->get ( 'shipping_values', array(), 'j2store' );
 			$rates = F0FModel::getTmpInstance ( 'Shippings', 'J2StoreModel' )->getShippingRates ( $this );
 			$session->set ( 'shipping_methods', $rates, 'j2store' );
@@ -1067,7 +1067,7 @@ class J2StoreTableOrder extends F0FTable
 		$session = JFactory::getSession ();
 		$address_model = F0FModel::getTmpInstance ( 'Addresses', 'J2StoreModel' );
 
-		//set shiping address
+		//set shipping address
 		if ( $user->id && $session->has ( 'shipping_address_id', 'j2store' ) ) {
 			$shipping_address = $address_model->getAddressById ( $session->get ( 'shipping_address_id', '', 'j2store' ) );
 		} elseif ( $session->has ( 'guest', 'j2store' ) ) {
@@ -1718,7 +1718,7 @@ class J2StoreTableOrder extends F0FTable
 	/**
 	 * Update an existing order. This normally happens during the checkout.
 	 * Customer will reach final step. The order will be saved. if he then changes something before proceeding to payment
-	 * Then only exisitng order will get updated.
+	 * Then only existing order will get updated.
 	 *
 	 */
 

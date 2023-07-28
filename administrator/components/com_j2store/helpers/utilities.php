@@ -66,7 +66,7 @@ class J2Utilities {
 	/**
 	 * Method to convert an object or an array to csv
 	 * @param mixed $data array or object
-	 * @return string comma seperated value
+	 * @return string comma separated value
 	 */
 
 	public function to_csv($data) {
@@ -90,7 +90,7 @@ class J2Utilities {
 
 	/**
 	 * Method to format stock quantity
-	 * @param Float|Int $qty An int or a float value can be formated here.
+	 * @param Float|Int $qty An int or a float value can be formatted here.
 	 * @return mixed
 	 */
 

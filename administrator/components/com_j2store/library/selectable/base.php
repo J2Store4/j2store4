@@ -84,7 +84,7 @@ class J2StoreSelectableBase {
 		return $html;
 	}
 
-	function getFormatedCustomFields($row, $layout='customfields', $type='billing') {
+	function getFormattedCustomFields($row, $layout='customfields', $type='billing') {
 
 		$app = JFactory::getApplication();
 
@@ -113,8 +113,8 @@ class J2StoreSelectableBase {
 
 	}
 
-	function getFormatedDisplay($field, $value, $name, $translate=false, $options = '', $test = false, $allFields = null, $allValues = null) {						
-		$label = $this->getFieldName($field);		
+	function getFormattedDisplay($field, $value, $name, $translate=false, $options = '', $test = false, $allFields = null, $allValues = null) {
+		$label = $this->getFieldName($field);
 		$input = $this->display($field, $value, $name, $translate, $options, $test, $allFields, $allValues);
 		$html = $label.$input;
 		return $html;
@@ -128,7 +128,7 @@ class J2StoreSelectableBase {
 		$data = J2Store::platform()->toObject($formData);
 		$fields = $this->getFields($area,$data,$type);
 		$json = array();
-		foreach ($fields as $field) {			
+		foreach ($fields as $field) {
 			$namekey = $field->field_namekey;
 			$field_type = $field->field_type;
 			if(substr($field->field_type,0,4) == 'plg.') {
@@ -145,7 +145,7 @@ class J2StoreSelectableBase {
 				$val = $formData[$namekey];
 			} else {
 				$val = '';
-			}			
+			}
 			$error = $class->check($field,$val, $oldValue='');
 			if(!empty($error)) {
 				$json['error'][$namekey] = $error;
@@ -208,7 +208,7 @@ class J2StoreSelectableBase {
 				}
 
 			}
-			
+
 			$this->handleZone($fields,$test,$data);
 		}
 	}
@@ -242,7 +242,7 @@ class J2StoreSelectableBase {
 							$ok = true;
 						}
 						if($country_id) {
-							
+
 							$zoneType = new j2storeCountryType();
 							$zoneType->type = 'zone';
 							$zoneType->published = true;
@@ -347,15 +347,15 @@ class J2StoreSelectableBase {
 	}
 
 	function getFields($area,&$data,$type='user',$url='checkout&task=state', $notcoreonly=false){
-		$fields = $this->getData($area,$type, $notcoreonly);		
-		$this->prepareFields($fields,$data,$type,$url);		
+		$fields = $this->getData($area,$type, $notcoreonly);
+		$this->prepareFields($fields,$data,$type,$url);
 		return $fields;
 	}
 
 	/*
 	 * @area string display area - billing or shipping or payment
 	 * @type string field table type example: address
-	 * @notcoreonly boolen true for core fields
+	 * @notcoreonly boolean true for core fields
 	 */
 
 	function &getData($area,$type,$notcoreonly=false){
@@ -1012,11 +1012,11 @@ class j2storeFieldItem {
 
 
 	function check(&$field,&$value, $oldvalue){
-		$error = '';		
+		$error = '';
 		if(!$field->field_required || is_array($value) || strlen($value) || strlen($oldvalue)){
 			return $error;
 		}
-		
+
 		if($this->report){
             $platform = J2Store::platform();
 			if(!$platform->isClient('administrator') || (isset($field->admin_display_error) && $field->admin_display_error)) {
@@ -1347,7 +1347,7 @@ class j2storeZone extends j2storeSingledropdown{
 							break;
 						}
 					}
-						
+
 				}
 				//still no. Set it to store default.
 				if(empty($country)){

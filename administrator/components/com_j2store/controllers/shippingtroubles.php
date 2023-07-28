@@ -37,7 +37,7 @@ class J2storeControllerShippingtroubles extends F0FController
 			}
 			$view = $this->getThisView();
 			$view->setModel($model);
-			$view->assign('shipping_avaliable',$shipping);
+			$view->assign('shipping_available',$shipping);
 			$view->assign('shipping_messages',$messages);
 			$view->setLayout($layout);
 		}elseif ($layout=='default_shipping_product'){
@@ -56,7 +56,7 @@ class J2storeControllerShippingtroubles extends F0FController
 			}
 			$view = $this->getThisView();
 			$view->setModel($model);
-			$view->assign('shipping_avaliable',$shipping);
+			$view->assign('shipping_available',$shipping);
 			$view->assign('products',$products);
 			$view->assign('state', $model->getState());
 			$view->setLayout($layout);

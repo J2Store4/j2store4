@@ -135,7 +135,7 @@ class J2StoreControllerCpanels extends F0FController
 				}
 
 				if (count ( $migrated_coupons )) {
-					// now delete the records of succesfully migrated order coupons
+					// now delete the records of successfully migrated order coupons
 					$query = $db->getQuery ( true )->delete ( '#__j2store_ordercoupons' )->where ( 'j2store_ordercoupon_id IN (' . implode ( ',', $migrated_coupons ) . ')' );
 					$db->setQuery ( $query );
 					try {
@@ -195,7 +195,7 @@ class J2StoreControllerCpanels extends F0FController
 				}
 
 				if (count ( $migrated_vouchers )) {
-					// now delete the records of succesfully migrated order coupons
+					// now delete the records of successfully migrated order coupons
 					$query = $db->getQuery ( true )->delete ( '#__j2store_voucherhistories' )->where ( 'j2store_voucherhistory_id IN (' . implode ( ',', $migrated_vouchers ) . ')' );
 					$db->setQuery ( $query );
 					try {

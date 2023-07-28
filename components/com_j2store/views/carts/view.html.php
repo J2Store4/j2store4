@@ -68,7 +68,7 @@ class J2StoreViewCarts extends F0FViewHtml
         $this->zone_id = $zone_id;
         $this->postcode = $postcode;
 
-        if($params->get('hide_shipping_untill_address_selection', 1) == 0) {
+        if($params->get('hide_shipping_until_address_selection', 1) == 0) {
             $session->set('billing_country_id', $country_id, 'j2store');
             $session->set('shipping_country_id', $country_id, 'j2store');
             $session->set('billing_zone_id', $zone_id, 'j2store');

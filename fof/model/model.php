@@ -2715,7 +2715,7 @@ class F0FModel extends F0FUtilsObject
 		}
 		catch (Exception $e)
 		{
-			// Oops, an exception occured!
+			// Oops, an exception occurred!
 			$this->setError($e->getMessage());
 		}
 	}
@@ -2769,7 +2769,7 @@ class F0FModel extends F0FUtilsObject
 		}
 		catch (Exception $e)
 		{
-			// Oops, an exception occured!
+			// Oops, an exception occurred!
 			$this->setError($e->getMessage());
 
 			return false;
@@ -2810,7 +2810,7 @@ class F0FModel extends F0FUtilsObject
 		}
 		catch (Exception $e)
 		{
-			// Oops, an exception occured!
+			// Oops, an exception occurred!
 			$this->setError($e->getMessage());
 
 			return false;
@@ -2860,7 +2860,7 @@ class F0FModel extends F0FUtilsObject
 		}
 		catch (Exception $e)
 		{
-			// Oops, an exception occured!
+			// Oops, an exception occurred!
 			$this->setError($e->getMessage());
 
 			return false;
@@ -2898,7 +2898,7 @@ class F0FModel extends F0FUtilsObject
 		}
 		catch (Exception $e)
 		{
-			// Oops, an exception occured!
+			// Oops, an exception occurred!
 			$this->setError($e->getMessage());
 
 			return false;

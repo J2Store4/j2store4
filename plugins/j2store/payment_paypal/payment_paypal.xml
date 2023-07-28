@@ -60,11 +60,11 @@
                        label="j2store_paypal_custom_note_recurring"/>
 
                 <field type="spacer" />
-                <field name="show_billing_aggrement_text" type="radio" default="0" label="J2STORE_PAYPAL_SHOW_BILLING_AGGREEMENT_TEXT_LABEL" description="J2STORE_PAYPAL_SHOW_BILLING_AGGREEMENT_TEXT_LABEL_DESC">
+                <field name="show_billing_aggrement_text" type="radio" default="0" label="J2STORE_PAYPAL_SHOW_BILLING_AGREEMENT_TEXT_LABEL" description="J2STORE_PAYPAL_SHOW_BILLING_AGREEMENT_TEXT_LABEL_DESC">
                     <option value="0">No</option>
                     <option value="1">Yes</option>
                 </field>
-                <field name="billing_aggrement_text" type="text" size="50"  maxlength="127" default="Automatic payments for subscription product" label="J2STORE_PAYPAL_BILLING_AGGREEMENT_TEXT_LABEL" description="J2STORE_PAYPAL_BILLING_AGGREEMENT_TEXT_DESC"/>
+                <field name="billing_aggrement_text" type="text" size="50"  maxlength="127" default="Automatic payments for subscription product" label="J2STORE_PAYPAL_BILLING_AGREEMENT_TEXT_LABEL" description="J2STORE_PAYPAL_BILLING_AGREEMENT_TEXT_DESC"/>
 
                 <field name="paypal_note_common" type="customnotice" addfieldpath="/administrator/components/com_j2store/models/fields"
                        label="j2store_paypal_custom_note_common"/>

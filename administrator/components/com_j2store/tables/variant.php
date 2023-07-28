@@ -20,17 +20,17 @@ class J2StoreTableVariant extends F0FTable
 			->select($db->qn('#__j2store_productquantities').'.j2store_productquantity_id ')
 			->select($db->qn('#__j2store_productquantities').'.quantity')
 			->join('LEFT OUTER', '#__j2store_productquantities ON #__j2store_productquantities.variant_id = #__j2store_variants.j2store_variant_id')
-		
+
 			->select($db->qn('#__j2store_lengths').'.length_title')
 			->select($db->qn('#__j2store_lengths').'.length_unit')
 			->select($db->qn('#__j2store_lengths').'.length_value')
 			->join('LEFT OUTER', '#__j2store_lengths ON #__j2store_lengths.j2store_length_id = #__j2store_variants.length_class_id')
-		
+
 			->select($db->qn('#__j2store_weights').'.weight_title')
 			->select($db->qn('#__j2store_weights').'.weight_unit')
 			->select($db->qn('#__j2store_weights').'.weight_value')
 			->join('LEFT OUTER', '#__j2store_weights ON #__j2store_weights.j2store_weight_id = #__j2store_variants.weight_class_id');
-		
+
 		$this->setQueryJoin($query);
 		parent::__construct($table, $key, $db, $config);
 	}
@@ -70,9 +70,9 @@ class J2StoreTableVariant extends F0FTable
 
 			$productquantity->store();
 			$this->quantity = $productquantity->quantity;
-			
-			//set the availability to true. Otherwise validateStock method will return true or false. 
-			//This will not harm any other process because the following check is itself for seting the very same availability.
+
+			//set the availability to true. Otherwise validateStock method will return true or false.
+			//This will not harm any other process because the following check is itself for setting the very same availability.
 			$this->availability = 1;
 			if(!J2Store::product()->check_stock_status($this, 1)) {
 				$this->set_stock_status(0);
@@ -100,14 +100,14 @@ class J2StoreTableVariant extends F0FTable
 		$this->availability = $status;
 		$this->store();
 	}
-	
-	protected function onBeforeStore($updateNulls = false) {		
+
+	protected function onBeforeStore($updateNulls = false) {
 		if(!isset($this->sku) || empty($this->sku)) {
 			//sku is empty. Auto generate it based on product name
 			$product_helper = J2Store::product();
 			$this->sku = $product_helper->generateSKU($this);
 		}
-		
+
 		return parent::onBeforeStore($updateNulls);
 	}
 
@@ -124,7 +124,7 @@ class J2StoreTableVariant extends F0FTable
 				$this->setError($e->getMessage);
 				return false;
 			}
-				
+
 			/* $productQuantity = F0FTable::getInstance('ProductQuantity', 'J2StoreTable')->load(array('variant_id'=>$id));
 			if(isset($productQuantity->j2store_productquantity_id)) {
 				F0FModel::getTmpInstance('ProductQuantities', 'J2StoreModel')->setId($productQuantity->j2store_productquantity_id)->delete();
@@ -134,12 +134,12 @@ class J2StoreTableVariant extends F0FTable
 			$productPrices = F0FModel::getTmpInstance('ProductPrices', 'J2StoreModel')->limit(0)->limitstart(0)->variant_id($id)->getItemList();
 			foreach ($productPrices as $price) {
 				if($price->variant_id == $id) {
-					F0FTable::getAnInstance('ProductPrice', 'J2StoreTable')->delete($price->j2store_productprice_id);					
+					F0FTable::getAnInstance('ProductPrice', 'J2StoreTable')->delete($price->j2store_productprice_id);
 				}
 			}
 
 			//variant product option values
-			
+
 			$query = $db->getQuery(true)->delete('#__j2store_product_variant_optionvalues')->where($db->qn('variant_id').' = '.$db->q($id));
 			$db->setQuery($query);
 			try {

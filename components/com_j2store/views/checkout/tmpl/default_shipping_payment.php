@@ -112,7 +112,7 @@ $allFields = $this->fields;
         if($placeholder){
             $field_options .= ' placeholder="'.$placeholder.'" ';
         }
-		$html = str_replace('['.$fieldName.']',$this->fieldsClass->getFormatedDisplay($oneExtraField,$this->address->$fieldName, $fieldName,false, $field_options, $test = false, $allFields, $allValues = null),$html);
+		$html = str_replace('['.$fieldName.']',$this->fieldsClass->getFormattedDisplay($oneExtraField,$this->address->$fieldName, $fieldName,false, $field_options, $test = false, $allFields, $allValues = null),$html);
 	}
 	?>
 <?php endforeach; ?>
@@ -153,7 +153,7 @@ foreach($removeFields[1] as $fieldName) {
                     if($placeholder){
                         $field_options .= ' placeholder="'.$placeholder.'" ';
                     }
-					$uhtml .= $this->fieldsClass->getFormatedDisplay($oneExtraField,$this->address->$fieldName, $fieldName,false, $field_options, $test = false, $allFields, $allValues = null);
+					$uhtml .= $this->fieldsClass->getFormattedDisplay($oneExtraField,$this->address->$fieldName, $fieldName,false, $field_options, $test = false, $allFields, $allValues = null);
 					$uhtml .='<br />';
 				}
 				?>
