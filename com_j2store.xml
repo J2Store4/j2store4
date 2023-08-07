@@ -6,14 +6,13 @@
 	<copyright>Copyright (c) 2023 Cartrabbit. All rights reserved.</copyright>
 	<authorEmail>support@j2store.org</authorEmail>
 	<authorUrl>https://www.j2store.org</authorUrl>
-	<version>4.0.0</version>
+	<version>4.0.1</version>
 	<license>https://www.gnu.org/licenses/gpl-2.0.html GNU/GPL</license>
     <description><![CDATA[<h3>J2 Store V4 Professional</h3>
       Flexible and native Joomla shopping cart solution. <br />
       Use Joomla articles as products and get your shop online in less than 10 minutes. <br />
       Start setting up your store now. <br />
-      Learn more from the <a target="_blank" href="https://www.j2store.org/support/user-guide/getting-started-with-j2store.html">Getting started guide</a>
-      If you have any questions, <a target="_blank" href="https://www.j2store.org/support/community-forum.html">get in touch with us</a>]]>
+      Learn more from the <a target="_blank" href="https://www.j2store.org/support/user-guide/getting-started-with-j2store.html">Getting started guide</a>]]>
 	</description>
 
 	<!-- Public front end files -->

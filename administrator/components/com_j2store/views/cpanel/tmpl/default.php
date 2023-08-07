@@ -68,20 +68,6 @@ if (version_compare(JVERSION, '3.99.99', 'lt')) {
                                     ?>
                                 <?php endif; ?>
 
-                                <?php if(J2Store::isPro()): ?>
-
-                                    <?php $download_id = J2Store::config()->get('downloadid', ''); ?>
-                                    <div id="download-warning">
-
-                                    </div>
-                                    <div id="dlid-validate-container" class="alert alert-info" style="display: none;">
-
-                                        <p> <?php echo JText::_('J2STORE_DOWNLOAD_ID_NOT_SET'); ?> </strong><a href="<?php echo J2Store::buildHelpLink('my-downloads.html', 'downloadid'); ?>" target="_blank"><?php echo JText::_('J2STORE_FIND_MY_DOWNLOAD_ID'); ?></a></p>
-                                        <p><?php echo JText::_('J2STORE_DOWNLOAD_ID_MESSAGE');?> <a class="btn btn-info" href="<?php echo JRoute::_('index.php?option=com_j2store&view=configuration#updates'); ?>"><?php echo JText::_('J2STORE_ENTER_DOWNLOAD_ID'); ?></a></p>
-                                        <p><?php echo JText::_('J2STORE_DOWNLOAD_ID_MESSAGE_AFTER');?></p>
-                                    </div>
-
-                                <?php endif; ?>
                                 <div class="subscription_message" style="display:none;">
                                     <div class="alert alert-block alert-warning">
                                         <h4>
@@ -149,59 +135,3 @@ $platform->addInlineScript('setTimeout(function () {
 	})(j2store.jQuery);
 
 }, 2000);');
-if(J2Store::isPro() && empty($download_id)){
-    $platform->addInlineScript('(function($){
-	$(document).ready(function() {
-
-		$(\'#dlid-validate-container\').show();
-
-	});
-})(j2store.jQuery);');
-}
-if(J2Store::isPro() && !empty($download_id)){
-    $platform->addInlineScript('setTimeout(function () {
-	(function($){
-	$.ajax({
-		  url: "index.php?option=com_j2store&view=cpanels&task=getSubscription",
-		  dataType:\'json\'
-		}).done(function(json) {
-			if(json[\'success\']){
-				$(\'.subscription_message .subscription\').html(json[\'success\']);
-				$(\'.subscription_message\').show();
-				if(json[\'valid\'] == 0) {
-					$(\'#dlid-validate-container\').show();
-				}
-			}
-		});
-
-	})(j2store.jQuery);
-
-}, 2000);');
-}
-$platform->addInlineScript('function validateDlid() {
-        (function($){
-            var sdlid = $(\'#dlid\').val();
-            $(\'#download-warning\').html(\'\');
-	        var button = $(\'#dlid-validate-button\');
-            $.ajax({
-                url: "index.php?option=com_j2store&view=cpanels&task=getDownloadIdStatus&download_id="+sdlid,
-                dataType:\'json\',
-	            beforeSend: function() {
-		            $(button).attr(\'disabled\', \'disabled\');
-		            $(button).val(\''.addslashes(JText::_('J2STORE_APPLYING_DLID_PLEASE_WAIT')).'\');
-
-	            }
-            }).done(function(json) {
-                if(json[\'valid\'] == 1){
-                    $(\'#download-warning\').html(\'<div class="alert alert-success">'.JText::_('J2STORE_VAILD_DOWNLOAD_ID').'</div>\');
-	                location.reload();
-                    //$(\'.subscription_message\').show();
-                }else{
-	                $(button).removeAttr(\'disabled\');
-	                $(button).val(\''.addslashes(JText::_('J2STORE_APPLY_DOWNLOAD_BUTTON')).'\');
-                    $(\'#download-warning\').html(\'<div class="alert alert-error">'.JText::_('J2STORE_INVAILD_DOWNLOAD_ID').'</div>\');
-                }
-            });
-
-        })(j2store.jQuery);
-    }');
