@@ -405,9 +405,9 @@ class J2StoreModelProductsBehaviorConfigurable extends F0FModelBehavior {
 		$return ['pricing'] ['price'] = J2Store::product ()->displayPrice ( $price, $product, $params );
 		$return ['child_options'] = $response_option;
 		$return ['optionhtml'] = $html;
-		$return ['pricing'] ['orginal'] = array();
-		$return ['pricing'] ['orginal']['base_price'] = $base_price;
-		$return ['pricing'] ['orginal']['price'] = $price;
+		$return ['pricing'] ['original'] = array();
+		$return ['pricing'] ['original']['base_price'] = $base_price;
+		$return ['pricing'] ['original']['price'] = $price;
         J2Store::plugin()->event('AfterUpdateProductReturn',array(&$return,$product,$params));
 		return $return;
 	}

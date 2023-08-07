@@ -64,7 +64,7 @@ if($platform->isClient('administrator')) {
 			if(isset( $vars->address_default[$fieldName] ) && !empty( $vars->address_default[$fieldName] )){
 				$vars->address->$fieldName = $vars->address_default[$fieldName];
 			}
-			$html = str_replace('['.$fieldName.']',$vars->selectableBase->getFormatedDisplay($oneExtraField,$vars->address->$fieldName, $fieldName,false, $options = '', $test = false, $allFields, $allValues = null).'</br />',$html);
+			$html = str_replace('['.$fieldName.']',$vars->selectableBase->getFormattedDisplay($oneExtraField,$vars->address->$fieldName, $fieldName,false, $options = '', $test = false, $allFields, $allValues = null).'</br />',$html);
 		}
 	endforeach;
 	//check for unprocessed fields. If the user forgot to add the fields to the checkout layout in store profile, we probably have some.
@@ -94,7 +94,7 @@ if($platform->isClient('administrator')) {
 						if(isset( $vars->address_default[$fieldName] ) && !empty( $vars->address_default[$fieldName] )){
 							$vars->address->$fieldName = $vars->address_default[$fieldName];
 						}
-						$uhtml .= $vars->selectableBase->getFormatedDisplay($oneExtraField,$vars->address->$fieldName, $fieldName,false, $options = '', $test = false, $allFields, $allValues = null);
+						$uhtml .= $vars->selectableBase->getFormattedDisplay($oneExtraField,$vars->address->$fieldName, $fieldName,false, $options = '', $test = false, $allFields, $allValues = null);
 						$uhtml .='<br />';
 					}
 				endforeach;

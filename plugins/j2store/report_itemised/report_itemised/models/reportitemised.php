@@ -288,7 +288,7 @@ class J2StoreModelReportItemised extends F0FModel
     }
 
     /**
-     * Method to get Header Fileds for file Export
+     * Method to get Header FIELDS for file Export
      * @return array;
      */
     public function getHeaderfields($export_data)

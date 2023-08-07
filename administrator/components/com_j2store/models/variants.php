@@ -84,7 +84,7 @@ class J2StoreModelVariants extends F0FModel {
 	 * @param string $column
 	 * @param string $key
 	 */
-	public function getDimesions($table_name,$column ,$key){
+	public function getDimensions($table_name,$column ,$key){
 		$db= JFactory::getDbo();
 		$table = '#__j2store_'.$table_name;
 		$query = $db->getQuery(true);

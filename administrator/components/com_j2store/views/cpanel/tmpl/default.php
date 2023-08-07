@@ -133,5 +133,4 @@ $platform->addInlineScript('setTimeout(function () {
 		});
 
 	})(j2store.jQuery);
-
 }, 2000);');

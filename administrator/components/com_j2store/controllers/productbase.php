@@ -1207,8 +1207,8 @@ class J2StoreControllerProductsBase extends F0FController
             $variantModel->setState('product_type', $item->product_type);
             $variant_list = $variantModel->product_id($product_id)->limit($limit)->limitstart($limitstart)->is_master(0)->getList();
             $variant_pagination = $variantModel->getPagination();
-            $lengths = $variantModel->getDimesions('lengths', 'j2store_length_id', 'length_title');
-            $weights = $variantModel->getDimesions('weights', 'j2store_weight_id', 'weight_title');
+            $lengths = $variantModel->getDimensions('lengths', 'j2store_length_id', 'length_title');
+            $weights = $variantModel->getDimensions('weights', 'j2store_weight_id', 'weight_title');
             $controller = F0FController::getTmpInstance('com_j2store', 'Products');
             $view = $controller->getView('Product', 'Html', 'J2StoreView');
             if ($model = $controller->getModel('Products', 'J2StoreModel')) {

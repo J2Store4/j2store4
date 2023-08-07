@@ -21,7 +21,7 @@ $session_productfilter_ids = $session->get('productfilter_ids',array(), 'j2store
 
 $currency = $this->currency->getSymbol();
 $currency_value = $this->currency->getValue();
-$thousand = $this->currency->getThousandSysmbol();
+$thousand = $this->currency->getThousandSymbol();
 $decimal_place = $this->currency->getDecimalPlace();
 $tagid = JFactory::getApplication()->input->getInt('tagid',0);?>
 <?php

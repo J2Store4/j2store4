@@ -75,7 +75,7 @@ class plgJ2StoreApp_diagnostics extends J2StoreAppPlugin
         $info['sapi_name'] = php_sapi_name();
         $info['version'] = $version->getLongVersion();
         $info['useragent'] = isset($_SERVER['HTTP_USER_AGENT']) ? $_SERVER['HTTP_USER_AGENT'] : "";
-        $info['j2store_version'] = $this->getJ2storeVerion();
+        $info['j2store_version'] = $this->getJ2storeVersion();
         $info['is_pro'] = J2Store::isPro();
         $info['curl'] = $this->_isCurl();
         $info['json'] = $this->_isJson();
@@ -99,7 +99,7 @@ class plgJ2StoreApp_diagnostics extends J2StoreAppPlugin
         return (function_exists('json_encode')) ? JText::_('J2STORE_ENABLED') : JText::_('J2STORE_DISABLED');
     }
 
-    public function getJ2storeVerion()
+    public function getJ2storeVersion()
     {
         $version = '';
         $db = JFactory::getDbo();

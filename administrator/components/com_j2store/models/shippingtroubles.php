@@ -18,9 +18,9 @@ class J2StoreModelShippingtroubles extends F0FModel {
 		$db = JFactory::getDbo();
 		$query = $db->getQuery(true);
 		$query->select('#__j2store_products.*')->from('#__j2store_products');
-		$this->_buldQueryJoin($query);
-        $this->_buldQueryGroup($query);
-		$this->_buldQueryWhere($query);
+		$this->_buildQueryJoin($query);
+        $this->_buildQueryGroup($query);
+		$this->_buildQueryWhere($query);
         if(!empty($this->state->filter_order) && in_array($this->state->filter_order,array('j2store_product_id','created_on'))) {
             if(!in_array(strtolower($this->state->filter_order_Dir),array('asc','desc'))){
                 $this->state->filter_order_Dir = 'desc';
@@ -35,11 +35,11 @@ class J2StoreModelShippingtroubles extends F0FModel {
 		return $query;
 	}
 	
-	function _buldQueryJoin($query){
+	function _buildQueryJoin($query){
 		$query->select('#__j2store_variants.sku,#__j2store_variants.price,#__j2store_variants.shipping,#__j2store_variants.length,#__j2store_variants.width,#__j2store_variants.height,#__j2store_variants.length_class_id,#__j2store_variants.weight_class_id,#__j2store_variants.weight');
 		$query->join('INNER','#__j2store_variants ON #__j2store_products.j2store_product_id = #__j2store_variants.product_id');
     }
-    function _buldQueryGroup($query){
+    function _buildQueryGroup($query){
         $query->group('#__j2store_products.j2store_product_id');
     }
 	/**
@@ -53,7 +53,7 @@ class J2StoreModelShippingtroubles extends F0FModel {
 		);
 	}
 	
-	function _buldQueryWhere($query){
+	function _buildQueryWhere($query){
 		$db = $this->_db;
 		$state = $this->getFilterValues();
 		$query->where('#__j2store_products.enabled='.$this->_db->q(1));

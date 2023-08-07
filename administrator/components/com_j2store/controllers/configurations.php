@@ -731,11 +731,11 @@ class J2StoreControllerConfigurations extends F0FController
                     'options' => array('class' => 'btn-group'),
                     'desc' => 'J2STORE_CONF_J2STORE_AUTO_APPLY_SHIPPING_DESC'
                 ),
-                'hide_shipping_untill_address_selection' => array(
+                'hide_shipping_until_address_selection' => array(
                     'label' => 'J2STORE_CONF_AUTO_CALCULATE_SHIPPING_LABEL',
                     'type' => 'radio',
-                    'name' => 'hide_shipping_untill_address_selection',
-                    'value' => isset($vars->item->hide_shipping_untill_address_selection) && !is_null($vars->item->hide_shipping_untill_address_selection) ? $vars->item->hide_shipping_untill_address_selection : 1,
+                    'name' => 'hide_shipping_until_address_selection',
+                    'value' => isset($vars->item->hide_shipping_until_address_selection) && !is_null($vars->item->hide_shipping_until_address_selection) ? $vars->item->hide_shipping_until_address_selection : 1,
                     'options' => array('class' => 'btn-group'),
                     'desc' => 'J2STORE_CONF_AUTO_CALCULATE_SHIPPING_DESC'
                 ),

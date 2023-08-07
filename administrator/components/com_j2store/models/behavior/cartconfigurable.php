@@ -40,11 +40,11 @@ class J2StoreModelCartsBehaviorCartConfigurable extends F0FModelBehavior {
 		$product->product_options = $reloaded_product_options;
 		
 		$product_options = $product_helper->getProductOptions($product);
-		$ommit_check = array();
+		$omit_check = array();
 		//iterate through stored options for this product and validate
 		foreach($product_options as $product_option) {
 			$check_require= F0FModel::getTmpInstance('ProductOptions', 'J2StoreModel')->getItem($product_option['productoption_id']);
-			if($check_require->required && empty($check_option[$product_option['productoption_id']]) && $check_require->parent_id == 0 || in_array($product_option['productoption_id'], $ommit_check)){
+			if($check_require->required && empty($check_option[$product_option['productoption_id']]) && $check_require->parent_id == 0 || in_array($product_option['productoption_id'], $omit_check)){
 				$errors['error']['option'][$product_option['productoption_id']] = JText::sprintf('J2STORE_ADDTOCART_PRODUCT_OPTION_REQUIRED', JText::_($product_option['option_name']));
 			}
 			else if(array_key_exists($product_option['productoption_id'],$options))
@@ -59,7 +59,7 @@ class J2StoreModelCartsBehaviorCartConfigurable extends F0FModelBehavior {
 									
 								if(count($attr['optionvalue']) > 0 && $attr['required'] && !array_key_exists($attr['productoption_id'],$options)) // if optionvalue exist or not. then only display form.otherwise form display only heading without option name
 								{
-									array_push($ommit_check,$attr['productoption_id']);
+									array_push($omit_check,$attr['productoption_id']);
 								}
 							}
 						}
@@ -73,7 +73,7 @@ class J2StoreModelCartsBehaviorCartConfigurable extends F0FModelBehavior {
 			
 							if(count($attr['optionvalue']) > 0 && $attr['required'] && !array_key_exists($attr['productoption_id'],$options)) // if optionvalue exist or not. then only display form.otherwise form display only heading without option name
 							{
-								array_push($ommit_check,$attr['productoption_id']);
+								array_push($omit_check,$attr['productoption_id']);
 							}
 						}
 					}

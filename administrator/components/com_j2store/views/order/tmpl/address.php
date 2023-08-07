@@ -51,7 +51,7 @@ if (version_compare(JVERSION, '3.99.99', 'lt')) {
 			<?php if(property_exists($this->orderinfo, $fieldName)):
 			$fieldName_prefix =$this->address_type.'_'.$fieldName;
 			if(($fieldName !='email')){
-			 	$html = str_replace('['.$fieldName.']',$this->fieldClass->getFormatedDisplay($oneExtraField,$this->orderinfo->$fieldName,$fieldName_prefix,false, $options = '', $test = false, $allFields, $allValues = null),$html);
+			 	$html = str_replace('['.$fieldName.']',$this->fieldClass->getFormattedDisplay($oneExtraField,$this->orderinfo->$fieldName,$fieldName_prefix,false, $options = '', $test = false, $allFields, $allValues = null),$html);
 			}
 			?>
 		<?php endif;?>
@@ -85,7 +85,7 @@ if (version_compare(JVERSION, '3.99.99', 'lt')) {
 						<?php if(property_exists($this->orderinfo, $fieldName)): ?>
 							<?php
 								if(($fieldName !='email')){
-									$uhtml .= $this->fieldClass->getFormatedDisplay($oneExtraField,$this->orderinfo->$fieldName, $fieldName,false, $options = '', $test = false, $allFields, $allValues = null);
+									$uhtml .= $this->fieldClass->getFormattedDisplay($oneExtraField,$this->orderinfo->$fieldName, $fieldName,false, $options = '', $test = false, $allFields, $allValues = null);
 								}
 								 ?>
 						<?php endif;?>

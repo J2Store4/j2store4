@@ -315,7 +315,7 @@ class J2StoreControllerProducttags extends J2StoreControllerProductsBase
 	}
 
 	/**
-	 * Method to get Filters and to assing in the browse view
+	 * Method to get Filters and to assign in the browse view
 	 */
 	public function getFilters($items){
 

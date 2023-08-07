@@ -57,7 +57,7 @@ $script .=']);
  */
 foreach($months as $item) {
 
-    //$months = array('','January','Feb','March','April','May','June','July','Auguest','Sep','Oct','Nov','Dec');
+    //$months = array('','January','Feb','March','April','May','June','July','August','Sep','Oct','Nov','Dec');
 
     //month charts properties.
     $script .='

@@ -489,7 +489,7 @@ class J2Html
 
         //assign the html
         $html = '';
-        //swtich the type of input
+        //switch the type of input
         switch ($type) {
 
             // return text input
@@ -859,7 +859,7 @@ class J2Html
         }elseif ($type == 'menuitem') {
             $html = self::menuItems($name, $value, $options);
         } elseif ($type == 'modal_article') {
-            $html = self::artical($name, $value, $options);
+            $html = self::article($name, $value, $options);
         } elseif ($type == 'enabled') {
             $id = isset($options['id']) && !empty($options['id']) ? $options['id'] : $name;
             $html = JHtmlSelect::booleanlist($name, $attr = array(), $value, $yes = 'JYES', $no = 'JNO', $id);
@@ -1121,7 +1121,7 @@ class J2Html
         return $my_editor;
     }
 
-    public static function artical($name, $value, $options){
+    public static function article($name, $value, $options){
         $platform = J2Store::platform();
         //
         $allowClear     = true;
@@ -1557,8 +1557,8 @@ jQuery('.modal-backdrop').remove();
     {
         $start = date("Y-m-d");
         $today = date_create($start);
-        //assing the coupon offer start date
-        // Assing the coupon valid date
+        //assign the coupon offer start date
+        // Assign the coupon valid date
         $date2 = date_create($valid_to);
         return date_diff($today, $date2);
     }

@@ -73,7 +73,7 @@ class J2StoreModelCarts extends F0FModel {
 		}
 		catch (Exception $e)
 		{
-			// Oops, an exception occured!
+			// Oops, an exception occurred!
 			$this->setError($e->getMessage());
 			echo $e->getMessage();
 		}
@@ -135,7 +135,7 @@ class J2StoreModelCarts extends F0FModel {
 							&$table
 					) );
 				} catch ( Exception $e ) {
-					// Oops, an exception occured!
+					// Oops, an exception occurred!
 					$this->setError ( $e->getMessage () );
 					return false;
 				}
@@ -349,7 +349,7 @@ class J2StoreModelCarts extends F0FModel {
 					}
 					catch (Exception $e)
 					{
-						// Oops, an exception occured!
+						// Oops, an exception occurred!
 						$this->setError($e->getMessage());
 						return array();
 					}
@@ -380,7 +380,7 @@ class J2StoreModelCarts extends F0FModel {
 			// get the difference quantity
 
 			if ($this->validate ($cartitem, $quantity ) === false) {
-				// an error occured. Return it
+				// an error occurred. Return it
 				$json ['error'] = $this->getError();
 				continue; // exit from the loop
 			}
@@ -467,7 +467,7 @@ class J2StoreModelCarts extends F0FModel {
 		}
 		catch (Exception $e)
 		{
-			// Oops, an exception occured!
+			// Oops, an exception occurred!
 			$result = false;
 			$this->setError($e->getMessage());
 		}

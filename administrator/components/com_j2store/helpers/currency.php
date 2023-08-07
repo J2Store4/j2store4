@@ -173,7 +173,7 @@ class J2Currency {
 		}
   	}
 
-	public function getThousandSysmbol($currency=''){
+	public function getThousandSymbol($currency=''){
 		if (!$currency) {
 			return $this->currencies[$this->code]['currency_thousands'];
 		} elseif ($currency && isset($this->currencies[$currency])) {
@@ -227,7 +227,7 @@ class J2Currency {
   	/**
   	 * Method to get Numerice code
   	 * @param string $code alpha 3 digit code
-  	 * @return int numberic code
+  	 * @return int numeric code
   	 */
   	public static function getNumericCode(){
   		$result = array('AFN' => 4,

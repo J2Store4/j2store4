@@ -18,8 +18,8 @@ class J2StoreModelProductsBehaviorVariable extends F0FModelBehavior {
 		$variantModel->setState('product_type', $record->product_type);
 
 
-		$record->lengths =$variantModel->getDimesions('lengths', 'j2store_length_id','length_title');
-		$record->weights = $variantModel->getDimesions('weights', 'j2store_weight_id','weight_title');
+		$record->lengths =$variantModel->getDimensions('lengths', 'j2store_length_id','length_title');
+		$record->weights = $variantModel->getDimensions('weights', 'j2store_weight_id','weight_title');
 
 		try {
 			//first load master variant
@@ -184,7 +184,7 @@ class J2StoreModelProductsBehaviorVariable extends F0FModelBehavior {
             $platform = J2Store::platform();
 			//save variable values
 			if(isset($this->_rawData['variable'])){
-				foreach($this->_rawData['variable'] as $varient_key => $item){
+				foreach($this->_rawData['variable'] as $variant_key => $item){
 
 					if(is_array($item)){
 						$item = $platform->toObject($item);
@@ -236,9 +236,9 @@ class J2StoreModelProductsBehaviorVariable extends F0FModelBehavior {
 					$item->product_id = $table->j2store_product_id;
 					$quantity_item = $item->quantity;
 
-					$quantity_item->variant_id = $varient_key;
+					$quantity_item->variant_id = $variant_key;
 					$quantity = F0FTable::getAnInstance('Productquantity','J2StoreTable')->getClone();
-					$quantity->load(array('variant_id'=>$varient_key));
+					$quantity->load(array('variant_id'=>$variant_key));
 					try {
 						if($variantChild->save($item)){
 
@@ -581,9 +581,9 @@ class J2StoreModelProductsBehaviorVariable extends F0FModelBehavior {
 		$return['pricing'] = array();
 		$return['pricing']['base_price'] = J2Store::product()->displayPrice($variant->pricing->base_price, $product, $params);
 		$return['pricing']['price'] = J2Store::product()->displayPrice($variant->pricing->price, $product, $params);
-		$return ['pricing'] ['orginal'] = array();
-		$return ['pricing'] ['orginal']['base_price'] = $variant->pricing->base_price;
-		$return ['pricing'] ['orginal']['price'] = $variant->pricing->price;
+		$return ['pricing'] ['original'] = array();
+		$return ['pricing'] ['original']['base_price'] = $variant->pricing->base_price;
+		$return ['pricing'] ['original']['price'] = $variant->pricing->price;
         if($variant->pricing->base_price != $variant->pricing->price){
             $return['pricing']['class'] = 'show';
         }else{

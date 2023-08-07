@@ -263,7 +263,7 @@ $order_status = $params->get('order_status',array('*'));
 			<td><strong><?php echo JText::_('J2STORE_TOTAL_CONFIRMED_ORDERS_TODAY'); ?></strong></td>
 			<td><strong>
 			<?php
-				$tommorow = JFactory::getDate ('now +1 days',$tz)->format ( 'Y-m-d' );
+				$tomorrow = JFactory::getDate ('now +1 days',$tz)->format ( 'Y-m-d' );
 			?>
 			<?php
 				echo F0FModel::getTmpInstance('Orders', 'J2StoreModel')->clearState()

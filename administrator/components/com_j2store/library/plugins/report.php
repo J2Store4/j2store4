@@ -40,7 +40,7 @@ if (!class_exists('J2StoreReportPlugin')) {
          *
          * The methods between here
          * and the next comment block are
-         * yours to modify by overrriding them in your shipping plugin
+         * yours to modify by overriding them in your shipping plugin
          *
          ************************************/
 

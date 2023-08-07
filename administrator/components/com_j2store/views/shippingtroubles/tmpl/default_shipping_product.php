@@ -64,7 +64,7 @@ if (version_compare(JVERSION, '3.99.99', 'lt')) {
 			<!-- general Filters -->
 			<?php  //echo $this->loadTemplate('filters');?>
 		</div>
-		<?php if($this->shipping_avaliable):?>
+		<?php if($this->shipping_available):?>
 			<table class="table table-striped table-bordered">
 				<thead>
 					<tr>

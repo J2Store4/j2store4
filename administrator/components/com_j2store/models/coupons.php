@@ -41,7 +41,7 @@ class J2StoreModelCoupons extends F0FModel {
             $this->setError(JText::_("J2STORE_COUPON_VALID_FORM_DATE_NEED_TO_GRATER_THAN_COUPON VALID_TO_DATE"));
             $status = false;
         }
-        
+
 		if(isset($data['products']) && !empty($data['products'])){
             if(is_string($data['products'])){
                 $data['products'] = array($data['products']);
@@ -105,7 +105,7 @@ class J2StoreModelCoupons extends F0FModel {
 			try {
 				$row = $db->loadObject ();
 			} catch ( Exception $e ) {
-				// an error occured
+				// an error occurred
 				$row = F0FTable::getInstance ( 'Coupon', 'J2StoreTable' );
 			}
 			$couponsets[$this->code] = $row;
@@ -199,7 +199,7 @@ class J2StoreModelCoupons extends F0FModel {
 		}
 		return true;
 	}
-	
+
 	/**
 	 * Check if a coupon is valid
 	 *
@@ -213,11 +213,11 @@ class J2StoreModelCoupons extends F0FModel {
 	public function is_valid_for_product($product) {
 		if (! $this->is_type ( array (
 				'fixed_product',
-				'percentage_product' 
+				'percentage_product'
 		) )) {
 			return false;
 		}
-		
+
 		$valid = false;
 		$coupon_products_data = $this->get_selected_products ();
 		$coupon_categories_data = array ();
@@ -229,12 +229,12 @@ class J2StoreModelCoupons extends F0FModel {
 		if(!empty($this->coupon->brand_ids)) {
 			$brands = explode ( ',', $this->coupon->brand_ids);
 		}
-		
+
 		if (! count ( $coupon_categories_data ) && ! count ( $coupon_products_data ) && !count($brands)) {
 			// No product ids - all items discounted
 			$valid = true;
 		}
-		
+
 		if (count ( $coupon_products_data ) > 0) {
 			//selected products only
 			if (in_array ( $product->product_id, $coupon_products_data )) {
@@ -261,10 +261,10 @@ class J2StoreModelCoupons extends F0FModel {
 			}
 
 		}
-		
+
 		//manufacturers / brands
 		if(count($brands)){
-			$manufacturer_data = array ();			
+			$manufacturer_data = array ();
 				$manufacturer_id = isset($product->cartitem->manufacturer_id) ? $product->cartitem->manufacturer_id : '';
 				if(!empty($manufacturer_id ) && in_array($manufacturer_id, $brands)){
 					$manufacturer_data[] = $product->product_id;
@@ -273,12 +273,12 @@ class J2StoreModelCoupons extends F0FModel {
 					$valid = true;
 				}
 		}
-		
+
 		// allow plugins to modify the output
 		J2Store::plugin ()->event ( 'IsCouponValidForProduct', array (
 				$valid,
 				$product,
-				$this 
+				$this
 		) );
 		return $valid;
 	}
@@ -312,7 +312,7 @@ class J2StoreModelCoupons extends F0FModel {
 
 	private function validate_user_logged() {
 		$user = JFactory::getUser();
-		// is customer loged
+		// is customer logged
 		if ($this->coupon->logged && ! $user->id) {
 			throw new Exception( JText::_('J2STORE_COUPON_APPLICABLE_ONLY_FOR_LOGGED_IN_CUSTOMERS') );
 		}
@@ -333,7 +333,7 @@ class J2StoreModelCoupons extends F0FModel {
 
 		}
 	}
-	
+
 	/**
 	 * Method to validate the user group of the user as set in the coupon
 	 * */
@@ -443,7 +443,7 @@ class J2StoreModelCoupons extends F0FModel {
 					}
 				}
 			}
-			
+
 			//products
 			if (count ( $coupon_products_data ) > 0) {
 				if (count ( $cartitems ) > 0) {
@@ -454,7 +454,7 @@ class J2StoreModelCoupons extends F0FModel {
 					}
 				}
 			}
-			
+
 			//manufacturers
 			if(!empty($this->coupon->brand_ids)){
 				$brand_ids = explode(',' ,$this->coupon->brand_ids);
@@ -462,7 +462,7 @@ class J2StoreModelCoupons extends F0FModel {
 				if(count($brand_ids)) {
 					foreach ( $cartitems as $item ) {
 						if(isset($item->manufacturer_id) && !empty($item->manufacturer_id) && in_array($item->manufacturer_id , $brand_ids)){
-							$manufacturer_data[] = $item->product_id;							
+							$manufacturer_data[] = $item->product_id;
 						}
 					}
 					if (count ( $manufacturer_data ) > 0) {
@@ -513,7 +513,7 @@ class J2StoreModelCoupons extends F0FModel {
 										break;
 									}
 								}
-								
+
 							}
 						}
 						if ( count ( $product_data ) > 0 ) {
@@ -575,7 +575,7 @@ class J2StoreModelCoupons extends F0FModel {
 		return $row;
 
 	}
-	
+
 	/**
 	 * Checks the coupon type.
 	 *
@@ -592,7 +592,7 @@ class J2StoreModelCoupons extends F0FModel {
 		$params = J2Store::config ();
 		$session = JFactory::getSession ();
 		$cart_item_qty = is_null ( $cartitem ) ? 1 : $cartitem->orderitem_quantity;
-		
+
 		if ($this->is_type ( array ('percentage_product','percentage_cart') )) {
 			// percentage based discount. This is a very normal calculation
 			$discount = $this->coupon->value * ($discounting_amount / 100);
@@ -616,14 +616,14 @@ class J2StoreModelCoupons extends F0FModel {
 			}
 			$discount = ($this->coupon->value * $discount_percent) / $cart_item_qty;
 		} elseif ($this->is_type ( 'fixed_product' )) {
-			
+
 			$discount = min ( $this->coupon->value, $discounting_amount );
 			$discount = $single ? $discount : $discount * $cart_item_qty;
 			// $discount = $this->coupon->value * ($discounting_amount / $sub_total);
 		}
-		
+
 		$discount = min ( $discount, $discounting_amount );
-		
+
 		// Handle the limit_usage_to_x_items option
 		if ($this->is_type ( array ('percentage_product','fixed_product') )) {
 			if ($discounting_amount) {
@@ -644,7 +644,7 @@ class J2StoreModelCoupons extends F0FModel {
 		if ($this->coupon->free_shipping) {
 			$order->allow_free_shipping ();
 		}
-		
+
 		// allow plugins to modify the amount
 		J2Store::plugin ()->event ( 'GetCouponDiscountAmount', array (
 				$discount,
@@ -652,11 +652,11 @@ class J2StoreModelCoupons extends F0FModel {
 				$cartitem,
 				$order,
 				$this,
-				$single 
+				$single
 		) );
 		return $discount;
 	}
-	
+
 	public function getCouponHistory() {
 		$app = JFactory::getApplication();
 		$id = $app->input->getInt('coupon_id', 0);
@@ -672,23 +672,23 @@ class J2StoreModelCoupons extends F0FModel {
 		}
 		return $items;
 	}
-	
+
 	/**
 	 * Method to get coupon discount types. Third party developers can override by introducing new coupon value types.
 	 * @return array A list of key value pair
 	 */
-	
-	
-	public function getCouponDiscountTypes() {		
+
+
+	public function getCouponDiscountTypes() {
 		$list = array (
 				'percentage_cart' => JText::_ ( 'J2STORE_VALUE_TYPE_CART_DISCOUNT_PERCENTAGE' ),
 				'fixed_cart' => JText::_ ( 'J2STORE_VALUE_TYPE_CART_DISCOUNT_FIXED_PRICE' ),
 				'percentage_product' => JText::_ ( 'J2STORE_VALUE_TYPE_PRODUCT_PERCENTAGE' ),
-				'fixed_product' => JText::_ ( 'J2STORE_VALUE_TYPE_PRODUCT_FIXED_PRICE' ) 
+				'fixed_product' => JText::_ ( 'J2STORE_VALUE_TYPE_PRODUCT_FIXED_PRICE' )
 		);
 		//allow plugins to modify
 		J2Store::plugin()->event('GetCouponDiscountTypes', array(&$list));
-		return $list;	
+		return $list;
 	}
 
 	public function get_coupon(){
@@ -736,6 +736,6 @@ class J2StoreModelCoupons extends F0FModel {
 			$cart_table->cart_coupon = '';
 			$cart_table->store();
 		}
-		
+
 	}
 }

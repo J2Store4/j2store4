@@ -68,7 +68,7 @@ if (version_compare(JVERSION, '3.99.99', 'lt')) {
 							echo $this->orderinfo->billing_tax_number ? JText::_('J2STORE_ADDRESS_TAX_NUMBER').':&nbsp;'.$this->orderinfo->billing_tax_number."</br>" : "";
 							?>
 
-							<?php echo J2Store::getSelectableBase()->getFormatedCustomFields($this->orderinfo, 'customfields', 'billing'); ?>
+							<?php echo J2Store::getSelectableBase()->getFormattedCustomFields($this->orderinfo, 'customfields', 'billing'); ?>
 
 						</td>
 						<td>
@@ -86,7 +86,7 @@ if (version_compare(JVERSION, '3.99.99', 'lt')) {
 						echo '<br/> ';
 						echo $this->orderinfo->shipping_company ? JText::_('J2STORE_ADDRESS_COMPANY_NAME').':&nbsp;'.$this->orderinfo->shipping_company."</br>" : "";
 						echo $this->orderinfo->shipping_tax_number ? JText::_('J2STORE_ADDRESS_TAX_NUMBER').':&nbsp;'.$this->orderinfo->shipping_tax_number."</br>" : "";
-						?> <?php echo J2Store::getSelectableBase()->getFormatedCustomFields($this->orderinfo, 'customfields', 'shipping'); ?>
+						?> <?php echo J2Store::getSelectableBase()->getFormattedCustomFields($this->orderinfo, 'customfields', 'shipping'); ?>
 						</td>
 					</tr>
 				</table>

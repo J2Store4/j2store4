@@ -84,7 +84,7 @@ if (version_compare(JVERSION, '3.99.99', 'lt')) {
 					</tr>
 				</thead>
 	<?php if(isset($this->productfiles) && !empty($this->productfiles)):?>
-	<tbody  class="tr_file_attachement">
+	<tbody  class="tr_file_attachment">
 		<?php 	foreach($this->productfiles as $counter => $singleFile):?>
 			<tr id="exist-file-tbody-<?php echo $singleFile->j2store_productfile_id;?>">
 

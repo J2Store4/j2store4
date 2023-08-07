@@ -230,7 +230,7 @@ class plgJ2StoreReport_Products extends J2StoreReportPlugin
             'without_tax' => JText::_('J2STORE_WITHOUT_TAX')
         );
     }
-    //search fiter type
+    //search filter type
     public function getFilterType(){
         return array(
             'order' => 'By Order',

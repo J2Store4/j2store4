@@ -339,7 +339,7 @@ class J2StoreModelVouchers extends F0FModel {
 			//Allow plugins to modify
 			J2Store::plugin ()->event ( 'BeforeSendVoucher', array ($voucherTable,&$mailer));			
 			if($mailer->Send () !== true) {
-				$this->setError(JText::sprintf('J2STORE_VOUCHERS_SENDING_FAILED_TO_RECEIPIENT', $voucherTable->email_to));
+				$this->setError(JText::sprintf('J2STORE_VOUCHERS_SENDING_FAILED_TO_RECIPIENT', $voucherTable->email_to));
 				$failed++;
 			}
 			

@@ -245,7 +245,7 @@ $product_id = $this->product->j2store_product_id;
         	<div id="ChildOptions<?php echo $option['productoption_id']; ?>"></div>
 
         <?php } ?>
-        	<div id="ChildOptio<?php echo $option['productoption_id']; ?>"></div>
+        	<div id="Childoption<?php echo $option['productoption_id']; ?>"></div>
       </div>
       <?php } ?>
 
