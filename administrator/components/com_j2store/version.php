@@ -14,6 +14,6 @@ defined('_JEXEC') or die('Restricted Access');
 
 define('J2STORE_PRO', '1');
 define('J2STORE_VERSION', '4.0.1');
-define('J2STORE_DATE', '2023-07-26');
+define('J2STORE_DATE', '2023-08-07');
 
 
