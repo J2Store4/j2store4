@@ -147,6 +147,7 @@ $title = $params->get('cart_module_title', '');
                 return true;
             } else {
                 jQuery('#j2store_cart_item_<?php echo $module->id; ?>').hide('fast');
+                link.removeClass('nav-hover');
                 e.preventDefault();
                 return false; //extra, and to make sure the function has consistent return points
             }
