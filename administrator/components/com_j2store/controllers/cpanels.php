@@ -9,7 +9,7 @@ defined('_JEXEC') or die;
 class J2StoreControllerCpanels extends F0FController
 {
 	 public function execute($task) {
-		if(!in_array($task, array('browse' ,'getEupdates', 'notifications','getSubscription','getDownloadIdStatus'))) {
+		if(!in_array($task, array('browse' ,'getEupdates', 'notifications','getSubscription'))) {
 			$task = 'browse';
 		}
 		parent::execute($task);
@@ -348,27 +348,6 @@ class J2StoreControllerCpanels extends F0FController
 		echo json_encode($json);
 		$app->close();
 	}
-
-	public function getSubscription(){
-		$list = array();
-
-		$app = JFactory::getApplication();
-		$eupdate_model = F0FModel::getTmpInstance('Eupdates','J2StoreModel');
-
-		$list = $eupdate_model->getSubscriptionDetails();
-
-		echo json_encode($list);
-		$app->close();
-	}
-
-	public function getDownloadIdStatus(){
-        $app = JFactory::getApplication();
-        $download_id = $app->input->get('download_id','');
-        $eupdate_model = F0FModel::getTmpInstance('Eupdates','J2StoreModel');
-        $download_message = $eupdate_model->getDownloadIdStatus($download_id);
-        echo json_encode($download_message);
-        $app->close();
-    }
 
 	//getSubscriptionDetails
 	public function notifications() {
