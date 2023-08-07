@@ -29,7 +29,9 @@
 		<languages folder="language/frontend">
 			<language tag="en-GB">en-GB/en-GB.com_j2store.ini</language>
 		</languages>
-
+	<updateservers>
+		<server type="extension" name="J2Store Professional">https://cdn.j2store.net/j2store4.xml</server>
+	</updateservers>
 	<!-- SQL query files to execute on installation -->
 	<install>
 		<sql>
