@@ -29,6 +29,6 @@ class J2StoreModelUpdates extends F0FUtilsUpdate
 		}
 		$this->extraQuery = null;
 		$this->updateSiteName = 'J2Store ' . ($isPro ? 'Professional' : 'Core');
-		$this->updateSite = 'https://cdn.j2store.net/j2store' . ($isPro ? '' : 'core') . '.xml';
+		$this->updateSite = 'https://cdn.j2store.net/j2store4' . ($isPro ? '' : 'core') . '.xml';
 	}
 }
