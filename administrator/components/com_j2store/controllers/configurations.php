@@ -851,25 +851,7 @@ class J2StoreControllerConfigurations extends F0FController
                 ),
             )
         );
-        $vars->field_sets[] = array(
-            'id' => 'updates',
-            'label' => 'COM_J2STORE_CONFIG_UPDATES_LABEL',
-            'fields' => array(
-                'downloadid' => array(
-                    'label' => 'COM_J2STORE_CONFIG_UPDATE_DOWNLOADID_LABEL',
-                    'type' => 'text',
-                    'name' => 'downloadid',
-                    'value' => isset($vars->item->downloadid) && !is_null($vars->item->downloadid) ? $vars->item->downloadid : '',
-                    'options' => array()
-                ),
-                'liveupdate' => array(
-                    'type' => 'hidden',
-                    'name' => 'liveupdate',
-                    'value' => isset($vars->item->liveupdate) && !is_null($vars->item->liveupdate) ? $vars->item->liveupdate : '',
-                    'options' => array()
-                ),
-            )
-        );
+
         $vars->field_sets[] = array(
             'id' => 'mail_template_settings',
             'is_pro' => true,
