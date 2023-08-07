@@ -28,7 +28,7 @@ class J2StoreModelUpdates extends F0FUtilsUpdate
 			require_once (JPATH_ADMINISTRATOR.'/components/com_j2store/helpers/j2store.php');
 		}
 		$this->extraQuery = null;
-		$this->updateSiteName = 'J2Store ' . ($isPro ? 'Professional' : 'Core');
-		$this->updateSite = 'https://cdn.j2store.net/j2store' . ($isPro ? '' : 'core') . '.xml';
+		$this->updateSiteName = 'J2Store Professional';
+		$this->updateSite = 'https://cdn.j2store.net/j2store4.xml';
 	}
 }
