@@ -15,16 +15,16 @@ class PlgInstallerJ2Store extends \Joomla\CMS\Plugin\CMSPlugin
             if (stripos($url, '/plugin/') !== false) {
                 $element = substr(substr($url, strrpos($url, "/") + 1), 0, -4);
                 $folder = substr($url, strpos($url, '/plugin/') + 8);
-                if (empty($folder)) return;
+                if (empty($folder) || empty($element)) return;
                 $type = substr($folder, 0, strpos($folder, '/' . $element));
-                if (!empty($type) && !empty($element)) {
-                    $plugin = JPluginHelper::getPlugin($type, $element);
+                if (!empty($type)) {
+                    $plugin = \Joomla\CMS\Plugin\PluginHelper::getPlugin($type, $element);
                     if (is_object($plugin) && isset($plugin->params)) {
                         $params = new \Joomla\Registry\Registry($plugin->params);
                         $license_key = $params->get('license_key', '');
                         /*$item_id = $params->get('item_id', 0);
                         $item_name = $params->get('item_name', '');*/
-                        $baseURL = str_replace('/administrator', '', JURI::base());
+                        $baseURL = str_replace('/administrator', '', \Joomla\CMS\Uri\Uri::base());
                         $api_params = array(
                             'edd_action' => 'get_version',
                             'license' => $license_key,
