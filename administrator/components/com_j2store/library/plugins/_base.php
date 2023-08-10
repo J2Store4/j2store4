@@ -365,6 +365,44 @@ class J2StorePluginBase extends \JPlugin
         exit;
     }
 
+    public function onAjaxDeActivateLicence()
+    {
+        $platform = J2Store::platform();
+        $app = $platform->application();
+        $license = (string)$app->input->get('license', '');
+        $id = (int)$app->input->get('id', 0);
+        $data = array();
+        if (!empty($license) && $id > 0) {
+            $plugin = $this->getPluginData($id);
+            require_once(JPATH_ADMINISTRATOR . '/components/com_j2store/helpers/license.php');
+            $license_helper = J2License::getInstance();
+            $api_url = 'https://dev.j2store.net/joomla_release/edd-api';
+            $baseURL = str_replace('/administrator', '', JURI::base());
+            $params = array(
+                'license' => $license,
+                'url' => $baseURL,
+                'element' => $plugin->element
+            );
+            $response = $license_helper->deActivateLicense($api_url, $params);
+            if (is_array($response) && $response['success'] == false) {
+                $data['success'] = false;
+                $data['message'] = JText::_('J2STORE_LICENSE_DEACTIVATION_FAILED');
+                $data['response'] = $response;
+                echo json_encode($data);
+                exit;
+            }
+            $data['success'] = true;
+            $data['message'] = JText::_('J2STORE_LICENSE_DEACTIVATED');
+            $data['response'] = $response;
+            echo json_encode($data);
+            exit;
+        }
+        $data['success'] = false;
+        $data['message'] = JText::_('J2STORE_LICENSE_DEACTIVATION_FAILED');
+        echo json_encode($data);
+        exit;
+    }
+
     function getPluginData($extension_id)
     {
         if ($extension_id <= 0) {

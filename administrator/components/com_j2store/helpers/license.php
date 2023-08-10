@@ -110,4 +110,22 @@ class J2License
         $api_params = array_merge($api_params, $params);
         return $this->sendRequest($api_url, $api_params);
     }
+
+    public function deActivateLicense($api_url, $params)
+    {
+        if (empty($api_url)) {
+            return array();
+        }
+        $api_params = array(
+            'edd_action' => 'deactivate_license',
+            'license' => '',
+            'item_id' => 0,
+            'item_name' => '',
+            'url' => '',
+            'environment' => 'production',
+            'element' => ''
+        );
+        $api_params = array_merge($api_params, $params);
+        return $this->sendRequest($api_url, $api_params);
+    }
 }
