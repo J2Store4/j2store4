@@ -15,23 +15,18 @@ class PlgInstallerJ2Store extends \Joomla\CMS\Plugin\CMSPlugin
             if (stripos($url, '/plugin/') !== false) {
                 $element = substr(substr($url, strrpos($url, "/") + 1), 0, -4);
                 $folder = substr($url, strpos($url, '/plugin/') + 8);
-                if (empty($folder) || empty($element)) return;
                 $type = substr($folder, 0, strpos($folder, '/' . $element));
-                if (!empty($type)) {
-                    $plugin = \Joomla\CMS\Plugin\PluginHelper::getPlugin($type, $element);
+                if (!empty($type) && !empty($element)) {
+                    $plugin = JPluginHelper::getPlugin($type, $element);
                     if (is_object($plugin) && isset($plugin->params)) {
                         $params = new \Joomla\Registry\Registry($plugin->params);
-                        $license_key = $params->get('license_key', '');
-                        /*$item_id = $params->get('item_id', 0);
-                        $item_name = $params->get('item_name', '');*/
-                        $baseURL = str_replace('/administrator', '', \Joomla\CMS\Uri\Uri::base());
+                        $license_key = (array)$params->get('license_key', '');
+                        $baseURL = str_replace('/administrator', '', JURI::base());
                         $api_params = array(
                             'edd_action' => 'get_version',
-                            'license' => $license_key,
-                            /*'item_id' => $item_id,
-                            'item_name' => rawurlencode($item_name),*/
+                            'license' => is_array($license_key) && isset($license_key['license']) && !empty($license_key['license']) ? $license_key['license'] : '',
                             'url' => $baseURL,
-                            'environment' => ' ',
+                            'element' => $element
                         );
                         require_once(JPATH_ADMINISTRATOR . '/components/com_j2store/helpers/license.php');
                         $license_helper = J2License::getInstance();
