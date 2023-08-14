@@ -404,7 +404,7 @@ class J2StoreModelOrderdownloads extends F0FModel {
 		$file = JPath::clean($path.'/'.$productfile->product_file_save_name);
 
 		if(!JFile::exists($file)) {
-            $root = JPATH_ROOT.'/';
+            $path = JPATH_ROOT. $path . '/';
             $current = JPath::clean($path.'/'.$productfile->product_file_save_name);
             $file = $root.trim($current,'/');
         }
