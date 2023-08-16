@@ -219,7 +219,7 @@ public function preflight($type, $parent) {
 					return false;
 				}*/
                 if(version_compare($version,'3.9.99','lt')){
-                    if(!JComponentHelper::isEnabled('com_extensioncheck')) {
+                    if(!JComponentHelper::isEnabled('com_j2migrationchecker')) {
                         $parent->getParent()->abort('J2Store v4 Migration components is not found. Please install J2Store v4 migration component before update the J2Store 4');
                         return false;
                     }
