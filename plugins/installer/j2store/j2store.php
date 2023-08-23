@@ -10,7 +10,7 @@ class PlgInstallerJ2Store extends \Joomla\CMS\Plugin\CMSPlugin
 {
     function onInstallerBeforePackageDownload(&$url, &$headers)
     {
-        $domain = 'dev.j2store.net';
+        $domain = 'j2store.org';
         if (strpos($url, $domain) !== false) {
             if (stripos($url, '/plugin/') !== false) {
                 $element = substr(substr($url, strrpos($url, "/") + 1), 0, -4);
@@ -30,8 +30,7 @@ class PlgInstallerJ2Store extends \Joomla\CMS\Plugin\CMSPlugin
                         );
                         require_once(JPATH_ADMINISTRATOR . '/components/com_j2store/helpers/license.php');
                         $license_helper = J2License::getInstance();
-                        $api_url = 'https://dev.j2store.net/joomla_release/edd-api';
-                        $license = $license_helper->getVersion($api_url, $api_params);
+                        $license = $license_helper->getVersion($api_params);
                         if (is_array($license) && isset($license['download_link']) && !empty($license['download_link'])) {
                             $url = $license['download_link'];
                         }

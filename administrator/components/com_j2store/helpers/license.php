@@ -22,9 +22,9 @@ class J2License
 
         return self::$instance;
     }
-
-    protected function sendRequest($api_url, $api_params)
+    protected function sendRequest($api_params)
     {
+        $api_url = 'https://www.j2store.org/edd-api';
         $license_data = array();
         if (empty($api_url) || empty($api_params)) {
             return $license_data;
@@ -50,11 +50,8 @@ class J2License
         return $license_data;
     }
 
-    public function checkLicense($api_url, $params = array())
+    public function checkLicense($params = array())
     {
-        if (empty($api_url)) {
-            return false;
-        }
         $baseURL = str_replace('/administrator', '', JURI::base());
         // Data to send in our API request
         $api_params = array(
@@ -67,15 +64,12 @@ class J2License
             'element' => ''
         );
         $api_params = array_merge($api_params, $params);
-        $response = $this->sendRequest($api_url, $api_params);
+        $response = $this->sendRequest($api_params);
         return is_array($response) && isset($response['license']) && $response['license'] == 'valid';
     }
 
-    function getVersion($api_url, $params = array())
+    function getVersion($params = array())
     {
-        if (empty($api_url)) {
-            return array();
-        }
         $api_params = array(
             'edd_action' => 'get_version',
             'license' => '',
@@ -89,14 +83,11 @@ class J2License
             'element' => ''
         );
         $api_params = array_merge($api_params, $params);
-        return $this->sendRequest($api_url, $api_params);
+        return $this->sendRequest( $api_params);
     }
 
-    public function activateLicense($api_url, $params)
+    public function activateLicense($params)
     {
-        if (empty($api_url)) {
-            return array();
-        }
         // Data to send in our API request
         $api_params = array(
             'edd_action' => 'activate_license',
@@ -108,14 +99,11 @@ class J2License
             'element' => ''
         );
         $api_params = array_merge($api_params, $params);
-        return $this->sendRequest($api_url, $api_params);
+        return $this->sendRequest($api_params);
     }
 
-    public function deActivateLicense($api_url, $params)
+    public function deActivateLicense($params)
     {
-        if (empty($api_url)) {
-            return array();
-        }
         $api_params = array(
             'edd_action' => 'deactivate_license',
             'license' => '',
@@ -126,6 +114,6 @@ class J2License
             'element' => ''
         );
         $api_params = array_merge($api_params, $params);
-        return $this->sendRequest($api_url, $api_params);
+        return $this->sendRequest($api_params);
     }
 }

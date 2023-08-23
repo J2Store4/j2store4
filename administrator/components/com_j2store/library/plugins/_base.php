@@ -334,18 +334,22 @@ class J2StorePluginBase extends \JPlugin
         $data = array();
         if (!empty($license) && $id > 0) {
             $plugin = $this->getPluginData($id);
-            /*$status = (string)$this->app->input->get('status','');
-            $expire = (string)$this->app->input->get('expire','');*/
             require_once(JPATH_ADMINISTRATOR . '/components/com_j2store/helpers/license.php');
             $license_helper = J2License::getInstance();
-            $api_url = 'https://dev.j2store.net/joomla_release/edd-api';
             $baseURL = str_replace('/administrator', '', JURI::base());
             $params = array(
                 'license' => $license,
                 'url' => $baseURL,
                 'element' => $plugin->element
             );
-            $response = $license_helper->activateLicense($api_url, $params);
+            $response = $license_helper->activateLicense($params);
+            if(is_null($response)){
+                $data['success'] = false;
+                $data['message'] = JText::_('J2STORE_LICENSE_ACTIVATION_FAILED');
+                $data['response'] = $response;
+                echo json_encode($data);
+                exit;
+            }
             if (is_array($response) && $response['success'] == false) {
                 $data['success'] = false;
                 $data['message'] = JText::_('J2STORE_LICENSE_INVALID');
@@ -376,14 +380,20 @@ class J2StorePluginBase extends \JPlugin
             $plugin = $this->getPluginData($id);
             require_once(JPATH_ADMINISTRATOR . '/components/com_j2store/helpers/license.php');
             $license_helper = J2License::getInstance();
-            $api_url = 'https://dev.j2store.net/joomla_release/edd-api';
             $baseURL = str_replace('/administrator', '', JURI::base());
             $params = array(
                 'license' => $license,
                 'url' => $baseURL,
                 'element' => $plugin->element
             );
-            $response = $license_helper->deActivateLicense($api_url, $params);
+            $response = $license_helper->deActivateLicense($params);
+            if(is_null($response)){
+                $data['success'] = false;
+                $data['message'] = JText::_('J2STORE_LICENSE_DEACTIVATION_FAILED');
+                $data['response'] = $response;
+                echo json_encode($data);
+                exit;
+            }
             if (is_array($response) && $response['success'] == false) {
                 $data['success'] = false;
                 $data['message'] = JText::_('J2STORE_LICENSE_DEACTIVATION_FAILED');
