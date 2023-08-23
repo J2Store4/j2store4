@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<extension type="plugin" group="installer" method="upgrade">
+    <name>J2Store Installer</name>
+    <author>Alagesan</author>
+    <creationDate>AUG 2023</creationDate>
+    <copyright>(C) 2023 J2Store</copyright>
+    <license>GNU General Public License version 2 or later; see LICENSE.txt</license>
+    <authorEmail>support@j2store.org</authorEmail>
+    <authorUrl>www.j2store.org</authorUrl>
+    <version>1.0.0</version>
+    <description>J2Store Installer</description>
+
+    <files>
+        <filename plugin="j2store">j2store.php</filename>
+    </files>
+</extension>
