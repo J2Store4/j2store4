@@ -90,7 +90,7 @@ class J2StoreModelOrderdownloads extends F0FModel {
 
 		foreach ( $downloads as $download ) {
 
-			if ($download->access_granted == JFactory::getDbo ()->getNullDate ()) {
+			if (empty($download->access_granted)) {
 				unset($table);
 				$table = F0FTable::getAnInstance ( 'Orderdownload', 'J2StoreTable' )->getClone();
 
