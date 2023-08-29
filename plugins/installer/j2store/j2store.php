@@ -17,7 +17,7 @@ class PlgInstallerJ2Store extends \Joomla\CMS\Plugin\CMSPlugin
                 $folder = substr($url, strpos($url, '/plugin/') + 8);
                 $type = substr($folder, 0, strpos($folder, '/' . $element));
                 if (!empty($type) && !empty($element)) {
-                    $plugin = JPluginHelper::getPlugin($type, $element);
+                    $plugin = $this->getPlugin($type, $element);
                     if (is_object($plugin) && isset($plugin->params)) {
                         $params = new \Joomla\Registry\Registry($plugin->params);
                         $license_key = (array)$params->get('license_key', '');
@@ -38,5 +38,18 @@ class PlgInstallerJ2Store extends \Joomla\CMS\Plugin\CMSPlugin
                 }
             }
         }
+    }
+
+    protected function getPlugin($type, $element){
+        if(empty($type) || empty($element)){
+            return array();
+        }
+        $db = \Joomla\CMS\Factory::getDbo();
+        $query = $db->getQuery(true);
+        $query->select("*")->from('#__extensions')->where('folder=' . $db->q($type))
+            ->where('element=' . $db->q($element));
+
+        $db->setQuery($query);
+        return $db->loadObject();
     }
 }
