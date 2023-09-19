@@ -24,7 +24,7 @@ class J2License
     }
     protected function sendRequest($api_params)
     {
-        $api_url = 'https://www.j2store.org/edd-api';
+        $api_url = 'https://dev.j2store.net/joomla_release';
         $license_data = array();
         if (empty($api_url) || empty($api_params)) {
             return $license_data;
