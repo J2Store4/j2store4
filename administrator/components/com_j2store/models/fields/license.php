@@ -14,6 +14,7 @@ class JFormFieldLicense extends \Joomla\CMS\Form\FormField
 
     protected function getInput()
     {
+        $app = J2Store::platform()->application();
         $license_value = is_array($this->value) && isset($this->value['license']) && !empty($this->value['license']) ? $this->value['license'] : '';
         $status = is_array($this->value) && isset($this->value['status']) && !empty($this->value['status']) ? $this->value['status'] : 'in_active';
         $expire = is_array($this->value) && isset($this->value['expire']) && !empty($this->value['expire']) ? $this->value['expire'] : '';
@@ -22,7 +23,13 @@ class JFormFieldLicense extends \Joomla\CMS\Form\FormField
         line-height: 1.5;padding: .5rem 1rem;" name="' . $this->name . '[license]" value="' . $license_value . '">';
         $html .= '<input id="plugin_license_status" type="hidden" name="' . $this->name . '[status]" value="' . $status . '">';
         $html .= '<input id="plugin_license_expire" type="hidden" name="' . $this->name . '[expire]" value="' . $expire . '">';
-        $extension_id = J2Store::platform()->application()->input->get('extension_id', 0);
+        $extension_id = (int)$app->input->get('extension_id', 0);
+        $view = (string)$app->input->get('view', '');
+        $is_app_view = false ;
+        if( $view == 'apps' && empty($extension_id) ){
+            $extension_id = (int)$app->input->get('id', 0);
+            $is_app_view =  true;
+        }
         $plugin = $this->getPluginData($extension_id);
         $force = false;
         if ($status == 'active' && !empty($license_value)) {
@@ -41,7 +48,7 @@ class JFormFieldLicense extends \Joomla\CMS\Form\FormField
             let expire = jQuery("#plugin_license_expire").val();
             let extension_id = "' . $extension_id . '"; 
             let group = "' . $plugin->folder . '";
-            
+            let is_app_view = "' . $is_app_view . '";
             $.ajax({
 			    type : \'post\',
 			    url :  j2storeURL+\'index.php?option=com_ajax&format=json&group=\'+group+\'&plugin=activateLicence\',
@@ -54,10 +61,16 @@ class JFormFieldLicense extends \Joomla\CMS\Form\FormField
                         jQuery("#plugin_license_status").val("active");
                         jQuery("#plugin_license_expire").val(data.response.expires);
                         jQuery("#plugin_license_key").after(\'<span class="j2success">\'+data.message+\'</span>\')
-                        jQuery(\'input[name="task"]\').val("plugin.apply");
-                        setTimeout(function (){
-                            jQuery("#plugin_license_key").closest("form").submit();
-                        },1000)
+                        if(is_app_view){
+                             document.adminForm.task ="view";
+			                 document.getElementById("appTask").value = "apply";
+                             Joomla.submitform("view");
+                        }else{
+                            jQuery(\'input[name="task"]\').val("plugin.apply");
+                            setTimeout(function (){
+                                jQuery("#plugin_license_key").closest("form").submit();
+                            },1000)
+                        }
     			    }
                 }
             });
@@ -69,7 +82,7 @@ class JFormFieldLicense extends \Joomla\CMS\Form\FormField
             let license = jQuery("#plugin_license_key").val();
             let extension_id = "' . $extension_id . '"; 
             let group = "' . $plugin->folder . '";
-            
+            let is_app_view = "' . $is_app_view . '";
             $.ajax({
 			    type : \'post\',
 			    url :  j2storeURL+\'index.php?option=com_ajax&format=json&group=\'+group+\'&plugin=deActivateLicence\',
@@ -82,10 +95,16 @@ class JFormFieldLicense extends \Joomla\CMS\Form\FormField
                         jQuery("#plugin_license_status").val("in_active");
                         jQuery("#plugin_license_expire").val("");
                         jQuery("#plugin_license_key").after(\'<span class="j2success">\'+data.message+\'</span>\')
-                        jQuery(\'input[name="task"]\').val("plugin.apply");
-                        setTimeout(function (){
-                            jQuery("#plugin_license_key").closest("form").submit();
-                        },1000)
+                        if(is_app_view){                       
+                             document.adminForm.task ="view";
+			                 document.getElementById("appTask").value = "apply";
+                             Joomla.submitform("view");
+                        }else{
+                            jQuery(\'input[name="task"]\').val("plugin.apply");
+                            setTimeout(function (){
+                                jQuery("#plugin_license_key").closest("form").submit();
+                            },1000)
+                        }
     			    }
                 }
             });
