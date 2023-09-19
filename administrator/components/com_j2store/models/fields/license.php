@@ -23,11 +23,11 @@ class JFormFieldLicense extends \Joomla\CMS\Form\FormField
         line-height: 1.5;padding: .5rem 1rem;" name="' . $this->name . '[license]" value="' . $license_value . '">';
         $html .= '<input id="plugin_license_status" type="hidden" name="' . $this->name . '[status]" value="' . $status . '">';
         $html .= '<input id="plugin_license_expire" type="hidden" name="' . $this->name . '[expire]" value="' . $expire . '">';
-        $extension_id = $app->input->get('extension_id', 0);
-        $view = $app->input->get('view', '');
+        $extension_id = (int)$app->input->get('extension_id', 0);
+        $view = (string)$app->input->get('view', '');
         $is_app_view = false ;
         if( $view == 'apps' && empty($extension_id) ){
-            $extension_id = $app->input->get('id', 0);
+            $extension_id = (int)$app->input->get('id', 0);
             $is_app_view =  true;
         }
         $plugin = $this->getPluginData($extension_id);
