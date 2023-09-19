@@ -85,12 +85,11 @@ $menus = array (
 				'icon' => 'fa fa-wrench',
 				'active' => 0
 		),
-        array (
-            'name' => 'AppStore',
-            'icon' => 'fa fa-archive',
-            'active' => 0
-        ),
-
+//        array (
+//            'name' => 'AppStore',
+//            'icon' => 'fa fa-archive',
+//            'active' => 0
+//        ),
 		array (
 				'name' => 'Reporting',
 				'icon' => 'fa fa-signal',
