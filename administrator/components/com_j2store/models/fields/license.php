@@ -49,7 +49,7 @@ class JFormFieldLicense extends \Joomla\CMS\Form\FormField
             let extension_id = "' . $extension_id . '"; 
             let group = "' . $plugin->folder . '";
             let is_app_view = "' . $is_app_view . '";
-            $.ajax({
+            jQuery.ajax({
 			    type : \'post\',
 			    url :  j2storeURL+\'index.php?option=com_ajax&format=json&group=\'+group+\'&plugin=activateLicence\',
 			    data : \'license=\' + license+\'&status=\'+status+\'&expire=\'+expire+\'&id=\'+extension_id,
@@ -83,7 +83,7 @@ class JFormFieldLicense extends \Joomla\CMS\Form\FormField
             let extension_id = "' . $extension_id . '"; 
             let group = "' . $plugin->folder . '";
             let is_app_view = "' . $is_app_view . '";
-            $.ajax({
+            jQuery.ajax({
 			    type : \'post\',
 			    url :  j2storeURL+\'index.php?option=com_ajax&format=json&group=\'+group+\'&plugin=deActivateLicence\',
 			    data : \'license=\' + license+\'&id=\'+extension_id,
