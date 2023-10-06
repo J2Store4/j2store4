@@ -75,17 +75,6 @@ if (version_compare(JVERSION, '3.99.99', 'lt')) {
                                         </h4>
                                     </div>
                                 </div>
-                                <div class="eupdate-notification" style="display:none;">
-                                    <div class="alert alert-block alert-warning">
-                                        <h4>
-                                            <span class="total"></span>
-                                            <?php echo JText::_('J2STORE_PLUGIN_UPDATES_NOTIFICATION'); ?>
-                                            <a class="btn btn-danger" href="https://www.j2store.org/extensions/">
-                                                <?php echo JText::_('J2STORE_VIEW_AND_UPDATE')?>
-                                            </a>
-                                        </h4>
-                                    </div>
-                                </div>
                                 <?php echo J2Store::help()->watch_video_tutorials(); ?>
                                 <div class="<?php echo $row_class;?>">
                                     <!-- Chart-->
