@@ -77,7 +77,7 @@ $menus = array (
 						'shippings' => 'fa fa-truck',
 						'shippingtroubles' => 'fa fa-bug',
 						'customfields' => 'fa fa-th-list',
-						'eupdates' => 'fa fa-refresh',
+//						'eupdates' => 'fa fa-refresh',
 				)
 		),
 		array (
