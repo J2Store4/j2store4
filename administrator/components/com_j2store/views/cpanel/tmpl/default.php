@@ -80,7 +80,7 @@ if (version_compare(JVERSION, '3.99.99', 'lt')) {
                                         <h4>
                                             <span class="total"></span>
                                             <?php echo JText::_('J2STORE_PLUGIN_UPDATES_NOTIFICATION'); ?>
-                                            <a class="btn btn-danger" href="<?php echo JRoute::_('index.php?option=com_j2store&view=eupdates'); ?>">
+                                            <a class="btn btn-danger" href="https://www.j2store.org/extensions/">
                                                 <?php echo JText::_('J2STORE_VIEW_AND_UPDATE')?>
                                             </a>
                                         </h4>
