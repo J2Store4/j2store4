@@ -68,7 +68,7 @@ if(typeof(j2store.jQuery) == 'undefined') {
 //$doc = new \Joomla\CMS\WebAsset\WebAssetManager();
 //$doc->
 $platform->addInlineScript($script);
-$platform->addStyle('j2store-cart','modules/mod_j2store_cart/css/j2store_cart.css');
+$platform->addStyle('j2store-cart','/modules/mod_j2store_cart/css/j2store_cart.css');
 //$document->addScriptDeclaration($script);
 //$document->addStyleSheet(JUri::root().'modules/mod_j2store_cart/css/j2store_cart.css');
 $list = modJ2StoreCartHelper::getItems();
