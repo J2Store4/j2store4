@@ -347,6 +347,7 @@ class J2StorePluginBase extends \JPlugin
                 $data['success'] = false;
                 $data['message'] = JText::_('J2STORE_LICENSE_ACTIVATION_FAILED');
                 $data['response'] = $response;
+                $this->saveparams($plugin,$data);
                 echo json_encode($data);
                 exit;
             }
@@ -354,12 +355,14 @@ class J2StorePluginBase extends \JPlugin
                 $data['success'] = false;
                 $data['message'] = JText::_('J2STORE_LICENSE_INVALID');
                 $data['response'] = $response;
+                $this->saveparams($plugin,$data);
                 echo json_encode($data);
                 exit;
             }
             $data['success'] = true;
             $data['message'] = JText::_('J2STORE_LICENSE_ACTIVATED');
             $data['response'] = $response;
+            $this->saveparams($plugin,$data);
             echo json_encode($data);
             exit;
         }
@@ -391,6 +394,7 @@ class J2StorePluginBase extends \JPlugin
                 $data['success'] = false;
                 $data['message'] = JText::_('J2STORE_LICENSE_DEACTIVATION_FAILED');
                 $data['response'] = $response;
+                $this->saveparams($plugin,$data);
                 echo json_encode($data);
                 exit;
             }
@@ -398,12 +402,14 @@ class J2StorePluginBase extends \JPlugin
                 $data['success'] = false;
                 $data['message'] = JText::_('J2STORE_LICENSE_DEACTIVATION_FAILED');
                 $data['response'] = $response;
+                $this->saveparams($plugin,$data);
                 echo json_encode($data);
                 exit;
             }
             $data['success'] = true;
             $data['message'] = JText::_('J2STORE_LICENSE_DEACTIVATED');
             $data['response'] = $response;
+            $this->saveparams($plugin,$data);
             echo json_encode($data);
             exit;
         }
@@ -423,5 +429,22 @@ class J2StorePluginBase extends \JPlugin
         $query->select("*")->from('#__extensions')->where('extension_id=' . (int)$extension_id);
         $db->setQuery($query);
         return $db->loadObject();
+    }
+
+    function saveparams($plugin,$data){
+        $platform = J2Store::platform();
+        $app = $platform->application();
+        $post = $app->input->getArray($_POST);
+        $plugin_data = json_decode($plugin->params);
+        $response = $data['response'];
+        $plugin_data->license_key->license = is_array($post) && isset($post['license']) && !empty($post['license']) ? $post['license'] : '';
+        $plugin_data->license_key->status = is_array($response) && isset($response['success']) && !empty($response['success']) ? 'active' : 'in_active';
+        $plugin_data->license_key->expire = is_array($response) && isset($response['expires']) && !empty($response['expires']) ? $response['expires'] : '';
+        $save_params = $platform->getRegistry(json_encode($plugin_data));
+        $json = $save_params->toString ();
+        $db = JFactory::getDbo ();
+        $query = $db->getQuery ( true )->update ( $db->qn ( '#__extensions' ) )->set ( $db->qn ( 'params' ) . ' = ' . $db->q ( $json ) )->where ( $db->qn ( 'element' ) . ' = ' . $db->q ( $plugin->element ) )->where ( $db->qn ( 'folder' ) . ' = ' . $db->q ( 'j2store' ) )->where ( $db->qn ( 'type' ) . ' = ' . $db->q ( 'plugin' ) );
+        $db->setQuery ( $query );
+        $db->execute ();
     }
 }
