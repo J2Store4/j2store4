@@ -73,7 +73,7 @@ class J2StoreModelManufacturers extends F0FModel {
 
 	public function onBeforeSave(&$data, &$table){
         $address_id = isset( $table->j2store_address_id ) && !empty($table->j2store_address_id) ? $table->j2store_address_id : '';
-        $addressTable = F0FTable::getInstance('Address','J2storeTable');
+        $addressTable = F0FTable::getInstance('Address','J2storeTable')->getClone();
         $addressTable->load($address_id);
         $addressTable->save($data);
         $data['address_id'] = $addressTable->j2store_address_id;
