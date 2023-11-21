@@ -99,9 +99,8 @@ function doFlexiAjaxPrice(product_id, id) {
                         }
                     }
                     if(response.main_image){
-
-                        /*$product.find('.j2store-product-thumb-image-'+product_id).attr("src", response.main_image);
-                        j2store.jQuery('.j2store-product-thumb-image-'+product_id).attr("src", response.main_image);*/
+                        $product.find('.j2store-product-thumb-image-'+product_id).attr("src", response.thumb_image);
+                        j2store.jQuery('.j2store-product-thumb-image-'+product_id).attr("src", response.thumb_image);
                         j2store.jQuery('.j2store-product-main-image-'+product_id).attr("src", response.main_image);
                         $product.find('.j2store-mainimage .j2store-img-responsive').attr("src", response.main_image);
                         $product.find('.j2store-product-additional-images .additional-mainimage').attr("src", response.main_image);
