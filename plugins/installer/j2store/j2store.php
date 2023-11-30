@@ -20,8 +20,14 @@ class PlgInstallerJ2Store extends \Joomla\CMS\Plugin\CMSPlugin
                 $plugin = $this->getPlugin($type, $element);
                 if (is_object($plugin) && isset($plugin->params)) {
                     $params = new \Joomla\Registry\Registry($plugin->params);
-                    $license_key = (array)$params->get('license_key', '');
                     $is_free = $params->get('is_free',false);
+                    if (empty($is_free) && $plugin->type == 'module') {
+                        $moduleParams = json_decode($this->getModuleparams($plugin->element),true);
+                        $license_key = $moduleParams['license_key'];
+                    }
+                    else{
+                        $license_key = (array)$params->get('license_key', '');
+                    }
                     if($is_free){
                         $url = "https://github.com/j2store/".$element."/releases/download/stable/".$element.".zip";
                     }else{
@@ -55,5 +61,17 @@ class PlgInstallerJ2Store extends \Joomla\CMS\Plugin\CMSPlugin
 
         $db->setQuery($query);
         return $db->loadObject();
+    }
+     protected function getModuleparams($extension_name){
+        if (empty($extension_name)) {
+            return;
+        }
+        $db = \Joomla\CMS\Factory::getDbo();
+        $query = $db->getQuery(true);
+        $query->select("params")->from('#__modules')
+            ->where($db->qn('module') . ' = ' . $db->q($extension_name));
+        $db->setQuery($query);
+        $result = $db->loadObject();
+        return $result->params;
     }
 }
