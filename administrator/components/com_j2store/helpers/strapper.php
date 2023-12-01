@@ -117,7 +117,7 @@ class J2StoreStrapper {
             $platform->addScript('j2store-media-script','/media/j2store/js/bootstrap-modal-conflit.js');
             if($load_fancybox) {
                 $platform->addScript('j2store-fancybox-script',  '/media/j2store/js/jquery.fancybox.min.js');
-                $platform->addScript('j2store-document-script',  'jQuery(document).off("click.fb-start", "[data-trigger]");');
+                $platform->addInlineScript('jQuery(document).off("click.fb-start", "[data-trigger]");');
             }
 //			$document->addScript(JUri::root(true).'/media/j2store/js/jquery.zoom.js');
 //			$document->addScript(JURI::root(true).'/media/j2store/js/j2store.js');
