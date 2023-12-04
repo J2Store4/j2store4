@@ -25,13 +25,28 @@ class JFormFieldLicense extends \Joomla\CMS\Form\FormField
         $html .= '<input id="plugin_license_expire" type="hidden" name="' . $this->name . '[expire]" value="' . $expire . '">';
         $extension_id = (int)$app->input->get('extension_id', 0);
         $view = (string)$app->input->get('view', '');
-        $is_app_view = false ;
         $app_task = $app->input->get('appTask', 'apply');
+        $is_app_view = false ;
         if( $view == 'apps' && empty($extension_id) ){
             $extension_id = (int)$app->input->get('id', 0);
             $is_app_view =  true;
         }
-        $is_component_view = true ;
+        $is_report_view = false;
+        if ($view == 'report' && empty($extension_id)) {
+            $extension_id = (int)$app->input->get('id', 0);
+            $is_report_view = true;
+        }
+        $is_module_view = false;
+        if ($view == 'module' && empty($extension_id)) {
+            $extension_ids = (int)$app->input->get('id', 0);
+            $extension_name = $this->getModulename($extension_ids);
+            if ($extension_name) {
+                $extension_id = $this->getModuletId($extension_name);
+            }
+            $is_module_view = true;
+        }
+
+        $is_component_view = false ;
         if( $view == 'component' && empty($extension_id) ) {
             $extension_name = $app->input->get('component', '');
             $extension_id = $this->getComponentId($extension_name);
@@ -56,6 +71,9 @@ class JFormFieldLicense extends \Joomla\CMS\Form\FormField
             let extension_id = "' . $extension_id . '";          
             let is_app_view = "' . $is_app_view . '";           
             let is_component_view = "' . $is_component_view . '";
+            let is_module_view = "' . $is_module_view . '";
+            let is_report_view = "' . $is_report_view . '";
+             let app_task = "'.$app_task.'";
             jQuery.ajax({
 			    type : \'post\',
 			    url :  j2storeURL+\'index.php?option=com_ajax&format=json&group=j2store&plugin=activateLicence\',
@@ -68,8 +86,7 @@ class JFormFieldLicense extends \Joomla\CMS\Form\FormField
                         jQuery("#plugin_license_status").val("active");
                         jQuery("#plugin_license_expire").val(data.response.expires);
                         jQuery("#plugin_license_key").after(\'<span class="j2success">\'+data.message+\'</span>\')
-                        if(is_app_view){
-                             let app_task = "'.$app_task.'";
+                        if(is_app_view){                            
                              document.adminForm.task ="view";			   
                              document.getElementById("appTask").value = app_task;
                              Joomla.submitform("view");
@@ -78,7 +95,17 @@ class JFormFieldLicense extends \Joomla\CMS\Form\FormField
                             setTimeout(function (){
                                 jQuery("#plugin_license_key").closest("form").submit();
                             },1000)
-                        }else{
+                        }else if(is_module_view ){
+                             jQuery(\'input[name="task"]\').val("module.apply");
+                            setTimeout(function (){
+                                jQuery("#plugin_license_key").closest("form").submit();
+                            },1000)
+                        }else if(is_report_view ){                         
+                             document.adminForm.task ="view";			   
+                             document.getElementById("reportTask").value = app_task;
+                             Joomla.submitform("view");
+                        }
+                        else{
                              jQuery(\'input[name="task"]\').val("plugin.apply");
                             setTimeout(function (){
                                 jQuery("#plugin_license_key").closest("form").submit();
@@ -97,6 +124,9 @@ class JFormFieldLicense extends \Joomla\CMS\Form\FormField
             let extension_id = "' . $extension_id . '"; 
             let is_app_view = "' . $is_app_view . '";
             let is_component_view = "' . $is_component_view . '";
+            let is_module_view = "' . $is_module_view . '";
+            let is_report_view = "' . $is_report_view . '";
+            let app_task = "'.$app_task.'";
             jQuery.ajax({
 			    type : \'post\',
 		        url :  j2storeURL+\'index.php?option=com_ajax&format=json&group=j2store&plugin=deActivateLicence\',
@@ -109,8 +139,7 @@ class JFormFieldLicense extends \Joomla\CMS\Form\FormField
                         jQuery("#plugin_license_status").val("in_active");
                         jQuery("#plugin_license_expire").val("");
                         jQuery("#plugin_license_key").after(\'<span class="j2success">\'+data.message+\'</span>\')
-                        if(is_app_view){            
-                             let app_task = "'.$app_task.'";
+                        if(is_app_view){                                       
                              document.adminForm.task ="view";
 			                 document.getElementById("appTask").value = app_task;
                              Joomla.submitform("view");
@@ -119,7 +148,17 @@ class JFormFieldLicense extends \Joomla\CMS\Form\FormField
                             setTimeout(function (){
                                 jQuery("#plugin_license_key").closest("form").submit();
                             },1000)
-                        }else{
+                        }else if(is_module_view ){
+                             jQuery(\'input[name="task"]\').val("module.apply");
+                            setTimeout(function (){
+                                jQuery("#plugin_license_key").closest("form").submit();
+                            },1000)
+                        }else if(is_report_view ){                           
+                             document.adminForm.task ="view";			   
+                             document.getElementById("reportTask").value = app_task;
+                             Joomla.submitform("view");
+                        }
+                        else{
                             jQuery(\'input[name="task"]\').val("plugin.apply");
                             setTimeout(function (){
                                 jQuery("#plugin_license_key").closest("form").submit();
@@ -134,18 +173,6 @@ class JFormFieldLicense extends \Joomla\CMS\Form\FormField
         return $html;
     }
 
-    function getPluginData($extension_id)
-    {
-        if ($extension_id <= 0) {
-            return;
-        }
-        $db = \Joomla\CMS\Factory::getDbo();
-        $query = $db->getQuery(true);
-        $query->select("*")->from('#__extensions')->where('extension_id=' . (int)$extension_id);
-        $db->setQuery($query);
-        return $db->loadObject();
-    }
-
     function getComponentId($extension_name){
         if (empty($extension_name)) {
             return;
@@ -158,6 +185,28 @@ class JFormFieldLicense extends \Joomla\CMS\Form\FormField
         $result = $db->loadObject();
         return $result->extension_id;
     }
-
-
+    function getModulename($extension_ids){
+        if (empty($extension_ids)) {
+            return;
+        }
+        $db = \Joomla\CMS\Factory::getDbo();
+        $query = $db->getQuery(true);
+        $query->select("module")->from('#__modules')
+            ->where($db->qn('id') . ' = ' . $db->q($extension_ids));
+        $db->setQuery($query);
+        $result = $db->loadObject();
+        return $result->module;
+    }
+    function getModuletId($extension_name){
+        if (empty($extension_name)) {
+            return;
+        }
+        $db = \Joomla\CMS\Factory::getDbo();
+        $query = $db->getQuery(true);
+        $query->select("extension_id")->from('#__extensions')
+            ->where($db->qn('element') . ' = ' . $db->q($extension_name));
+        $db->setQuery($query);
+        $result = $db->loadObject();
+        return $result->extension_id;
+    }
 }
