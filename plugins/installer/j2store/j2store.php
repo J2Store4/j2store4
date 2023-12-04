@@ -22,8 +22,15 @@ class PlgInstallerJ2Store extends \Joomla\CMS\Plugin\CMSPlugin
                     $params = new \Joomla\Registry\Registry($plugin->params);
                     $is_free = $params->get('is_free',false);
                     if (empty($is_free) && $plugin->type == 'module') {
-                        $moduleParams = json_decode($this->getModuleparams($plugin->element),true);
-                        $license_key = $moduleParams['license_key'];
+                        $moduleParams = $this->getModuleParams($plugin->element);
+                        $license_key = '';
+                        if (!empty($moduleParams)) {
+                            $moduleParamsArray = json_decode($moduleParams, true);
+
+                            if (isset($moduleParamsArray['license_key'])) {
+                                $license_key = $moduleParamsArray['license_key'];
+                            }
+                        }
                     }
                     else{
                         $license_key = (array)$params->get('license_key', '');
