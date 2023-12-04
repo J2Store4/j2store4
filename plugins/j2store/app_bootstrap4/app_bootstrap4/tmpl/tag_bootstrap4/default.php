@@ -91,7 +91,7 @@ $filter_position = $this->params->get('list_filter_position', 'right');
 													?>
                                                     <!-- QUICK VIEW OPTION -->
                                                     <?php if($this->params->get('list_enable_quickview',0)):?>
-                                                        <a data-fancybox data-type="iframe" class="btn btn-default" data-src="<?php echo JRoute::_('index.php?option=com_j2store&view=producttags&task=view&id='.$this->product->j2store_product_id.'&tmpl=component'); ?>" href="javascript:;">
+                                                        <a data-fancybox data-type="iframe" class="btn btn-default" data-src="<?php echo $platform->getProductUrl(array('task' => 'view', 'id' => $this->product->j2store_product_id,'tmpl' => 'component'),true); ?>" href="javascript:;">
                                                             <i class="fa fa-eye"></i> <?php echo JText::_('J2STORE_PRODUCT_QUICKVIEW');?>
                                                         </a>
                                                     <?php endif;?>
@@ -104,7 +104,7 @@ $filter_position = $this->params->get('list_filter_position', 'right');
 							<?php // endif; ?>
 						<?php endforeach;?>
 
-					<form id="j2store-pagination" name="j2storepagination" action="<?php echo  $platform->getProductUrl(array('filter_catid' => $this->filter_catid,'Itemid' => $item_id)); ?>" method="post">
+					<form id="j2store-pagination" name="j2storepagination" action="<?php echo  $platform->getProductUrl(array('filter_catid' => $this->filter_catid,'Itemid' => $item_id),true); ?>" method="post">
 						<?php echo J2Html::hidden('option','com_j2store');?>
 						<?php echo J2Html::hidden('view','producttags');?>
 						<?php echo J2Html::hidden('task','browse',array('id'=>'task'));?>

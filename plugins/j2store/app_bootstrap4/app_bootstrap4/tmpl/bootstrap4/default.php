@@ -78,7 +78,7 @@ $filter_position = $this->params->get('list_filter_position', 'right');
 											<div class="col-sm-<?php echo round((12 / $col));?>">
 												<div class="j2store-single-product multiple j2store-single-product-<?php echo $product->j2store_product_id; ?> product-<?php echo $product->j2store_product_id; ?> pcolumn-<?php echo $rowcount;?>  <?php echo $product->params->get('product_css_class','');?>">
 													<?php $this->product = $product;
-                                                    $this->product_link = $this->product->product_link = $platform->getProductUrl(array('task' => 'view', 'id' => $this->product->j2store_product_id,'Itemid' => $item_id),true);
+                                                    $this->product_link = $this->product->product_link = $platform->getProductUrl(array('task' => 'view', 'id' => $this->product->j2store_product_id,'Itemid' => $item_id));
 													?>
 													<?php
 													try {
@@ -93,7 +93,7 @@ $filter_position = $this->params->get('list_filter_position', 'right');
 													?>
 														<!-- QUICK VIEW OPTION -->
                                                     <?php if($this->params->get('list_enable_quickview',0)):?>
-                                                        <a data-fancybox data-type="iframe" class="btn btn-default" data-src="<?php echo JRoute::_('index.php?option=com_j2store&view=products&task=view&id='.$this->product->j2store_product_id.'&tmpl=component'); ?>" href="javascript:;">
+                                                        <a data-fancybox data-type="iframe" class="btn btn-default" data-src="<?php echo $platform->getProductUrl(array('task' => 'view', 'id' => $this->product->j2store_product_id,'tmpl' => 'component')); ?>" href="javascript:;">
                                                             <i class="fa fa-eye"></i> <?php echo JText::_('J2STORE_PRODUCT_QUICKVIEW');?>
                                                         </a>
                                                     <?php endif;?>

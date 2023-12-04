@@ -106,7 +106,7 @@ $filter_position = $this->params->get('list_filter_position', 'right');
 							<?php // endif; ?>
 						<?php endforeach;?>
 
-					<form id="j2store-pagination" name="j2storepagination" action="<?php echo  $platform->getProductUrl(array('filter_tag' => $this->filter_tag,'Itemid' => $item_id),false); ?>" method="post">
+					<form id="j2store-pagination" name="j2storepagination" action="<?php echo  $platform->getProductUrl(array('filter_tag' => $this->filter_tag,'Itemid' => $item_id),true); ?>" method="post">
 						<?php echo J2Html::hidden('option','com_j2store');?>
 						<?php echo J2Html::hidden('view','producttags');?>
 						<?php echo J2Html::hidden('task','browse',array('id'=>'task'));?>
