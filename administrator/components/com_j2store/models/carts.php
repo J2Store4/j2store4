@@ -637,8 +637,8 @@ class J2StoreModelCarts extends F0FModel {
 				$jlang->load('com_media', $paths[1], null, true);
 
                 // This is the latest Joomla 4 helper class.
-                $Fileupload= new Joomla\CMS\Helper\MediaHelper;
-                if (!$Fileupload->canUpload($file))
+                $fileUpload= new Joomla\CMS\Helper\MediaHelper;
+                if (!$fileUpload->canUpload($file))
                 {
 					if (!empty($err))
 					{
