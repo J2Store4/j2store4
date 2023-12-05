@@ -13,9 +13,9 @@ class PlgInstallerJ2Store extends \Joomla\CMS\Plugin\CMSPlugin
         $domain = 'j2store.org';
         if (strpos($url, $domain) !== false) {
             $element = substr(substr($url, strrpos($url, "/") + 1), 0, -4);
-            $pathSegments = explode('/', parse_url($url, PHP_URL_PATH));
-            $position =  array_search($domain, $pathSegments);
-            $type = $pathSegments[$position + 1];
+            $path_segments = explode('/', parse_url($url, PHP_URL_PATH));
+            $position =  array_search($domain, $path_segments);
+            $type = $path_segments[$position + 1];
             if (!empty($type) && !empty($element)) {
                 $plugin = $this->getPlugin($type, $element);
                 if (is_object($plugin) && isset($plugin->params)) {
@@ -25,10 +25,10 @@ class PlgInstallerJ2Store extends \Joomla\CMS\Plugin\CMSPlugin
                         $module_params = $this->getModuleParams($plugin->element);
                         $license_key = '';
                         if (!empty($module_params)) {
-                            $module_paramsarray = json_decode($module_params, true);
+                            $module_params_array = json_decode($module_params, true);
 
-                            if (isset($module_paramsarray['license_key'])) {
-                                $license_key = $module_paramsarray['license_key'];
+                            if (isset($module_params_array['license_key'])) {
+                                $license_key = $module_params_array['license_key'];
                             }
                         }
                     }
@@ -38,11 +38,11 @@ class PlgInstallerJ2Store extends \Joomla\CMS\Plugin\CMSPlugin
                     if($is_free){
                         $url = "https://github.com/j2store/".$element."/releases/download/stable/".$element.".zip";
                     }else{
-                        $baseURL = str_replace('/administrator', '', JURI::base());
+                        $base_url = str_replace('/administrator', '', JURI::base());
                         $api_params = array(
                             'edd_action' => 'get_version',
                             'license' => is_array($license_key) && isset($license_key['license']) && !empty($license_key['license']) ? $license_key['license'] : '',
-                            'url' => $baseURL,
+                            'url' => $base_url,
                             'element' => $element
                         );
                         require_once(JPATH_ADMINISTRATOR . '/components/com_j2store/helpers/license.php');
