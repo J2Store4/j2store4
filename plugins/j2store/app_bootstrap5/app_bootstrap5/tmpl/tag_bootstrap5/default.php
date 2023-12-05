@@ -12,11 +12,11 @@ $platform = J2Store::platform();
 $platform->addScript('j2store-filter','/media/j2store/js/filter.js');
 $url_params = array();
 $item_id = '';
-$active_link = $platform->getProductUrl($url_params);
+$active_link = $platform->getProductUrl($url_params,true);
 if(isset($this->active_menu->id)){
     $item_id = $this->active_menu->id;
     $url_params['Itemid'] = $this->active_menu->id;
-    $active_link = $platform->getProductUrl($url_params);
+    $active_link = $platform->getProductUrl($url_params,true);
 }
 $actionURL = $active_link;
 $filter_position = $this->params->get('list_filter_position', 'right');
