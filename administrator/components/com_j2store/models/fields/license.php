@@ -25,7 +25,9 @@ class JFormFieldLicense extends \Joomla\CMS\Form\FormField
         $html .= '<input id="plugin_license_expire" type="hidden" name="' . $this->name . '[expire]" value="' . $expire . '">';
         $extension_id = (int)$app->input->get('extension_id', 0);
         $view = (string)$app->input->get('view', '');
-        $app_task = $app->input->get('appTask', 'apply');
+        $custom_task = (string)$app->input->get('customTask', '');
+        $app_task = !empty($custom_task) ? $custom_task : $app->input->get('appTask', 'apply');
+
         $is_app_view = false ;
         if( $view == 'apps' && empty($extension_id) ){
             $extension_id = (int)$app->input->get('id', 0);
