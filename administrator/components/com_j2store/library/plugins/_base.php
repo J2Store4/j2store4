@@ -418,7 +418,17 @@ class J2StorePluginBase extends \JPlugin
         echo json_encode($data);
         exit;
     }
-
+    function getModuleParam($extension_name){
+        if (empty($extension_name)) {
+            return;
+        }
+        $db = \Joomla\CMS\Factory::getDbo();
+        $query = $db->getQuery(true);
+        $query->select("*")->from('#__modules')
+            ->where($db->qn('module') . ' = ' . $db->q($extension_name));
+        $db->setQuery($query);
+        return $db->loadObject();
+    }
     function getPluginData($extension_id)
     {
         if ($extension_id <= 0) {
@@ -435,15 +445,26 @@ class J2StorePluginBase extends \JPlugin
         $platform = J2Store::platform();
         $app = $platform->application();
         $post = $app->input->getArray($_POST);
-        $plugin_data = json_decode($plugin->params);
+        $is_module=false;
+        if(is_object($plugin) && $plugin->type == 'module'){
+            $plugin=$this->getModuleParam($plugin->element);
+            $is_module=true;
+        }
+        $plugin_data = (is_object($plugin) && $plugin) ? json_decode($plugin->params) : '';
         $response = $data['response'];
-        $plugin_data->license_key->license = is_array($post) && isset($post['license']) && !empty($post['license']) ? $post['license'] : '';
-        $plugin_data->license_key->status = is_array($response) && isset($response['success']) && !empty($response['success']) ? 'active' : 'in_active';
-        $plugin_data->license_key->expire = is_array($response) && isset($response['expires']) && !empty($response['expires']) ? $response['expires'] : '';
-        $save_params = $platform->getRegistry(json_encode($plugin_data));
-        $json = $save_params->toString ();
+        if(is_object($plugin_data) && isset($plugin_data->license_key)){
+            $plugin_data->license_key->license = is_array($post) && isset($post['license']) && !empty($post['license']) ? $post['license'] : '';
+            $plugin_data->license_key->status = is_array($response) && isset($response['success']) && !empty($response['success']) ? 'active' : 'in_active';
+            $plugin_data->license_key->expire = is_array($response) && isset($response['expires']) && !empty($response['expires']) ? $response['expires'] : '';
+            $save_params = $platform->getRegistry(json_encode($plugin_data));
+            $json = $save_params->toString();
+        }
         $db = JFactory::getDbo ();
-        $query = $db->getQuery ( true )->update ( $db->qn ( '#__extensions' ) )->set ( $db->qn ( 'params' ) . ' = ' . $db->q ( $json ) )->where ( $db->qn ( 'element' ) . ' = ' . $db->q ( $plugin->element ) )->where ( $db->qn ( 'folder' ) . ' = ' . $db->q ( 'j2store' ) )->where ( $db->qn ( 'type' ) . ' = ' . $db->q ( 'plugin' ) );
+        if($is_module){
+            $query = $db->getQuery(true)->update($db->qn('#__modules'))->set($db->qn('params') . ' = ' . $db->q($json))->where($db->qn('id') . ' = ' . $db->q($plugin->id))->where($db->qn('module') . ' = ' . $db->q($plugin->element));
+        }else{
+            $query = $db->getQuery ( true )->update ( $db->qn ( '#__extensions' ) )->set ( $db->qn ( 'params' ) . ' = ' . $db->q ( $json ) )->where ( $db->qn ( 'element' ) . ' = ' . $db->q ( $plugin->element ) )->where ( $db->qn ( 'folder' ) . ' = ' . $db->q ( 'j2store' ) )->where ( $db->qn ( 'type' ) . ' = ' . $db->q ( 'plugin' ) );
+        }
         $db->setQuery ( $query );
         $db->execute ();
     }
