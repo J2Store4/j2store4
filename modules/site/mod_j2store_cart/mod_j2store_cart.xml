@@ -82,7 +82,7 @@
             
             <field name="minicart" type="customheading" label="J2STORE_CART_FOR_MINICART" addfieldpath="administrator/components/com_j2store/models/fields"/>
             
-            <field name="minicart_cart_icon_class" type="text" default="fa fa-shoppingcart" label="J2STORE_CART_MINICART_ICON_CLASS" description="J2STORE_CART_MINICART_ICON_CLASS_DESC" />
+            <field name="minicart_cart_icon_class" type="text" default="fa fa-shopping-cart" label="J2STORE_CART_MINICART_ICON_CLASS" description="J2STORE_CART_MINICART_ICON_CLASS_DESC" />
             
             
             <field name="commonforall" type="customheading" label="J2STORE_COMMON_FOR_ALL" addfieldpath="administrator/components/com_j2store/models/fields"/>
