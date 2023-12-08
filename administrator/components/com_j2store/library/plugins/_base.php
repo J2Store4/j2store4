@@ -427,8 +427,7 @@ class J2StorePluginBase extends \JPlugin
         $query->select("*")->from('#__modules')
             ->where($db->qn('module') . ' = ' . $db->q($extension_name));
         $db->setQuery($query);
-        $result = $db->loadObject();
-        return $result;
+        return $db->loadObject();
     }
     function getPluginData($extension_id)
     {
