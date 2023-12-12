@@ -99,7 +99,7 @@ class JFormFieldJ2Store extends JFormField
                                $('#myTab button[aria-controls]').attr('aria-expanded','false');
                                $('#myTab joomla-tab-element[role=\"tabpanel\"]').removeAttrs('active');
                                $('#myTab #'+activeTab).attr('active','');
-                               $('#myTab button[aria-controls=\"'+activeTab+'\"').attr('aria-expanded','true');
+                               $('#myTab button[aria-controls=\"'+activeTab+'\"]').attr('aria-expanded','true');
                             }
                             if(activeTab === 'attrib-j2store'){
                                 let j2tabContainer = document.getElementById('j2storetab');
@@ -120,7 +120,7 @@ class JFormFieldJ2Store extends JFormField
                                     $('#j2storetab button[aria-controls]').attr('aria-expanded','false');
                                     $('#j2storetab joomla-tab-element[role=\"tab\"]').removeAttrs('active');
                                     $('#j2storetab #'+j2store_active_tab).attr('active','');
-                                    $('#j2storetab button[aria-controls=\"'+j2store_active_tab+'\"').attr('aria-expanded','true');
+                                    $('#j2storetab button[aria-controls=\"'+j2store_active_tab+'\"]').attr('aria-expanded','true');
                                 }
                             }
                         }

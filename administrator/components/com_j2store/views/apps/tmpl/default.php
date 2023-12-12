@@ -178,7 +178,7 @@ if (version_compare(JVERSION, '3.99.99', 'lt')) {
                                         with J2Store.
                                     </p>
                                     <a target="_blank" class="app-button app-button-open j2-flat-button"
-                                       href="<?php echo J2Store::buildHelpLink('extensions/apps.html', 'apps'); ?>"><?php echo JText::_('J2STORE_GET_MORE_APPS'); ?></a>
+                                       href="https://www.j2store.org/downloads/category/apps/"><?php echo JText::_('J2STORE_GET_MORE_APPS'); ?></a>
                                 </div>
                             </div>
                         </div>

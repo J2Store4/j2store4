@@ -12,20 +12,37 @@ class PlgInstallerJ2Store extends \Joomla\CMS\Plugin\CMSPlugin
     {
         $domain = 'j2store.org';
         if (strpos($url, $domain) !== false) {
-            if (stripos($url, '/plugin/') !== false) {
-                $element = substr(substr($url, strrpos($url, "/") + 1), 0, -4);
-                $folder = substr($url, strpos($url, '/plugin/') + 8);
-                $type = substr($folder, 0, strpos($folder, '/' . $element));
-                if (!empty($type) && !empty($element)) {
-                    $plugin = $this->getPlugin($type, $element);
-                    if (is_object($plugin) && isset($plugin->params)) {
-                        $params = new \Joomla\Registry\Registry($plugin->params);
+            $element = substr(substr($url, strrpos($url, "/") + 1), 0, -4);
+            $path_segments = explode('/', parse_url($url, PHP_URL_PATH));
+            $position =  array_search($domain, $path_segments);
+            $type = $path_segments[$position + 1];
+            if (!empty($type) && !empty($element)) {
+                $plugin = $this->getPlugin($type, $element);
+                if (is_object($plugin) && isset($plugin->params)) {
+                    $params = new \Joomla\Registry\Registry($plugin->params);
+                    $is_free = $params->get('is_free',false);
+                    if (empty($is_free) && $plugin->type == 'module') {
+                        $module_params = $this->getModuleParams($plugin->element);
+                        $license_key = '';
+                        if (!empty($module_params)) {
+                            $module_params_array = json_decode($module_params, true);
+
+                            if (isset($module_params_array['license_key'])) {
+                                $license_key = $module_params_array['license_key'];
+                            }
+                        }
+                    }
+                    else{
                         $license_key = (array)$params->get('license_key', '');
-                        $baseURL = str_replace('/administrator', '', JURI::base());
+                    }
+                    if($is_free){
+                        $url = "https://github.com/j2store/".$element."/releases/download/stable/".$element.".zip";
+                    }else{
+                        $base_url = str_replace('/administrator', '', JURI::base());
                         $api_params = array(
                             'edd_action' => 'get_version',
                             'license' => is_array($license_key) && isset($license_key['license']) && !empty($license_key['license']) ? $license_key['license'] : '',
-                            'url' => $baseURL,
+                            'url' => $base_url,
                             'element' => $element
                         );
                         require_once(JPATH_ADMINISTRATOR . '/components/com_j2store/helpers/license.php');
@@ -46,10 +63,22 @@ class PlgInstallerJ2Store extends \Joomla\CMS\Plugin\CMSPlugin
         }
         $db = \Joomla\CMS\Factory::getDbo();
         $query = $db->getQuery(true);
-        $query->select("*")->from('#__extensions')->where('folder=' . $db->q($type))
+        $query->select("*")->from('#__extensions')->where('type=' . $db->q($type))
             ->where('element=' . $db->q($element));
 
         $db->setQuery($query);
         return $db->loadObject();
+    }
+     protected function getModuleparams($extension_name){
+        if (empty($extension_name)) {
+            return;
+        }
+        $db = \Joomla\CMS\Factory::getDbo();
+        $query = $db->getQuery(true);
+        $query->select("params")->from('#__modules')
+            ->where($db->qn('module') . ' = ' . $db->q($extension_name));
+        $db->setQuery($query);
+        $result = $db->loadObject();
+        return $result->params;
     }
 }
