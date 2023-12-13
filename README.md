@@ -10,7 +10,7 @@ This program is distributed in the hope that it will be useful, but WITHOUT ANY 
 
 You should have received [a copy of the GNU General Public License](LICENSE.txt) along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-# Free Software does not mean free-of-charge services
+## Free Software does not mean free-of-charge services
 
 Our software is like a free spirit - it's all about the freedom to choose, not about being free of cost. Using our software doesn't mean we're tied at the hip or that you get VIP treatment. It's a no-strings-attached kind of deal. You're free to use it, and we're here to share it. Fair and square.
 
@@ -37,7 +37,7 @@ J2Store is licensed under the GPLv3+, and all contributions to the project will 
 
 Kindly note that whether any requested features will be implemented is up to our sole discretion.
 
-# Disclaimer
+## Disclaimer
 
 This software provided under the GPL license are offered on an "as-is" and "as-available" basis without any warranties of any kind, either expressed or implied.  
 
