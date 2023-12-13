@@ -36,3 +36,11 @@ Please fork J2Store repo, commit your changes, and submit a pull request.
 J2Store is licensed under the GPLv3+, and all contributions to the project will be released under the same license. You maintain copyright over any contribution you make, and by submitting a pull request, you are agreeing to release that contribution under the GPLv3+ license.
 
 Kindly note that whether any requested features will be implemented is up to our sole discretion.
+
+# Disclaimer
+
+This software provided under the GPL license are offered on an "as-is" and "as-available" basis without any warranties of any kind, either expressed or implied.  
+
+The user acknowledges and agrees that the entire risk arising out of the use or performance of the software remains solely with the user. In no event shall the provider of these software be liable for any issues pertaining to the availability, functionality, or quality of the software provided.
+
+In the event that the software are found to be inefficient, unsuitable, or defective in any way, the user assumes full responsibility for all necessary costs and actions required to remedy such issues. The provider of these software shall not be held responsible for any direct, indirect, incidental, special, consequential, or exemplary damages, including but not limited to, damages for loss of profits, goodwill, use, data or other intangible losses (even if the provider has been advised of the possibility of such damages), resulting from the use or inability to use the software.
