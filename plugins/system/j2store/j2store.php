@@ -95,9 +95,9 @@ class plgSystemJ2Store extends JPlugin {
                 F0FModel::getTmpInstance ( 'Coupons', 'J2StoreModel' )->set_coupon($coupon);
             }
 		}
-        $post = $app->input->getArray($_REQUEST);
-		$is_change_filter_input = $this->params->get('is_change_filter_input',1);
-        if($is_change_filter_input && $app->isClient('administrator') && isset($post['option']) && $post['option'] == 'com_j2store'){
+        $option = $app->input->getString('option','');
+        $is_change_filter_input = $this->params->get('is_change_filter_input',1);
+        if($is_change_filter_input && $app->isClient('administrator') && !empty($option) && $option == 'com_j2store'){
             $script = "
             jQuery(document).on('ready',function(){
                 jQuery('#adminForm input[name=\"filter_order\"').attr('name','sort_order');
@@ -152,14 +152,18 @@ class plgSystemJ2Store extends JPlugin {
 	public function onAfterInitialise()
 	{
         $app = JFactory::getApplication();
-        $post = $app->input->getArray($_REQUEST);
+        $option = $app->input->getString('option','');
         $is_change_filter_input = $this->params->get('is_change_filter_input',1);
-        if($is_change_filter_input && $app->isClient('administrator') && isset($post['option']) && $post['option'] == 'com_j2store'){
-            foreach ($post as $key => $value){
-                if($key == 'sort_order' || $key == 'sort_order_Dir'){
-                    $new_key = str_replace('sort','filter',$key);
-                    $app->input->set($new_key,$value);
-                }
+        if($is_change_filter_input && $app->isClient('administrator') && !empty($option) && $option == 'com_j2store'){
+            $sort_key = $app->input->get('sort_order','');
+            $sort_order_dir = $app->input->get('sort_order_Dir','');
+            if(!empty($sort_key)){
+                $new_key = str_replace('sort','filter','sort_order');
+                $app->input->set($new_key,$sort_key);
+            }
+            if(!empty($sort_order_dir)){
+                $new_key = str_replace('sort','filter','sort_order_Dir');
+                $app->input->set($new_key,$sort_order_dir);
             }
         }
 
