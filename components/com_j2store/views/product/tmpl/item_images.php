@@ -81,7 +81,7 @@ $platform = J2Store::platform();
                 <div class="j2store-product-additional-images">
                     <ul class="additional-image-list">
                         <?php
-                        $additional_images = json_decode($this->product->additional_images);
+                        $additional_images = json_decode($this->product->additional_images,true);
                         if (isset($additional_images) && count($additional_images)):
                             $additional_images_alt = json_decode($this->product->additional_images_alt, true);
                             foreach ($additional_images as $key => $image):
