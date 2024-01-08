@@ -414,7 +414,8 @@ class J2StoreModelOrders extends F0FModel {
         }
         $tz = JFactory::getConfig()->get('offset');
 		//since
-		$since = trim($state->since);
+        $since = $state->since !== null ? trim($state->since) : 0;
+
 		if(empty($since) || ($since == '0000-00-00') || ($since == '0000-00-00 00:00:00')) {
 			$since = '';
 		} else {
@@ -431,7 +432,8 @@ class J2StoreModelOrders extends F0FModel {
 		}
 
 		// "Until" queries
-		$until = trim($state->until);
+        $until = $state->until !== null ? trim($state->until) : 0;
+
 		if(empty($until) || ($until == '0000-00-00') || ($until == '0000-00-00 00:00:00')) {
 			$until = '';
 		} else {
