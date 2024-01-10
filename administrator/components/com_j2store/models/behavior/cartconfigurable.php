@@ -57,7 +57,7 @@ class J2StoreModelCartsBehaviorCartConfigurable extends F0FModelBehavior {
 						{
 							foreach($child as $index => $attr){
 									
-								if(count($attr['optionvalue']) > 0 && $attr['required'] && !array_key_exists($attr['productoption_id'],$options)) // if optionvalue exist or not. then only display form.otherwise form display only heading without option name
+								if(is_array($attr['optionvalue']) && count($attr['optionvalue']) > 0 && $attr['required'] && !array_key_exists($attr['productoption_id'],$options)) // if optionvalue exist or not. then only display form.otherwise form display only heading without option name
 								{
 									array_push($ommit_check,$attr['productoption_id']);
 								}
@@ -71,7 +71,7 @@ class J2StoreModelCartsBehaviorCartConfigurable extends F0FModelBehavior {
 					{		
 						foreach($child as $index => $attr){
 			
-							if(count($attr['optionvalue']) > 0 && $attr['required'] && !array_key_exists($attr['productoption_id'],$options)) // if optionvalue exist or not. then only display form.otherwise form display only heading without option name
+							if(is_array($attr['optionvalue']) && count($attr['optionvalue']) > 0 && $attr['required'] && !array_key_exists($attr['productoption_id'],$options)) // if optionvalue exist or not. then only display form.otherwise form display only heading without option name
 							{
 								array_push($ommit_check,$attr['productoption_id']);
 							}
@@ -203,7 +203,7 @@ class J2StoreModelCartsBehaviorCartConfigurable extends F0FModelBehavior {
 	
 		//get the quantity difference. Because we are going to check the total quantity
 		$difference_qty = $quantity - $cartitem->product_qty;
-	
+
 		//validate minimum / maximum quantity
 		$error = $product_helper->validateQuantityRestriction($variant , $cart_total_qty, $difference_qty);
 		if(!empty($error)) {
@@ -215,7 +215,7 @@ class J2StoreModelCartsBehaviorCartConfigurable extends F0FModelBehavior {
 			$errors[] = JText::_('J2STORE_OUT_OF_STOCK');
 		}
 	
-		if(count($errors)) {
+		if(is_array($errors) && count($errors)) {
 			throw new Exception(implode('/n', $errors));
 			return false;
 		}
