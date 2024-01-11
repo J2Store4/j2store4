@@ -37,13 +37,13 @@ class J2StoreModelShippingMethods extends F0FModel
 	protected function _buildQueryWhere($query)
 	{
         $filter         = $this->getState('filter') !== null ? $this->getState('filter') : '';
-        $filter_id_from = $this->getState('filter_id_from') !== null ? $this->getState('filter_id_from') : 0;
-        $filter_id_to   = $this->getState('filter_id_to') !== null ? $this->getState('filter_id_to'): 0;
+        $filter_id_from = $this->getState('filter_id_from') !== null ? $this->getState('filter_id_from') : '';
+        $filter_id_to   = $this->getState('filter_id_to') !== null ? $this->getState('filter_id_to'): '';
         $filter_name    = $this->getState('filter_name')!== null ? $this->getState('filter_name') :'';
-        $filter_enabled = $this->getState('filter_enabled')!== null ? $this->getState('filter_enabled') : 0;
+        $filter_enabled = $this->getState('filter_enabled')!== null ? $this->getState('filter_enabled') : '';
         $filter_taxclass = $this->getState('filter_taxclass') !== null ? $this->getState('filter_taxclass'):'' ;
         $filter_shippingtype = $this->getState('filter_shippingtype') !== null ? $this->getState('filter_shippingtype') :'';
-        $filter_subtotal = $this->getState('filter_subtotal') !==null ? $this->getState('filter_subtotal'): 0 ;
+        $filter_subtotal = $this->getState('filter_subtotal') !==null ? $this->getState('filter_subtotal'): '' ;
 
 		if ($filter)
 		{
