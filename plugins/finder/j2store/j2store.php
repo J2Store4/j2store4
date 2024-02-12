@@ -398,7 +398,6 @@ class PlgFinderJ2Store extends FinderIndexerAdapter
 			// Build the necessary route and path information.
 			$item->url = $this->getURL($item->id, $this->extension, $this->layout);
 			$item->route = ContentHelperRoute::getArticleRoute($item->slug, $item->catslug, $item->language);
-			$item->path = FinderIndexerHelper::getContentPath($item->route);
 		}else{
 			$menu_id =  $this->params->get('menuitem_id');
 			require_once(JPATH_ADMINISTRATOR.'/components/com_j2store/helpers/router.php');
@@ -412,10 +411,8 @@ class PlgFinderJ2Store extends FinderIndexerAdapter
 			$menu_id = isset($pro_menu->id) ? $pro_menu->id : $menu_id;
 			$item->url =  $this->getJ2StoreURL($item->j2store_product_id, $this->extension, $this->layout);
 			$item->route = 'index.php?option=com_j2store&view=products&task=view&id='.$item->j2store_product_id.'&Itemid='.$menu_id;
-			$item->path = FinderIndexerHelper::getContentPath($item->route);
 
 		}
-
 
 		// Get the menu title if it exists.
 		$title = $this->getItemMenuTitle($item->url);
