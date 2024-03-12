@@ -505,14 +505,15 @@ class J2StoreControllerMyProfile extends F0FController
 
 		//check token
         JSession::checkToken() or jexit('Invalid Token');
-		$app = JFactory::getApplication();
-		$post = $app->input->getArray($_REQUEST);
+		//$app = JFactory::getApplication();
+		//$post = $app->input->getArray($_REQUEST);
+        $platform= J2Store::platform();
 		$email = $this->input->getString('email', '');
 		$token = $this->input->getString('order_token', '');
         $link = J2Store::platform()->getMyprofileUrl();//JRoute::_('index.php?option=com_j2store&view=myprofile');
 		if(empty($email) || empty($token)) {
 			$msg = JText::_('J2STORE_ORDERS_GUEST_VALUES_REQUIRED');
-			$app->redirect($link, $msg);
+            $platform->redirect($link, $msg);
 		}
 
 		//checks
@@ -522,14 +523,14 @@ class J2StoreControllerMyProfile extends F0FController
 
 		} else {
 			$msg = JText::_('J2STORE_ORDERS_GUEST_INVALID_EMAIL');
-			$app->redirect($link, $msg);
+            $platform->redirect($link, $msg);
 		}
 
 		if(F0FTable::getInstance('Order', 'J2StoreTable')->load(array('token'=>$token, 'user_email'=>$email))) {
 			$session->set('guest_order_token', $token, 'j2store');
 		} else {
 			$msg = JText::_('J2STORE_ORDERS_GUEST_INVALID_TOKEN');
-			$app->redirect($link, $msg);
+            $platform->redirect($link, $msg);
 		}
 		$this->setRedirect($link);
 		return;
