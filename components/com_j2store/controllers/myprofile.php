@@ -493,7 +493,7 @@ class J2StoreControllerMyProfile extends F0FController
 			}
 			// if its guest
 		} elseif($guest_token && $guest_order_email) {
-			if(($order->user_email == $guest_order_email) && ($order->token == $guest_token)) {
+			if((trim($order->user_email) == $guest_order_email) && (trim($order->token) == $guest_token)) {
 				$status = true;
 			}
 		}
