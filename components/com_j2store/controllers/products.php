@@ -232,7 +232,7 @@ class J2StoreControllerProducts extends J2StoreControllerProductsBase
 		$uri = JURI::getInstance();
 		$document->setMetaData('og:title', $document->getTitle(),'property');
 		$document->setMetaData('og:site_name', $app->get('sitename'),'property');
-        $document->setMetaData('og:description', $document->getDescription() !== null ? strip_tags($document->getDescription()):'','property');
+        $document->setMetaData('og:description', !empty($document->getDescription()) ? strip_tags($document->getDescription()) : '','property');
 		$document->setMetaData('og:url', $uri->toString(),'property');
 		$document->setMetaData('og:type', 'product.group','property');
 
