@@ -467,15 +467,7 @@ class PlgFinderJ2Store extends FinderIndexerAdapter
 
     protected function getContentPath($url)
     {
-        static $router;
-
-        // Only get the router once.
-        if (!($router instanceof JRouter))
-        {
-            // Get and configure the site router.
-            $router = JRouter::getInstance('site');
-        }
-
+        $router = JRouter::getInstance('site');
         // Build the relative route.
         $uri   = $router->build($url);
         $route = $uri->toString(array('path', 'query', 'fragment'));
