@@ -398,7 +398,7 @@ class PlgFinderJ2Store extends FinderIndexerAdapter
 			// Build the necessary route and path information.
 			$item->url = $this->getURL($item->id, $this->extension, $this->layout);
 			$item->route = ContentHelperRoute::getArticleRoute($item->slug, $item->catslug, $item->language);
-			$item->path = FinderIndexerHelper::getContentPath($item->route);
+            $item->path = $this->getContentPath($item->route);
 		}else{
 			$menu_id =  $this->params->get('menuitem_id');
 			require_once(JPATH_ADMINISTRATOR.'/components/com_j2store/helpers/router.php');
@@ -412,7 +412,7 @@ class PlgFinderJ2Store extends FinderIndexerAdapter
 			$menu_id = isset($pro_menu->id) ? $pro_menu->id : $menu_id;
 			$item->url =  $this->getJ2StoreURL($item->j2store_product_id, $this->extension, $this->layout);
 			$item->route = 'index.php?option=com_j2store&view=products&task=view&id='.$item->j2store_product_id.'&Itemid='.$menu_id;
-			$item->path = FinderIndexerHelper::getContentPath($item->route);
+            $item->path = $this->getContentPath($item->route);
 
 		}
 
@@ -465,6 +465,23 @@ class PlgFinderJ2Store extends FinderIndexerAdapter
 		$this->indexer->index($item);
 	}
 
+    protected function getContentPath($url)
+    {
+        static $router;
+
+        // Only get the router once.
+        if (!($router instanceof JRouter))
+        {
+            // Get and configure the site router.
+            $router = JRouter::getInstance('site');
+        }
+
+        // Build the relative route.
+        $uri   = $router->build($url);
+        $route = $uri->toString(array('path', 'query', 'fragment'));
+        $route = str_replace(JUri::base(true) . '/', '', $route);
+        return $route;
+    }
 	/**
 	 * Method to setup the indexer to be run.
 	 *
