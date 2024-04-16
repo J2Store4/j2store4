@@ -495,7 +495,9 @@ class J2Email {
 		$tags = array_merge($tags, $extras);
 		foreach ($tags as $key => $value)
 		{
-			$text = str_replace($key, $value, $text);
+            if (!empty($key) && !empty($value) && !empty($text)) {
+                $text = str_replace($key, $value, $text);
+            }
 		}
 		//process custom fields.
 		//billing Format [CUSTOM_BILLING_FIELD:KEYNAME]

@@ -95,7 +95,7 @@ $J2gridCol = ($this->params->get('bootstrap_version', 2) == 2) ? 'span' : 'col-m
 
 <?php
 //custom fields
-$html = $this->storeProfile->get('store_payment_layout');
+$html = !empty($this->storeProfile->get('store_payment_layout')) ? $this->storeProfile->get('store_payment_layout') :'';
 
 //first find all the checkout fields
 preg_match_all("^\[(.*?)\]^",$html,$checkoutFields, PREG_PATTERN_ORDER);
