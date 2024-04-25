@@ -495,7 +495,7 @@ class J2Email {
 		$tags = array_merge($tags, $extras);
 		foreach ($tags as $key => $value)
 		{
-            if (!empty($key) && !empty($value) && !empty($text)) {
+            if (!is_null($key) && !is_null($value) && !is_null($text)) {
                 $text = str_replace($key, $value, $text);
             }
 		}
