@@ -255,8 +255,7 @@ class F0FDatabaseDriverJoomla extends F0FDatabaseDriver implements F0FDatabaseIn
             {
                 $j = $n;
             }
-
-            $literal .= str_replace($prefix, $this->tablePrefix, substr($sql, $startPos, $j - $startPos));
+            $literal .= str_replace($prefix, $this->tablePrefix , substr($sql, $startPos, $j - $startPos));
             $startPos = $j;
 
             $j = $startPos + 1;

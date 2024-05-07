@@ -340,6 +340,7 @@ class J2StorePluginBase extends \JPlugin
             $params = array(
                 'license' => $license,
                 'url' => $baseURL,
+                'item_name' =>  $plugin->element,
                 'element' => $plugin->element
             );
             $response = $license_helper->activateLicense($params);
@@ -387,6 +388,7 @@ class J2StorePluginBase extends \JPlugin
             $params = array(
                 'license' => $license,
                 'url' => $baseURL,
+                'item_name' =>  $plugin->element,
                 'element' => $plugin->element
             );
             $response = $license_helper->deActivateLicense($params);

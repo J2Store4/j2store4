@@ -42,6 +42,7 @@ class PlgInstallerJ2Store extends \Joomla\CMS\Plugin\CMSPlugin
                         $api_params = array(
                             'edd_action' => 'get_version',
                             'license' => is_array($license_key) && isset($license_key['license']) && !empty($license_key['license']) ? $license_key['license'] : '',
+                            'item_name' => $element,
                             'url' => $base_url,
                             'element' => $element
                         );

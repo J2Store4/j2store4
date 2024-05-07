@@ -36,14 +36,14 @@ class J2StoreModelShippingMethods extends F0FModel
 
 	protected function _buildQueryWhere($query)
 	{
-		$filter         = $this->getState('filter');
-		$filter_id_from = $this->getState('filter_id_from');
-		$filter_id_to   = $this->getState('filter_id_to');
-		$filter_name    = $this->getState('filter_name');
-		$filter_enabled = $this->getState('filter_enabled');
-		$filter_taxclass = $this->getState('filter_taxclass');
-		$filter_shippingtype = $this->getState('filter_shippingtype');
-		$filter_subtotal = $this->getState('filter_subtotal');
+        $filter         = $this->getState('filter','');
+        $filter_id_from = $this->getState('filter_id_from','');
+        $filter_id_to   = $this->getState('filter_id_to','');
+        $filter_name    = $this->getState('filter_name','');
+        $filter_enabled = $this->getState('filter_enabled',0);
+        $filter_taxclass = $this->getState('filter_taxclass','');
+        $filter_shippingtype = $this->getState('filter_shippingtype','');
+        $filter_subtotal = $this->getState('filter_subtotal',0);
 
 		if ($filter)
 		{

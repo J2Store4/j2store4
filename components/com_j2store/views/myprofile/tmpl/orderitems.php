@@ -20,6 +20,7 @@ if(empty($order->customer_language) || $order->customer_language == '*' || $orde
     $conf = JFactory::getConfig();
     $debug = $conf->get('debug_lang');
     $language = JLanguage::getInstance($order->customer_language, $debug);
+    $language->load('com_j2store');
 }
 ?>
 <div style="page-break-inside: avoid;">

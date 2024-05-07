@@ -318,23 +318,23 @@ class J2StoreModelOrders extends F0FModel {
 	private function getFilterValues()
 	{
 		return (object)array(
-				'search'		=> $this->getState('search',null,'string'),
-				'title'			=> $this->getState('title',null,'string'),
-				'user_id'		=> $this->getState('user_id',null,'int'),
-				'order_id'		=> $this->getState('order_id',null,'int'),
-				'orderstate'		=> $this->getState('orderstate',null,'int'),
-				'processor'		=> $this->getState('processor',null,'string'),
-				'paykey'		=> $this->getState('paykey',null,'string'),
-				'since'			=> $this->getState('since',null,'string'),
-				'until'			=> $this->getState('until',null,'string'),
-				'groupbydate'	=> $this->getState('groupbydate',null,'int'),
-				'groupbylevel'	=> $this->getState('groupbylevel',null,'int'),
-				'moneysum'		=> $this->getState('moneysum',null,'float'),
-				'coupon_id'		=> $this->getState('coupon_id',null,'int'),
-				'coupon_code'		=> $this->getState('coupon_code',null,'string'),
-				'nozero'		=> $this->getState('nozero',null,'int'),
-				'frominvoice'		=> $this->getState('frominvoice',null,'int'),
-				'toinvoice'		=> $this->getState('toinvoice',null,'int'),
+				'search'		=> $this->getState('search','','string'),
+				'title'			=> $this->getState('title','','string'),
+				'user_id'		=> $this->getState('user_id',0,'int'),
+				'order_id'		=> $this->getState('order_id',0,'int'),
+				'orderstate'		=> $this->getState('orderstate',0,'int'),
+				'processor'		=> $this->getState('processor','','string'),
+				'paykey'		=> $this->getState('paykey','','string'),
+				'since'			=> $this->getState('since',0,'string'),
+				'until'			=> $this->getState('until',0,'string'),
+				'groupbydate'	=> $this->getState('groupbydate',0,'int'),
+				'groupbylevel'	=> $this->getState('groupbylevel',0,'int'),
+				'moneysum'		=> $this->getState('moneysum',0,'float'),
+				'coupon_id'		=> $this->getState('coupon_id',0,'int'),
+				'coupon_code'		=> $this->getState('coupon_code',0,'string'),
+				'nozero'		=> $this->getState('nozero',0,'int'),
+				'frominvoice'		=> $this->getState('frominvoice',0,'int'),
+				'toinvoice'		=> $this->getState('toinvoice',0,'int'),
 				'orderstatus'		=> $this->getState('orderstatus',array()),
                 'token'		=> $this->getState('token',''),
                 'user_email'		=> $this->getState('user_email',''),
@@ -414,7 +414,8 @@ class J2StoreModelOrders extends F0FModel {
         }
         $tz = JFactory::getConfig()->get('offset');
 		//since
-		$since = trim($state->since);
+        $since = trim($state->since);
+
 		if(empty($since) || ($since == '0000-00-00') || ($since == '0000-00-00 00:00:00')) {
 			$since = '';
 		} else {
@@ -431,7 +432,8 @@ class J2StoreModelOrders extends F0FModel {
 		}
 
 		// "Until" queries
-		$until = trim($state->until);
+        $until = trim($state->until);
+
 		if(empty($until) || ($until == '0000-00-00') || ($until == '0000-00-00 00:00:00')) {
 			$until = '';
 		} else {

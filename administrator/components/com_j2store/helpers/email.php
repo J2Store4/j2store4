@@ -426,6 +426,7 @@ class J2Email {
             $conf = JFactory::getConfig();
             $debug = $conf->get('debug_lang');
             $language = JLanguage::getInstance($order->customer_language, $debug);
+            $language->load('com_j2store');
             //$language = \Joomla\CMS\Language\Language::getInstance($order->customer_language,false);
         }
 
@@ -495,7 +496,9 @@ class J2Email {
 		$tags = array_merge($tags, $extras);
 		foreach ($tags as $key => $value)
 		{
-			$text = str_replace($key, $value, $text);
+            if (!empty($key) && !is_null($value) && !empty($text)) {
+                $text = str_replace($key, $value, $text);
+            }
 		}
 		//process custom fields.
 		//billing Format [CUSTOM_BILLING_FIELD:KEYNAME]
