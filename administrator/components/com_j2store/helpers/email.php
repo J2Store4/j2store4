@@ -426,6 +426,7 @@ class J2Email {
             $conf = JFactory::getConfig();
             $debug = $conf->get('debug_lang');
             $language = JLanguage::getInstance($order->customer_language, $debug);
+            $language->load('com_j2store');
             //$language = \Joomla\CMS\Language\Language::getInstance($order->customer_language,false);
         }
 
@@ -495,7 +496,7 @@ class J2Email {
 		$tags = array_merge($tags, $extras);
 		foreach ($tags as $key => $value)
 		{
-            if (!is_null($key) && !is_null($value) && !is_null($text)) {
+            if (!empty($key) && !is_null($value) && !empty($text)) {
                 $text = str_replace($key, $value, $text);
             }
 		}

@@ -2,7 +2,7 @@
 <extension version="2.5" type="component" method="upgrade">
 	<name>J2Store</name>
 	<author>Ramesh Elamathi</author>
-	<creationDate>APR 2024</creationDate>
+	<creationDate>MAY 2024</creationDate>
 	<copyright>Copyright (c) 2024 Cartrabbit. All rights reserved.</copyright>
 	<authorEmail>support@j2store.org</authorEmail>
 	<authorUrl>https://www.j2store.org</authorUrl>
