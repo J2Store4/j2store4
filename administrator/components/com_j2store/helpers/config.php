@@ -31,14 +31,14 @@ class J2Config extends JObject {
 		return self::$instance;
 	}
 
-	public function set($namekey,$value=null){		
+	public function set($namekey,$value=''){
 		if(!isset($this->_data[$namekey]) || !is_object($this->_data[$namekey])) $this->_data[$namekey] = new stdClass();
 		$this->_data[$namekey]->config_meta_value=$value;
 		$this->_data[$namekey]->config_meta_key=$namekey;
 		return true;
 	}
 
-	public function get($property, $default=null) {
+	public function get($property, $default='') {
 		if(isset($this->_data[$property])) {			
 			return $this->_data[$property]->config_meta_value;
 		}
