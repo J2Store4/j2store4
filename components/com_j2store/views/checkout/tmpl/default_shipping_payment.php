@@ -95,10 +95,10 @@ $J2gridCol = ($this->params->get('bootstrap_version', 2) == 2) ? 'span' : 'col-m
 
 <?php
 //custom fields
-$html = !is_null($this->storeProfile->get('store_payment_layout')) ? $this->storeProfile->get('store_payment_layout') :'';
+$html =$this->storeProfile->get('store_payment_layout') ;
 
 //first find all the checkout fields
-preg_match_all("^\[(.*?)\]^",$html,$checkoutFields, PREG_PATTERN_ORDER);
+preg_match_all("^\[(.*?)\]^",!is_null($html),$checkoutFields, PREG_PATTERN_ORDER);
 
 $allFields = $this->fields;
 ?>
@@ -127,7 +127,7 @@ foreach($this->fields as $fieldName => $oneExtraField) {
 }
 
 //now we have unprocessed fields. remove any other square brackets found.
-preg_match_all("^\[(.*?)\]^",$html,$removeFields, PREG_PATTERN_ORDER);
+preg_match_all("^\[(.*?)\]^",!is_null($html),$removeFields, PREG_PATTERN_ORDER);
 foreach($removeFields[1] as $fieldName) {
     if(!empty($fieldName)){
         $html = str_replace('['.$fieldName.']', '', $html);
