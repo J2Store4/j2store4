@@ -118,7 +118,7 @@ class F0FInput extends JInput
 	 *
 	 * @return  mixed  The filtered input value.
 	 */
-	public function get($name, $default = null, $filter = 'cmd', $mask = 0)
+	public function get($name, $default = '', $filter = 'cmd', $mask = 0)
 	{
 		if (isset($this->data[$name]))
 		{
