@@ -54,7 +54,7 @@ class J2StoreModelShippingMethods extends F0FModel
 			$query->where('('.implode(' OR ', $where).')');
 		}
 
-		if (strlen($filter_enabled))
+		if (!empty($filter_enabled))
 		{
 			$query->where('tbl.published = '.$filter_enabled);
 		}
@@ -92,7 +92,7 @@ class J2StoreModelShippingMethods extends F0FModel
 			$query->where('tbl.shipping_method_type = '.(int) $filter_shippingtype);
 		}
 
-		if ( strlen($filter_subtotal ))
+		if ( !empty($filter_subtotal ))
 		{
 			$query->where('tbl.subtotal_minimum <= '. $filter_subtotal);
 			$query->where('( ( tbl.subtotal_maximum = 0.00000 ) OR ( tbl.subtotal_maximum = -1 ) OR ( ( tbl.subtotal_maximum != 0.00000 AND tbl.subtotal_maximum != -1 ) AND ( tbl.subtotal_maximum >= '.$filter_subtotal.' ) ) )');
