@@ -188,7 +188,7 @@ class J2StoreControllerEmailtemplates extends F0FController {
                         'editor' => 'codemirror',
                         'content' => 'from_file',
                         'syntax' => 'php',
-                        'buttons' => 'no',
+                        'buttons' => false,
                         'height' => '500px',
                         'rows' => '20',
                         'cols' => '80',
