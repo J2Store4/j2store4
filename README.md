@@ -2,17 +2,17 @@
 
 Dear J2Store Community,
 
-We have always strived to deliver quality eCommerce solutions through J2Store, and we deeply appreciate the trust and support you have shown us over the years. However, after careful consideration, we have made the difficult decision to sunset the development of J2Store and its associated extensions.
+We have always strived to deliver quality eCommerce extension through J2Store, and we deeply appreciate the trust and support you have shown us over the years. However, after careful consideration, we have made the difficult decision to sunset the development of J2Store and its associated extensions.
 
-This decision has not come easily. The rising costs of development, combined with dwindling revenue, have made it increasingly challenging for us to continue offering the level of support and innovation that our users deserve. As a result, we have chosen to make the J2Store project available as open-source software.
+This decision has not come easily. The rising costs of development, combined with dwindling revenue, have made it increasingly challenging for us to continue offering the level innovation that you deserve. As a result, we have chosen to sunset  J2Store's development, but keep it as open-source software for you to fork and build upon.
 
 **What this means for you:**
 - The J2Store repository has been archived, and the project will no longer be actively maintained.
 - All open issues in the repository have been closed.
-- While we will no longer provide support or updates, the code will remain available for the community to explore, fork, and build upon.
+- J2Store will remain available for the community to explore, fork, and build upon.
 
 **Extensions:**
-If you have purchased a license for any paid extensions, you will continue to receive support until your license expires, which is one year from the date of your purchase.
+If you have purchased a license for any paid extensions and have an active license (a license is valid for a year from the date of purchase), you will continue to receive support until your license is valid. You can access support for the extension via our website.
 
 We want to thank everyone who has been a part of the J2Store journey—your feedback, contributions, and enthusiasm have been invaluable.
 
