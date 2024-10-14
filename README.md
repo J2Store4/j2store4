@@ -1,6 +1,25 @@
-J2Store V4
-============
-J2Store is the Open Source eCommerce extension for Joomla that uses the default Joomla articles itself as products and help you build an online store and sell.
+**Important Announcement: Sunsetting J2Store Development**
+
+Dear J2Store Community,
+
+We have always strived to deliver quality eCommerce solutions through J2Store, and we deeply appreciate the trust and support you have shown us over the years. However, after careful consideration, we have made the difficult decision to sunset the development of J2Store and its associated extensions.
+
+This decision has not come easily. The rising costs of development, combined with dwindling revenue, have made it increasingly challenging for us to continue offering the level of support and innovation that our users deserve. As a result, we have chosen to make the J2Store project available as open-source software.
+
+**What this means for you:**
+- The J2Store repository will be archived, and the project will no longer be actively maintained.
+- All open issues in the repository will be automatically closed on **October 30, 2024**.
+- While we will no longer provide support or updates, the code will remain available for the community to explore, fork, and build upon.
+
+**Extensions:**
+If you have purchased a license for any paid extensions, you will continue to receive support until your license expires, which is one year from the date of your purchase.
+
+We want to thank everyone who has been a part of the J2Store journey—your feedback, contributions, and enthusiasm have been invaluable.
+
+Thank you for being a part of this journey with us. We hope that by open-sourcing the project, J2Store can continue to live on in new and exciting ways.
+
+Sincerely,  
+The J2Store Team
 
 ## License
 
@@ -19,23 +38,6 @@ Kindly note that the word “Free” in the Free and Open Source Software (FOSS)
 Using our free of charge, FOSS software does not create any kind of business or other relationship between us, does not grant you any privileges and does not mean that we are obliged to offer any service level whatsoever free of charge.
 
 You are free to choose whether you want to use our FOSS software and the resources we make available to you free of charge.  You are, however, not entitled to any privileges or special treatment just by merit of using our software.
-
-## Support
-
-Please DO NOT use this repository for support requests. 
-The issue tracker should only be used for reporting core J2Store issues only. [Read the guidelines](https://github.com/J2Store4/j2store4/issues/60)
-NOTE: Unfortunately, we are unable to honor support requests in issues on this repository; as a result, any requests submitted in this manner will be closed.
-
-If you need any help, please check our [Documentation](https://docs.j2store.org).
-
-## Contribution to the Project
-
-If you have a patch or found an issues with J2Store, you can contribute this back to the code. 
-Please fork J2Store repo, commit your changes, and submit a pull request.
-
-J2Store is licensed under the GPLv3+, and all contributions to the project will be released under the same license. You maintain copyright over any contribution you make, and by submitting a pull request, you are agreeing to release that contribution under the GPLv3+ license.
-
-Kindly note that whether any requested features will be implemented is up to our sole discretion.
 
 ## Disclaimer
 
