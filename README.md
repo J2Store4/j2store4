@@ -7,8 +7,8 @@ We have always strived to deliver quality eCommerce solutions through J2Store, a
 This decision has not come easily. The rising costs of development, combined with dwindling revenue, have made it increasingly challenging for us to continue offering the level of support and innovation that our users deserve. As a result, we have chosen to make the J2Store project available as open-source software.
 
 **What this means for you:**
-- The J2Store repository will be archived, and the project will no longer be actively maintained.
-- All open issues in the repository will be automatically closed on **October 30, 2024**.
+- The J2Store repository is now archived, and the project will no longer be actively maintained.
+- All open issues in the repositoryhas are closed.
 - While we will no longer provide support or updates, the code will remain available for the community to explore, fork, and build upon.
 
 **Extensions:**
